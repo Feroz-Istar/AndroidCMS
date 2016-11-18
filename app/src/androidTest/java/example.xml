@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<presentation>
+    <slide background="#ffffff" background_transition="concave" image_bg="none" template="ONLY_TITLE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> SNSN</student_notes>
+        <teacher_notes>Revise the previous class before proceeding to the next slide</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Basic calculations in excel</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="null" template="ONLY_TITLE_IMAGE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide3" url="/video/msexcel_session8_slide3.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>sn </student_notes>
+        <teacher_notes>This is the same table saved in session 1 &amp; formatted in session 3 </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Consider the table of marks</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="null" template="ONLY_TITLE_LIST" transition="fade">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <ul merged_audio="none">
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>Can we calculate total in column I ?</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>Can we calculate the percentagesreceived by each student?</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>Can we find out the difference inmarks between two students ?</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <mergedAudioDuration>0</mergedAudioDuration>
+        </ul>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Ask the students and get answers from them </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Can we perform calculations in excel?</h1>
+        <h2 fragment_duration="0"></h2>
+    </slide>
+    <slide background="#ffffff" background_transition="fade" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="slide">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>"=" indicates that excel should perform a function / calculation </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">BasicArithmeticOperations</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="concave" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="fade">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>In excel we can perform calculations by directly inputting values or keying in the values in various cells and summing them up in a different cell </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Simple Cell Operations</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="fade">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes>Not Available</student_notes>
+        <teacher_notes>We can add, subtract, multiply or divide in excel </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Arithmetic Operations</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="null" background_transition="fade" image_bg="none" template="ONLY_TITLE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>tn </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Startingwith "="is critical</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="slide" image_bg="none" template="ONLY_TITLE_PARAGRAPH_IMAGE" transition="zoom">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide10" url="/video/msexcel_session8_slide10.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes>SN SN </student_notes>
+        <teacher_notes> Trainer may open an excel and show it to the students that it will not work without "=" </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">What happens if '=' is not used?</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="convex" image_bg="null" template="ONLY_TITLE_LIST" transition="slide">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <ul merged_audio="none">
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>Type the formula in the target cell (B4)=A2 A3</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>Type '=' and then you can select the first cell (A2) with a mouse click, type ' ', select the second cell (A3) with the mouse</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description>   </description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p>You can also select cells using thearrow keys to move around. What doyou see when you move it?</p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <mergedAudioDuration>0</mergedAudioDuration>
+        </ul>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes> Trainer to demonstrate all the three ways in class </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Three Waysto EnterFormulae</h1>
+        <h2 fragment_duration="0"></h2>
+    </slide>
+    <slide background="#ffffff" background_transition="none" template="ONLY_VIDEO" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>Not Available</student_notes>
+        <teacher_notes> Play the video and give time for students to try the same </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">NO_TITLE</h1>
+        <h2 fragment_duration="0"/>
+        <video title="8MSExcelWorkhop___89ExcelFunctions__169BasicArithmeticOperations_8403" url="/video/Session8_enter formula.mp4">
+            <description>uploaded from slide8403</description>
+        </video>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="none" template="ONLY_TITLE" transition="fade">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Next slide is a few examples for students to try in class</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Let's try a few calculations</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="/video/backgrounds/msexcel_session8_slide13.png" template="NO_CONTENT" transition="zoom">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Give time to students to try these calculations </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">EMPTY_TITLE</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="none" image_bg="/video/backgrounds/msexcel_session8_slide14.png" template="NO_CONTENT" transition="concave">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Give time to students to try these calculations in class </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">EMPTY_TITLE</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="slide" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="concave">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Ask the students what does function mean in excel </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">What's aFunction?</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="slide" image_bg="null" template="ONLY_TITLE_IMAGE" transition="concave">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide16" url="/video/msexcel_session8_slide16.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>Not Available</student_notes>
+        <teacher_notes> Ask the students and get answers from them </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">How can we calculate the sum total in cell I4?</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="convex" image_bg="null" template="ONLY_TITLE_TREE" transition="convex">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> sn </student_notes>
+        <teacher_notes>Stress on the fact that manual calculations cannot be done if there are large volumes of data</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0"></h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="concave" image_bg="none" template="ONLY_TITLE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>Not Available</student_notes>
+        <teacher_notes>Give a couple of minutes to students to go through the home ribbon and figure out if sum can be calculated </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">How to calculate sum ?</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="none" image_bg="null" template="ONLY_TITLE_IMAGE" transition="convex">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide19" url="/video/msexcel_session8_slide19.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>Not Available</student_notes>
+        <teacher_notes>Its the same table as activity 1 of session 3</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Consider the table of marks</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="slide" image_bg="null" template="ONLY_TITLE_PARAGRAPH_IMAGE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide20" url="/video/msexcel_session8_slide20.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes> Trainer to open excel &amp; demonstrate the same in class. Tell the students to apply this formula to all the totals </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Calculatesum</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="null" background_transition="zoom" transition="zoom">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <ul merged_audio="none">
+            <li>
+                <description></description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p></p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description></description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p></p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description></description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p></p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description></description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p></p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <li>
+                <description></description>
+                <fragment_audio></fragment_audio>
+                <id>0</id>
+                <p></p>
+                <fragment_duration>0</fragment_duration>
+            </li>
+            <mergedAudioDuration>0</mergedAudioDuration>
+        </ul>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes></student_notes>
+        <teacher_notes></teacher_notes>
+        <theme/>
+        <h1 fragment_duration="0"/>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="null" template="ONLY_TITLE_PARAGRAPH_IMAGE" transition="slide">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide22" url="/video/msexcel_session8_slide22.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes> Give time to students to try this on their own. Trainer to open excel &amp; demonstrate the same in class </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Calculatedifference</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="none" image_bg="null" template="ONLY_TITLE_PARAGRAPH_IMAGE" transition="fade">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide23" url="/video/msexcel_session8_slide23.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes>sn </student_notes>
+        <teacher_notes>Ask the formula to calculate percentage and then disclose the image</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Calculatepercentage</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="fade" image_bg="null" template="ONLY_TITLE_PARAGRAPH_IMAGE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="msexcel_session8_slide24" url="/video/msexcel_session8_slide24.png">
+            <description></description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> sn</student_notes>
+        <teacher_notes>Right now the percentages are in decimal format we have to apply percentage format to the same </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Percentageformat</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="fade" image_bg="none" template="ONLY_TITLE" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes> SN SN </student_notes>
+        <teacher_notes>Next slide is the video, after playing the video ensure the students do the same activity in their excel sheets</teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">How to apply percentage format?</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="slide" template="ONLY_VIDEO" transition="none">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0"/>
+        <duration>5000</duration>
+        <student_notes>sn </student_notes>
+        <teacher_notes> Play the video </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">NO_TITLE</h1>
+        <h2 fragment_duration="0"/>
+        <video title="Video 08.1 - Percent Style" url="/video/Video 08.1 - Percent Style.mp4">
+            <description></description>
+        </video>
+    </slide>
+    <slide background="#ffffff" background_transition="zoom" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="convex">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes> SN SN</student_notes>
+        <teacher_notes>Ask the students to make a note this </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Shortcuts</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+    <slide background="#ffffff" background_transition="convex" image_bg="none" template="ONLY_TITLE_PARAGRAPH" transition="slide">
+        <slide_audio>none</slide_audio>
+        <img fragment_duration="0" title="To Do" url="/video/ToDo.png">
+            <description>Place filler Image</description>
+        </img>
+        <p fragment_duration="0">
+        </p>
+        <duration>5000</duration>
+        <student_notes>SN SN</student_notes>
+        <teacher_notes> Ask the students to make a note of this </teacher_notes>
+        <theme>
+            <backgroundColor>#ffffff</backgroundColor>
+            <id>143</id>
+            <listitemFontColor>#000000</listitemFontColor>
+            <listitemFontFamily>Raleway-Regular.ttf</listitemFontFamily>
+            <listitemFontSize>49</listitemFontSize>
+            <listitemFontWeight>100</listitemFontWeight>
+            <listitemLineHeight>1</listitemLineHeight>
+            <listitemTextAlignment>left</listitemTextAlignment>
+            <name>Russet-Mobile</name>
+            <paragraphFontColor>#000000</paragraphFontColor>
+            <paragraphFontFamily>Raleway-Regular.ttf</paragraphFontFamily>
+            <paragraphFontSize>49</paragraphFontSize>
+            <paragraphFontWeight>100</paragraphFontWeight>
+            <paragraphLineHeight>1</paragraphLineHeight>
+            <paragraphTextAlignment>left</paragraphTextAlignment>
+            <subtitleFontColor>#000000</subtitleFontColor>
+            <subtitleFontFamily>Raleway-Regular.ttf</subtitleFontFamily>
+            <subtitleFontSize>81</subtitleFontSize>
+            <subtitleFontWeight>300</subtitleFontWeight>
+            <subtitleLineHeight>1</subtitleLineHeight>
+            <subtitleTextAlignment>left</subtitleTextAlignment>
+            <titleFontColor>#000000</titleFontColor>
+            <titleFontFamily>Raleway-Regular.ttf</titleFontFamily>
+            <titleFontSize>110</titleFontSize>
+            <titleFontWeight>800</titleFontWeight>
+            <titleLineHeight>1</titleLineHeight>
+            <titleTextAlignment>left</titleTextAlignment>
+        </theme>
+        <h1 fragment_duration="0">Shortcuts</h1>
+        <h2 fragment_duration="0"/>
+    </slide>
+</presentation>
