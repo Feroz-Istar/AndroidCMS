@@ -8,14 +8,12 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.vaibhav.app.CMSPresentation;
 import com.example.vaibhav.app.CMSSlide;
 import com.example.vaibhav.app.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
-
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
