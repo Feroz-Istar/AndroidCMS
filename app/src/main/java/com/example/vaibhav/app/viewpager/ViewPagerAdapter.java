@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.example.vaibhav.app.CMSSlide;
+import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.Card;
 import com.example.vaibhav.app.com.example.vaibhav.card.CardFactory;
 
@@ -60,6 +60,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         ((ViewPager) collection).removeView(view);
         view = null;
     }
+
+
     /*@Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         // TODO Auto-generated method stub

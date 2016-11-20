@@ -1,15 +1,20 @@
 package com.example.vaibhav.app.viewpager;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.vaibhav.app.CMSPresentation;
-import com.example.vaibhav.app.CMSSlide;
+import com.example.vaibhav.app.cmspojo.CMSPresentation;
+import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -35,6 +40,12 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE};
+
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
         setContentView(R.layout.activity_sample);
         viewPager =(ViewPager) findViewById(R.id.view_pager);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -90,10 +101,13 @@ public class SampleActivity extends AppCompatActivity {
                     //System.out.println("total time " + time_taken);
                     cmsSlides = new ArrayList<>();
 
-
+//
                     for(CMSSlide cmsSlide: cmsPresentation.getSlides()){
                         if(cmsSlide.getTemplateName() != null)
-                            if(cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE")){
+                            if(cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE")
+                                    ||cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_IMAGE")
+                                    ||cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")
+                                    ){
                                 cmsSlides.add(cmsSlide);
                             }
                     }
@@ -117,5 +131,17 @@ public class SampleActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

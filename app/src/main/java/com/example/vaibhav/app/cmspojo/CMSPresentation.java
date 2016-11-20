@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.vaibhav.app;
+package com.example.vaibhav.app.cmspojo;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

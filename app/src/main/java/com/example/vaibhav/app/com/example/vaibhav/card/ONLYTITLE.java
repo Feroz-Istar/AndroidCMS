@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.vaibhav.app.CMSSlide;
+import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.R;
 
 /**
@@ -33,8 +33,13 @@ public class ONLYTITLE extends  Card{
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
             if(cms.getTitle() != null){
                 textView.setText(cms.getTitle().getText());
-                textView.setTextSize(Float.parseFloat(cms.getTheme().getTitleFontSize())/4);
+
+
+                if(cms.getTheme().getTitleFontSize() != null)
+                textView.setTextSize(Float.parseFloat(cms.getTheme().getTitleFontSize())/3);
+                if(cms.getTheme().getTitleFontColor() !=null)
                 textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                if(cms.getTheme().getBackgroundColor() != null)
                 main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
             }
         }

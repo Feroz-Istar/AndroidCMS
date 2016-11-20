@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.example.vaibhav.app;
-
+package com.example.vaibhav.app.cmspojo;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Text;
 
 import java.io.Serializable;
@@ -13,37 +13,37 @@ import java.io.Serializable;
  * @author Vaibhav
  *
  */
-public class CMSTitle  implements Serializable {
+@Root(name = "h2")
+public class CMSTitle2   implements Serializable  {
 	@Text(data = true,required = false)
-	private String text;
+	String text;
 	@Attribute(name = "fragment_audio",required = false)
-	private String fragmentAudioUrl;
+	String fragmentAudioUrl;
 	@Attribute(name = "fragment_duration",required = false)
+	int fragmentDuration;
 
-	private int fragmentDuration;
-
-	public CMSTitle() {
-		super();
-	}
-
-	public CMSTitle(String text, String fragmentAudioUrl, int fragmentDuration) {
+	public CMSTitle2(String text, String fragmentAudioUrl, int fragmentDuration) {
 		super();
 		this.text = text;
 		this.fragmentAudioUrl = fragmentAudioUrl;
 		this.fragmentDuration = fragmentDuration;
 	}
 
-	public CMSTitle(String text) {
+	public CMSTitle2(String text) {
 		super();
 		this.text = text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public CMSTitle2() {
+		super();
 	}
 
 	public String getText() {
 		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public String getFragmentAudioUrl() {
