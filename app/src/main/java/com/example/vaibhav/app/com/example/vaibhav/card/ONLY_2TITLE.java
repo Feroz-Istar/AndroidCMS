@@ -23,8 +23,8 @@ public class ONLY_2TITLE extends Card {
         View view = inflater.inflate(R.layout.only_2title, container, false);
         title1 = (TextView) view.findViewById(R.id.title1);
         title2 = (TextView) view.findViewById(R.id.title2);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){

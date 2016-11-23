@@ -26,7 +26,7 @@ public class ONLY_PARAGRAPH extends Card {
 
         View view = inflater.inflate(R.layout.only_paragraph, container, false);
         paragraph = (TextView) view.findViewById(R.id.paragraph);
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
         if (getArguments() != null) {
             CMSSlide cms = null;

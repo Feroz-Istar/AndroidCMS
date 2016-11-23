@@ -64,9 +64,9 @@ if(list != null && list.getText() != null)
 }
         holder.title1.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         holder.title2.setTextColor(context.getResources().getColor(R.color.colorPrimary));
-        Typeface titletf = Typeface.createFromAsset(context.getAssets(),"Raleway-Bold.ttf");
+        Typeface titletf = Typeface.createFromAsset(context.getAssets(),"Raleway-Thin.ttf");
 
-        Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Regular.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Thin.ttf");
         holder.title1.setTypeface(titletf);
         holder.title1.setText(listitems);
         if(bulletList.size() > 0)

@@ -34,7 +34,7 @@ public class ONLYTITLEIMAGE extends Card {
         image = (ImageView) view.findViewById(R.id.image);
         Boolean externalReadable = new ImageSaver(getContext()).isExternalStorageReadable();
         Boolean externalWritable = new ImageSaver(getContext()).isExternalStorageWritable();
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
         if(getArguments() != null){
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");

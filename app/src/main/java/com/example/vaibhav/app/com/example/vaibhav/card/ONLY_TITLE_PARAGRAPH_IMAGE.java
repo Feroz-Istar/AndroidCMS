@@ -32,8 +32,8 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
         if (getArguments() != null) {
 
             CMSSlide cms = null;

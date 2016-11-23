@@ -26,11 +26,10 @@ public class ONLY_2BOX extends Card {
         title2 = (TextView) view.findViewById(R.id.title2);
         description1 = (TextView) view.findViewById(R.id.paragraph1);
         description2 = (TextView) view.findViewById(R.id.paragraph2);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
-        Typeface paragraphtf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-SemiBold");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface paragraphtf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
-//Raleway-SemiBold
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
@@ -40,7 +39,7 @@ public class ONLY_2BOX extends Card {
                 }
                 if( cms.getTitle2().getText() != null ) {
                     title2.setText(cms.getTitle2().getText());
-                    title2.setTypeface(paragraphtf);
+                    title2.setTypeface(titletf);
                 }
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     description1.setText(cms.getParagraph().getText());

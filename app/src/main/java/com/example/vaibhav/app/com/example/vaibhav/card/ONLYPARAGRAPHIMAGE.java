@@ -32,7 +32,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
         if (getArguments() != null) {
 

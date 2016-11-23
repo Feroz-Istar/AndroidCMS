@@ -30,7 +30,7 @@ public class ONLYTITLE extends  Card{
         View view = inflater.inflate(R.layout.only_title, container, false);
         textView = (TextView) view.findViewById(R.id.text);
         main_layout = (LinearLayout) view.findViewById(R.id.main_layout);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");

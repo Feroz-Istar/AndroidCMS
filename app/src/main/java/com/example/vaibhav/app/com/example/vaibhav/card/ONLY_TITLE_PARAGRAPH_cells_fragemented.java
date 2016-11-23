@@ -27,8 +27,8 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
         View view = inflater.inflate(R.layout.only_title_paragraph_cell_fragmented, container, false);
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
         if (getArguments() != null) {
             CMSSlide cms = null;
             cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
