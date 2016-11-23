@@ -1,4 +1,4 @@
-package com.example.vaibhav.app;
+package com.example.vaibhav.app.util;
 
 /**
  * Created by Feroz on 19/11/2016.

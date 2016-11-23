@@ -1,21 +1,16 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
-import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.vaibhav.app.BulletListUtil;
-import com.example.vaibhav.app.MutableForegroundColorSpan;
 import com.example.vaibhav.app.R;
+import com.example.vaibhav.app.util.BulletListBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,21 +36,10 @@ public class ONLYTITLELIST extends Card {
         lines.add("Really long third line that will wrap and indent properly.");
 
 
-        CharSequence bulletedList = BulletListUtil.makeBulletList(lines,30);
-        list.setText(bulletedList);
-        MutableForegroundColorSpan span = new MutableForegroundColorSpan(255, Color.BLACK);
-        string = new SpannableString(list.getText());
-        string.setSpan(span, 0, list.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(span, "#000", Color.BLACK, Color.RED);
-        objectAnimator.setEvaluator(new ArgbEvaluator());
-        objectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                //refresh
-                list.setText(string);
-            }
-        });
-        objectAnimator.start();
+        //CharSequence bulletedList = BulletListUtil.makeBulletList(lines,30);
+        list.setText(new BulletListBuilder(getContext()).getBulletList("Hero",lines,"",list));
+        list.setMovementMethod(LinkMovementMethod.getInstance());
+
         return view ;
     }
 

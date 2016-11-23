@@ -13,12 +13,14 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -41,15 +43,16 @@ public class SampleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE};
+        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
 
-        if(!hasPermissions(this, PERMISSIONS)){
+        if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
         setContentView(R.layout.activity_sample);
-        viewPager =(ViewPager) findViewById(R.id.view_pager);
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        error_text= (TextView) findViewById(R.id.error_text);
+        error_text = (TextView) findViewById(R.id.error_text);
+        viewPager.setOffscreenPageLimit(0);
         checkLogin(progressBar);
 
     }
@@ -82,13 +85,8 @@ public class SampleActivity extends AppCompatActivity {
             }
 
 
-
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
-
-
 
 
                 String xml_object = responseString;
@@ -102,16 +100,11 @@ public class SampleActivity extends AppCompatActivity {
                     cmsSlides = new ArrayList<>();
 
 //
-                    for(CMSSlide cmsSlide: cmsPresentation.getSlides()){
-                        if(cmsSlide.getTemplateName() != null)
-                            if(cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE")
-                                    ||cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_IMAGE")
-                                    ||cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")
-                                    ){
-                                cmsSlides.add(cmsSlide);
-                            }
+                    for (CMSSlide cmsSlide : cmsPresentation.getSlides()) {
+
+                        cmsSlides.add(cmsSlide);
                     }
-                    viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),cmsSlides);
+                    viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
                     viewPager.setAdapter(viewPagerAdapter);
 
                 } catch (Exception e) {
