@@ -24,6 +24,10 @@ public class CardFactory {
                 return new ONLYPARAGRAPHIMAGE();
             }  else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH")) {
                 return new ONLY_PARAGRAPH();
+            }  else if (cradType.equalsIgnoreCase("ONLY_2TITLE")) {
+                return new ONLY_2TITLE();
+            }else if (cradType.equalsIgnoreCase("ONLY_2TITLE_IMAGE")) {
+                return new ONLY_2TITLE_IMAGE();
             }else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH_TITLE")) {
                 return new ONLY_PARAGRAPH_TITLE();
             }  else if (cradType.equalsIgnoreCase("ONLY_LIST_NUMBERED")) {

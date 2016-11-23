@@ -62,7 +62,7 @@ public class SampleActivity extends AppCompatActivity {
         error_text.setVisibility(View.GONE);
         final long t = System.currentTimeMillis();
         System.out.println("Here" + t);
-        String BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=416";
+        String BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=188";
         System.out.println("BASE_URL " + BASE_URL);
         AsyncHttpClient myClient = new AsyncHttpClient();
         RequestParams params = new RequestParams();
