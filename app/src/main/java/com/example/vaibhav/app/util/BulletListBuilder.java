@@ -64,6 +64,35 @@ public class BulletListBuilder {
         return sb;
     }
 
+    public  CharSequence getBulletList(List<String> items) {
+
+        List<Spanned> spanned = new ArrayList<>(items.size());
+        for (String line : items) {
+            if (!line.trim().isEmpty()) {
+                Spanned spannedLine = Html.fromHtml(line.trim());
+                spanned.add(spannedLine);
+            }
+        }
+
+        sb = new SpannableStringBuilder();
+
+        for (int i = 0; i < spanned.size(); i++) {
+            CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
+            Spannable spannable = new SpannableString(line);
+            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
+                    Spanned.SPAN_USER);
+            sb.append(spannable);
+
+
+        }
+
+
+
+
+
+
+        return sb;
+    }
 
 
 
