@@ -1,8 +1,10 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,14 +34,28 @@ public class ONLY_VIDEO extends Card {
             if (cms != null) {
 
                 if(cms.getVideo() != null && cms.getVideo().getUrl() != null){
-                    try{
-                        video.setMediaController(mediaControls);
-                        video.setVideoURI(Uri.parse("http://api.talentify.in/"+cms.getVideo().getUrl()));
-                        video.requestFocus();
-                        video.start();
-                    }catch (Exception e){
+                    try {
+                        // Start the MediaController
+                        MediaController mediacontroller = new MediaController(getContext());
+                        mediacontroller.setAnchorView(video);
+                        // Get the URL from String VideoURL
+                        Uri videoss = Uri.parse("http://api.talentify.in/"+cms.getVideo().getUrl());
+                        video.setMediaController(mediacontroller);
+                        video.setVideoURI(videoss);
 
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
+                        e.printStackTrace();
                     }
+
+                    video.requestFocus();
+                    video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        // Close the progress bar and play the video
+                        public void onPrepared(MediaPlayer mp) {
+                            video.start();
+                        }
+                    });
+
 
                 }
             }
