@@ -1,7 +1,9 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +34,12 @@ public class ONLY_PARAGRAPH extends Card {
                 if (cms != null) {
 
                     if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
-                        paragraph.setText(cms.getParagraph().getText());
+                        paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
+                    }
+                    if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){
+                        paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+                        paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize())/3);
+
                     }
                 }
 
