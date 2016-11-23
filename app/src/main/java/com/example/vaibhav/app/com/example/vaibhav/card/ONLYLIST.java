@@ -45,7 +45,6 @@ public class ONLYLIST extends Card {
                 recyclerView.setAdapter(onlyListRecycleAdapter);
 
                 }
-                System.out.print("---------------------lines------------------------------"+lines.size());
 
 
 
