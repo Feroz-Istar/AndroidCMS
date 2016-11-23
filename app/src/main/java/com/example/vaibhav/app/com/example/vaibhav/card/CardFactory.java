@@ -14,6 +14,10 @@ public class CardFactory {
                 return new ONLYTITLE();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_IMAGE")) {
                 return new ONLYTITLEIMAGE();
+            }else if (cradType.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH_cells_fragemented")) {
+                return new ONLY_TITLE_PARAGRAPH_cells_fragemented();
+            }else if (cradType.equalsIgnoreCase("ONLY_2BOX")) {
+                return new ONLY_2BOX();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_LIST")) {
                 return new ONLYTITLELIST();
             }  else if (cradType.equalsIgnoreCase("ONLY_LIST")) {
