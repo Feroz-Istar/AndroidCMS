@@ -13,4 +13,16 @@
        android:layout_weight="20"
        android:id="@+id/title"
        />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="20"
+       android:id="@+id/paragraph"
+       />
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="60"
+       android:id="@+id/image"
+       />
 </LinearLayout>
