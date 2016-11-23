@@ -10,14 +10,19 @@
    <TextView
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="20"
+       android:layout_weight="15"
        android:id="@+id/title"
+       android:paddingLeft="20dp"
+       android:text="Act 1, Scene 1"
+       android:gravity="bottom"
        />
    <TextView
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="20"
+       android:layout_weight="25"
        android:id="@+id/paragraph"
+       android:paddingLeft="20dp"
+
        />
    <ImageView
        android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -41,6 +42,9 @@ public class ONLY_TITLE_IMAGE extends Card {
                 if(cms.getImage() != null && cms.getImage().getUrl() != null)
                 mPicasso.load("http://api.talentify.in" + cms.getImage().getUrl()).into(image);
 
+                if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
+                    title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                }
 
             }
         }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     android:weightSum="100">
 
 
@@ -17,19 +18,19 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:fontFamily="sans-serif"
-        android:padding="10dp"
+        android:padding="30dp"
         android:text="What are the action and interaction"
         android:textAlignment="gravity"
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
-        android:layout_weight="20"
-        android:textStyle="bold" />
+        android:layout_weight="30"
+         />
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="80" />
+                android:layout_weight="70" />
 
 
 

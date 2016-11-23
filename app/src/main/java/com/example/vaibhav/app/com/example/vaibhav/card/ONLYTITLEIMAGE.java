@@ -2,6 +2,7 @@ package com.example.vaibhav.app.com.example.vaibhav.card;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -37,6 +38,12 @@ public class ONLYTITLEIMAGE extends Card {
             if(cms.getTitle() != null){
                 title.setText(cms.getTitle().getText());
             }
+            if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
+                title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+                title.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
+            }
+
             if(cms.getImage() != null && cms.getImage().getUrl() != null){
                 try {
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
