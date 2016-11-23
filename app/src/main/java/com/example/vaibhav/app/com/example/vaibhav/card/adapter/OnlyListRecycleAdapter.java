@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
-
-import java.util.List;
+import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.util.NumberIndentSpan;
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -25,7 +25,7 @@ import java.util.List;
 
 public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycleAdapter.MyViewHolder> {
 
-    private List<String> listItems;
+    private CMSSlide cmsSlide;
     private  Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -39,8 +39,8 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
     }
 
 
-    public OnlyListRecycleAdapter(List<String> listItems, Context context) {
-        this.listItems = listItems;
+    public OnlyListRecycleAdapter(CMSSlide cmsSlide, Context context) {
+        this.cmsSlide = cmsSlide;
         this.context = context;
     }
 
@@ -56,15 +56,18 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         SpannableStringBuilder sb = new SpannableStringBuilder();
-        Spannable spannable = new SpannableString(listItems.get(position));
-        spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
-                Spanned.SPAN_USER);
-        sb.append(spannable);
-        Spannable spannable1 = new SpannableString(listItems.get(position));
+        Spannable spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
 
-        spannable1.setSpan(new BulletSpan(60), 0, spannable1.length(),
-                Spanned.SPAN_PARAGRAPH);
-        sb.append(spannable1);
+        if(cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST_NUMBERED") || cmsSlide.getTemplateName().equalsIgnoreCase("ONLY_LIST_NUMBERED")){
+            spannable.setSpan(new NumberIndentSpan(60, 60,position), 0, spannable.length(),
+                    Spanned.SPAN_USER);
+        }else {
+            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
+                    Spanned.SPAN_USER);
+        }
+
+        sb.append(spannable);
+
 
         holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimary));
 
@@ -73,6 +76,6 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return cmsSlide.getList().getItems().size();
     }
 }

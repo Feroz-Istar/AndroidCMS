@@ -14,9 +14,6 @@ import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyListRecycleAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Feroz on 21/11/2016.
  */
@@ -32,7 +29,6 @@ public class ONLYTITLELIST extends Card {
         textView = (TextView) view.findViewById(R.id.title);
        // textView.setText("Title for Only Title List");
 
-        List<String> lines = new ArrayList<>();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.itemListRV);
 
@@ -44,26 +40,16 @@ public class ONLYTITLELIST extends Card {
             }
             if(cms.getList() != null){
 
-                if(cms.getList().getList_type().equalsIgnoreCase("SIMPLE_LIST")){
-                    System.out.print("list");
-
-                   for(int i = 0; i<cms.getList().getItems().size(); i++){
-
-                       if(cms.getList().getItems().get(i).getText() != null){
-
-                           lines.add(cms.getList().getItems().get(i).getText());
-                       }
-                     }
-
-                }
-                System.out.print("---------------------lines------------------------------"+lines.size());
-                onlyListRecycleAdapter = new OnlyListRecycleAdapter(lines,getContext());
+                onlyListRecycleAdapter = new OnlyListRecycleAdapter(cms,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(onlyListRecycleAdapter);
 
             }
+
+
+
         }
 
         return view ;
