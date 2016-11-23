@@ -7,8 +7,8 @@ import com.example.vaibhav.app.com.example.vaibhav.card.adapter.DummyFragment;
  */
 
 public class CardFactory {
-    public static Card  getCard(String cradType) {
-        if(cradType != null) {
+    public static Card getCard(String cradType) {
+        if (cradType != null) {
 
             if (cradType.equalsIgnoreCase("ONLY_TITLE")) {
                 return new ONLYTITLE();
@@ -22,13 +22,15 @@ public class CardFactory {
                 return new ONLY_TITLE_PARAGRAPH();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH_IMAGE")) {
                 return new ONLY_TITLE_PARAGRAPH_IMAGE();
+            } else if (cradType.equalsIgnoreCase("ONLY_VIDEO")) {
+                return new ONLY_VIDEO();
             }
-            //ONLY_TITLE_PARAGRAPH_IMAGE
+            //ONLY_VIDEO
             else {
                 return new DummyFragment();
 
             }
-        }else {
+        } else {
             return new DummyFragment();
 
         }
