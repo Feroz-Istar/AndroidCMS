@@ -20,6 +20,10 @@ public class CardFactory {
                 return new ONLYLIST();
             }  else if (cradType.equalsIgnoreCase("ONLY_TITLE_LIST_NUMBERED")) {
                 return new ONLYTITLELIST();
+            } else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH")) {
+                return new ONLY_PARAGRAPH();
+            }else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH_TITLE")) {
+                return new ONLY_PARAGRAPH_TITLE();
             }  else if (cradType.equalsIgnoreCase("ONLY_LIST_NUMBERED")) {
                 return new ONLYLIST();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_TREE")) {

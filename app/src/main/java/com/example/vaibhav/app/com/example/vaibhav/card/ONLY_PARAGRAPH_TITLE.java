@@ -11,10 +11,9 @@ import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 
 /**
- * Created by Feroz on 23/11/2016.
+ * Created by Sumanth on 11/23/2016.
  */
-
-public class ONLY_TITLE_PARAGRAPH extends Card {
+public class ONLY_PARAGRAPH_TITLE extends Card {
 
     private TextView paragraph,title;
 
@@ -22,16 +21,16 @@ public class ONLY_TITLE_PARAGRAPH extends Card {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.only_title_paragraph, container, false);
+        View view = inflater.inflate(R.layout.only_paragraph_title, container, false);
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
 
         if (getArguments() != null) {
             CMSSlide cms = null;
-                cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
+            cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
                 if(cms.getTitle() != null && cms.getTitle().getText() != null)
-                title.setText(cms.getTitle().getText());
+                    title.setText(cms.getTitle().getText());
 
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(cms.getParagraph().getText());
@@ -42,4 +41,5 @@ public class ONLY_TITLE_PARAGRAPH extends Card {
 
         return view;
     }
+
 }
