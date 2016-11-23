@@ -24,8 +24,10 @@ public class CardFactory {
                 return new ONLY_TITLE_PARAGRAPH_IMAGE();
             } else if (cradType.equalsIgnoreCase("ONLY_VIDEO")) {
                 return new ONLY_VIDEO();
+            }else if (cradType.equalsIgnoreCase("NO_CONTENT")) {
+                return new NO_CONTENT();
             }
-            //ONLY_VIDEO
+            //NO_CONTENT
             else {
                 return new DummyFragment();
 
