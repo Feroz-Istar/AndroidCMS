@@ -1,5 +1,6 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,10 +32,14 @@ public class ONLY_2TITLE extends Card {
                 if( cms.getTitle().getText()!= null ) {
                     title1.setText(cms.getTitle().getText());
                     title1.setTypeface(titletf);
+                    title1.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                    title1.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
                 }
                 if( cms.getTitle2().getText() != null ) {
                     title2.setText(cms.getTitle2().getText());
                     title2.setTypeface(descriptiontf);
+                    title2.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                    title2.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/4);
                 }
 
 

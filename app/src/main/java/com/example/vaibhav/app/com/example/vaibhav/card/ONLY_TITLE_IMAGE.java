@@ -40,6 +40,8 @@ public class ONLY_TITLE_IMAGE extends Card {
                 if( cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
                     title.setTypeface(titletf);
+                    title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                    title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
                 }
                 if(cms.getImage() != null && cms.getImage().getUrl() != null)
                 mPicasso.load("http://api.talentify.in" + cms.getImage().getUrl()).into(image);

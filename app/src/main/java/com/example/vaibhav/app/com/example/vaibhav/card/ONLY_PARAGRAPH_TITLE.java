@@ -36,10 +36,14 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
                 if(cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
                     title.setTypeface(titletf);
+                    title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                    title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+
                 }
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
                     paragraph.setTypeface(descriptiontf);
+
                 }
                 if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){
                     paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
