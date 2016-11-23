@@ -1,6 +1,7 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -31,14 +32,15 @@ public class ONLY_TITLE_IMAGE extends Card {
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
 
-
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
 
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
-                if( cms.getTitle() != null && cms.getTitle().getText() != null)
-                title.setText(cms.getTitle().getText());
-
+                if( cms.getTitle() != null && cms.getTitle().getText() != null) {
+                    title.setText(cms.getTitle().getText());
+                    title.setTypeface(titletf);
+                }
                 if(cms.getImage() != null && cms.getImage().getUrl() != null)
                 mPicasso.load("http://api.talentify.in" + cms.getImage().getUrl()).into(image);
 

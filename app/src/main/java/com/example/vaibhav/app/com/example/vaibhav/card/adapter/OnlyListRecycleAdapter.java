@@ -1,6 +1,7 @@
 package com.example.vaibhav.app.com.example.vaibhav.card.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -72,6 +73,8 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
         holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimary));
 
         holder.title.setText(sb);
+        Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Regular.ttf");
+        holder.title.setTypeface(descriptiontf);
     }
 
     @Override

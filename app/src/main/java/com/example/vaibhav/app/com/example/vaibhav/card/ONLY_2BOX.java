@@ -1,5 +1,6 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,16 +26,25 @@ public class ONLY_2BOX extends Card {
         title2 = (TextView) view.findViewById(R.id.title2);
         description1 = (TextView) view.findViewById(R.id.paragraph1);
         description2 = (TextView) view.findViewById(R.id.paragraph2);
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
+        Typeface paragraphtf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-SemiBold");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
 
+//Raleway-SemiBold
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
-                if( cms.getTitle().getText()!= null )
+                if( cms.getTitle().getText()!= null ) {
                     title1.setText(cms.getTitle().getText());
-                if( cms.getTitle2().getText() != null )
+                    title1.setTypeface(titletf);
+                }
+                if( cms.getTitle2().getText() != null ) {
                     title2.setText(cms.getTitle2().getText());
+                    title2.setTypeface(paragraphtf);
+                }
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     description1.setText(cms.getParagraph().getText());
+                    description1.setTypeface(descriptiontf);
                 }
 
 

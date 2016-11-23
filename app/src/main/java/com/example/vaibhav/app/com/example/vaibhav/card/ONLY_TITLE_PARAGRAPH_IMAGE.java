@@ -1,6 +1,7 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -31,7 +32,8 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
-
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
+        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
         if (getArguments() != null) {
 
             CMSSlide cms = null;
@@ -39,9 +41,11 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
                 cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
 
             if(cms != null){
-                if(cms.getTitle() != null && cms.getTitle().getText() != null)
+                if(cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
+                    title.setTypeface(titletf);
 
+                }
                 if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
                     title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
                     title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
@@ -49,6 +53,8 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
 
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
+                    paragraph.setTypeface(descriptiontf);
+
                 }
 
                 if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){

@@ -3,6 +3,7 @@ package com.example.vaibhav.app.com.example.vaibhav.card;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -33,10 +34,13 @@ public class ONLYTITLEIMAGE extends Card {
         image = (ImageView) view.findViewById(R.id.image);
         Boolean externalReadable = new ImageSaver(getContext()).isExternalStorageReadable();
         Boolean externalWritable = new ImageSaver(getContext()).isExternalStorageWritable();
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Bold.ttf");
+
         if(getArguments() != null){
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
             if(cms.getTitle() != null){
                 title.setText(cms.getTitle().getText());
+                title.setTypeface(titletf);
             }
             if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
                 title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
