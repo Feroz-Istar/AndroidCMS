@@ -1,6 +1,7 @@
 package com.example.vaibhav.app.com.example.vaibhav.card.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -68,12 +69,17 @@ if(list != null && list.getText() != null)
 
         Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Thin.ttf");
         holder.title1.setTypeface(titletf);
+        holder.title1.setTextColor(Color.parseColor(cmsSlide.getTheme().getTitleFontColor()));
+        holder.title1.setTextSize(Integer.parseInt(cmsSlide.getTheme().getTitleFontSize())/3);
+
         holder.title1.setText(listitems);
         if(bulletList.size() > 0)
-            holder.title2.setText(new BulletListBuilder(context).getBulletList(bulletList));
 
 
         holder.title2.setTypeface(descriptiontf);
+        holder.title2.setTextColor(Color.parseColor(cmsSlide.getTheme().getTitleFontColor()));
+        holder.title2.setTextSize(Integer.parseInt(cmsSlide.getTheme().getTitleFontSize())/3);
+        holder.title2.setText(new BulletListBuilder(context).getBulletList(bulletList));
 
     }
 
