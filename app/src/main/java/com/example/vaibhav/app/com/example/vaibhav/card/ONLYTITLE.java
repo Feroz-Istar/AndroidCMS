@@ -30,7 +30,7 @@ public class ONLYTITLE extends  Card{
         View view = inflater.inflate(R.layout.only_title, container, false);
         textView = (TextView) view.findViewById(R.id.text);
         main_layout = (LinearLayout) view.findViewById(R.id.main_layout);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
 
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
@@ -39,11 +39,11 @@ public class ONLYTITLE extends  Card{
 
 
                 if(cms.getTheme().getTitleFontSize() != null)
-                textView.setTextSize(Float.parseFloat(cms.getTheme().getTitleFontSize())/3);
+                textView.setTextSize((float) (Float.parseFloat(cms.getTheme().getTitleFontSize())/3.5));
                 if(cms.getTheme().getTitleFontColor() !=null)
                 textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
 
-                textView.setTypeface(titletf);
+                textView.setTypeface(titletf,Typeface.BOLD);
                 if(cms.getTheme().getBackgroundColor() != null)
                 main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
             }

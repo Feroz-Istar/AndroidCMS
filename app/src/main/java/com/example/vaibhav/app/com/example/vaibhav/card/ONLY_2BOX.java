@@ -27,28 +27,27 @@ public class ONLY_2BOX extends Card {
         title2 = (TextView) view.findViewById(R.id.title2);
         description1 = (TextView) view.findViewById(R.id.paragraph1);
         description2 = (TextView) view.findViewById(R.id.paragraph2);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface paragraphtf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+
 
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
                 if( cms.getTitle().getText()!= null ) {
                     title1.setText(cms.getTitle().getText());
-                    title1.setTypeface(titletf);
+                    title1.setTypeface(titletf,Typeface.BOLD);
                     title1.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
                     title1.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
                 }
                 if( cms.getTitle2().getText() != null ) {
                     title2.setText(cms.getTitle2().getText());
-                    title2.setTypeface(titletf);
+                    title2.setTypeface(titletf,Typeface.BOLD_ITALIC);
                     title2.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
                     title2.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
                 }
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     description1.setText(cms.getParagraph().getText());
-                    description1.setTypeface(descriptiontf);
+                    description1.setTypeface(titletf);
                     description1.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
                     description1.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize())/3);
 

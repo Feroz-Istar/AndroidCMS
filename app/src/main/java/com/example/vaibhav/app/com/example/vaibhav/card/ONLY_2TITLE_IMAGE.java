@@ -30,18 +30,17 @@ public class ONLY_2TITLE_IMAGE extends Card {
         title2 = (TextView) view.findViewById(R.id.title2);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext());
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
                 if( cms.getTitle().getText()!= null ) {
                     title1.setText(cms.getTitle().getText());
-                    title1.setTypeface(titletf);
+                    title1.setTypeface(titletf,Typeface.BOLD);
                 }
                 if( cms.getTitle2().getText() != null ) {
                     title2.setText(cms.getTitle2().getText());
-                    title2.setTypeface(descriptiontf);
+                    title2.setTypeface(titletf);
                 }
                 if(cms.getImage() != null && cms.getImage().getUrl() != null)
                     mPicasso.load("http://api.talentify.in" + cms.getImage().getUrl()).into(image);

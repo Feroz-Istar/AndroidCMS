@@ -27,15 +27,15 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
         View view = inflater.inflate(R.layout.only_title_paragraph_cell_fragmented, container, false);
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+
         if (getArguments() != null) {
             CMSSlide cms = null;
             cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
                 if(cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
-                    title.setTypeface(titletf);
+                    title.setTypeface(titletf,Typeface.BOLD);
                 }
                 if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
                     title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
@@ -45,7 +45,7 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
 
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
-                    paragraph.setTypeface(descriptiontf);
+                    paragraph.setTypeface(titletf);
                 }
                 if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){
                     paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));

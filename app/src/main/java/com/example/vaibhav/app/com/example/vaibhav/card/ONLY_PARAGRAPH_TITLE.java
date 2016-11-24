@@ -27,22 +27,22 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
         View view = inflater.inflate(R.layout.only_paragraph_title, container, false);
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+
         if (getArguments() != null) {
             CMSSlide cms = null;
             cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
                 if(cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
-                    title.setTypeface(titletf);
+                    title.setTypeface(titletf,Typeface.BOLD);
                     title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
                     title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
 
                 }
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
-                    paragraph.setTypeface(descriptiontf);
+                    paragraph.setTypeface(titletf);
 
                 }
                 if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){

@@ -32,8 +32,8 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+
         if (getArguments() != null) {
 
             CMSSlide cms = null;
@@ -43,7 +43,7 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
             if(cms != null){
                 if(cms.getTitle() != null && cms.getTitle().getText() != null) {
                     title.setText(cms.getTitle().getText());
-                    title.setTypeface(titletf);
+                    title.setTypeface(titletf,Typeface.BOLD);
 
                 }
                 if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
@@ -53,7 +53,7 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
 
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
-                    paragraph.setTypeface(descriptiontf);
+                    paragraph.setTypeface(titletf);
 
                 }
 
