@@ -2,6 +2,7 @@ package com.example.vaibhav.app.viewpager;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,9 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
-import com.example.vaibhav.app.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -42,28 +43,34 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
 
-        if (!hasPermissions(this, PERMISSIONS)) {
-            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        }
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         error_text = (TextView) findViewById(R.id.error_text);
         viewPager.setOffscreenPageLimit(0);
-        checkLogin(progressBar);
+        if(getIntent() != null){
+            Intent mIntent = getIntent();
+            int intValue = Integer.parseInt(mIntent.getStringExtra("ppt_id"));
+            checkLogin(progressBar,intValue);
 
+        }else {
+            checkLogin(progressBar, 0);
+        }
     }
 
 
-    public void checkLogin(final ProgressBar progressBar) {
+    public void checkLogin(final ProgressBar progressBar,int ppt_id) {
         error_text.setVisibility(View.GONE);
         final long t = System.currentTimeMillis();
         System.out.println("Here" + t);
-        String BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=188";
-        System.out.println("BASE_URL " + BASE_URL);
+        String BASE_URL="";
+        if(ppt_id ==0) {
+            BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=416";
+        }else{
+            BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id="+ppt_id;
+        }
+            System.out.println("BASE_URL " + BASE_URL);
         AsyncHttpClient myClient = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         myClient.setTimeout(120000);
@@ -127,14 +134,11 @@ public class SampleActivity extends AppCompatActivity {
     }
 
 
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
+
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(SampleActivity.this,LoginActivity.class);
+        startActivity(i);
     }
 }
