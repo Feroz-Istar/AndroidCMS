@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.vaibhav.app.util.CustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout"
     android:padding="10dp"
     android:background="#ffffff"
     >
@@ -36,4 +37,4 @@
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold" />
-</RelativeLayout>
+</com.example.vaibhav.app.util.CustomLayout>

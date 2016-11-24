@@ -1,17 +1,17 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.R;
+import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.mediautility.ImageSaver;
+import com.example.vaibhav.app.util.CustomLayout;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Vaibhav on 18-11-2016.
@@ -20,8 +20,9 @@ import com.example.vaibhav.app.R;
 public class ONLYTITLE extends  Card{
     public final static String EXTRA_POSITION = "extra_position";
     public final static String Title = "title";
-    private LinearLayout main_layout;
     private TextView textView;
+    private Picasso mPicasso;
+    private CustomLayout main_layout;
 
     @Nullable
     @Override
@@ -29,23 +30,15 @@ public class ONLYTITLE extends  Card{
 
         View view = inflater.inflate(R.layout.only_title, container, false);
         textView = (TextView) view.findViewById(R.id.text);
-        main_layout = (LinearLayout) view.findViewById(R.id.main_layout);
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
-
+        mPicasso = Picasso.with(getContext()); //Single instance
+        Boolean externalReadable = ImageSaver.isExternalStorageReadable();
+        main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
-            if(cms.getTitle() != null){
-                textView.setText(cms.getTitle().getText());
-
-
-                if(cms.getTheme().getTitleFontSize() != null)
-                textView.setTextSize((float) (Float.parseFloat(cms.getTheme().getTitleFontSize())/3.5));
-                if(cms.getTheme().getTitleFontColor() !=null)
-                textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
-
-                textView.setTypeface(titletf,Typeface.BOLD);
-                if(cms.getTheme().getBackgroundColor() != null)
-                main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
+            if(cms != null){
+                ThemeUtils themeUtils = new ThemeUtils();
+                themeUtils.massageTitle(cms,textView,getContext());
+                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
             }
         }
         return  view;

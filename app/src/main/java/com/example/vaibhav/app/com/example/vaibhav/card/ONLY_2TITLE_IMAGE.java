@@ -1,6 +1,5 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.mediautility.ImageSaver;
+import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -21,6 +22,7 @@ public class ONLY_2TITLE_IMAGE extends Card {
     private TextView title1,title2;
     private Picasso mPicasso;
     private ImageView image;
+    private CustomLayout main_layout;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,23 +31,20 @@ public class ONLY_2TITLE_IMAGE extends Card {
         title1 = (TextView) view.findViewById(R.id.title1);
         title2 = (TextView) view.findViewById(R.id.title2);
         image = (ImageView) view.findViewById(R.id.image);
+        main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         mPicasso = Picasso.with(getContext());
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+        Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if(cms != null){
-                if( cms.getTitle().getText()!= null ) {
-                    title1.setText(cms.getTitle().getText());
-                    title1.setTypeface(titletf,Typeface.BOLD);
+                ThemeUtils themeUtils = new ThemeUtils();
+                themeUtils.massageTitle(cms,title1,getContext());
+                themeUtils.massageTitle2(cms,title2,getContext());
+                if(cms.getImage() != null && cms.getImage().getUrl() != null) {
+                    String url = "http://api.talentify.in" + cms.getImage().getUrl();
+                    themeUtils.massageImage(url,mPicasso,image,externalReadable,getContext());
                 }
-                if( cms.getTitle2().getText() != null ) {
-                    title2.setText(cms.getTitle2().getText());
-                    title2.setTypeface(titletf);
-                }
-                if(cms.getImage() != null && cms.getImage().getUrl() != null)
-                    mPicasso.load("http://api.talentify.in" + cms.getImage().getUrl()).into(image);
-
-
+                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
 
             }
         }

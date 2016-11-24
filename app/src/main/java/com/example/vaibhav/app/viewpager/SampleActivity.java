@@ -1,13 +1,8 @@
 package com.example.vaibhav.app.viewpager;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -48,7 +43,6 @@ public class SampleActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         error_text = (TextView) findViewById(R.id.error_text);
-        viewPager.setOffscreenPageLimit(0);
         if(getIntent() != null){
             Intent mIntent = getIntent();
             int intValue = Integer.parseInt(mIntent.getStringExtra("ppt_id"));

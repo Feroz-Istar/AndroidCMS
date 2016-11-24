@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,27 +19,24 @@ import com.squareup.picasso.Picasso;
 public class NO_CONTENT extends Card {
 
     private ImageView image;
+    private Picasso mPicasso;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.no_content, container, false);
         image = (ImageView) view.findViewById(R.id.image);
-
+        Boolean externalReadable = ImageSaver.isExternalStorageReadable();
+        mPicasso = Picasso.with(getContext());
 
         if (getArguments() != null) {
-
             CMSSlide cms = null;
             if (getArguments().getSerializable("CMSSLIDE") != null)
                 cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
-
             if (cms != null && cms.getImage_BG() != null) {
-                Picasso.with(getActivity())
-                        .load("http://api.talentify.in/" + cms.getImage_BG())
-                        .placeholder(R.mipmap.ic_launcher)
-                        .error(R.mipmap.ic_launcher)
-                        .fit()
-                        .into(image);
+                String url = "http://api.talentify.in/"+cms.getImage_BG();
+                new ThemeUtils().massageImage(url,mPicasso,image,externalReadable,getContext());
             }
         }
             return view;
