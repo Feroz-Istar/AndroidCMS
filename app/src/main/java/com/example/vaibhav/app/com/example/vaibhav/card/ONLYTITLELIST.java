@@ -30,7 +30,7 @@ public class ONLYTITLELIST extends Card {
         View view = inflater.inflate(R.layout.only_title_list, container, false);
         textView = (TextView) view.findViewById(R.id.title);
        // textView.setText("Title for Only Title List");
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.itemListRV);
@@ -42,7 +42,7 @@ public class ONLYTITLELIST extends Card {
                 textView.setText(cms.getTitle().getText());
                 textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
                 textView.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
-                textView.setTypeface(titletf);
+                textView.setTypeface(titletf,Typeface.BOLD);
             }
             if(cms.getList() != null){
 

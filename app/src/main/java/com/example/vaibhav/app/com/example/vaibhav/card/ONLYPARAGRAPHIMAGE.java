@@ -32,7 +32,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         image = (ImageView) view.findViewById(R.id.image);
         mPicasso = Picasso.with(getContext()); //Single instance
-        Typeface descriptiontf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
 
         if (getArguments() != null) {
 
@@ -44,7 +44,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
 
                 if(cms.getParagraph() != null && cms.getParagraph().getText() != null){
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
-                    paragraph.setTypeface(descriptiontf);
+                    paragraph.setTypeface(titletf);
                 }
                 if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){
                     paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));

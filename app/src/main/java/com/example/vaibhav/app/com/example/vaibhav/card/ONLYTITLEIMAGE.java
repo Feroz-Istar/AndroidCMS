@@ -34,17 +34,18 @@ public class ONLYTITLEIMAGE extends Card {
         image = (ImageView) view.findViewById(R.id.image);
         Boolean externalReadable = new ImageSaver(getContext()).isExternalStorageReadable();
         Boolean externalWritable = new ImageSaver(getContext()).isExternalStorageWritable();
-        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Regular.ttf");
+
 
         if(getArguments() != null){
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
             if(cms.getTitle() != null){
                 title.setText(cms.getTitle().getText());
-                title.setTypeface(titletf);
+                title.setTypeface(titletf,Typeface.BOLD);
             }
             if(cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null){
                 title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
-                title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+                title.setTextSize((float)(Integer.parseInt(cms.getTheme().getTitleFontSize())/3.5));
                 title.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
             }
 
