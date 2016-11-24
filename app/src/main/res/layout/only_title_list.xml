@@ -16,7 +16,7 @@
         android:textSize="23sp"
         android:textStyle="bold"
         android:id="@+id/title"
-       android:layout_margin="10dp"/>
+       android:layout_margin="40dp"/>
 
 
     <android.support.v7.widget.RecyclerView

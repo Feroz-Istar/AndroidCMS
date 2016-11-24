@@ -47,6 +47,11 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
                     paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
                     paragraph.setTypeface(descriptiontf);
                 }
+                if(cms.getTheme() != null && cms.getTheme().getParagraphFontColor() != null){
+                    paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+                    paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize())/3);
+
+                }
             }
 
         }

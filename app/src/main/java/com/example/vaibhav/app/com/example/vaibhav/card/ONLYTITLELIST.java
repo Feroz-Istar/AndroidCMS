@@ -1,5 +1,7 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -28,6 +30,7 @@ public class ONLYTITLELIST extends Card {
         View view = inflater.inflate(R.layout.only_title_list, container, false);
         textView = (TextView) view.findViewById(R.id.title);
        // textView.setText("Title for Only Title List");
+        Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.itemListRV);
@@ -37,6 +40,9 @@ public class ONLYTITLELIST extends Card {
             if(cms.getTitle() != null){
                 textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 textView.setText(cms.getTitle().getText());
+                textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                textView.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+                textView.setTypeface(titletf);
             }
             if(cms.getList() != null){
 

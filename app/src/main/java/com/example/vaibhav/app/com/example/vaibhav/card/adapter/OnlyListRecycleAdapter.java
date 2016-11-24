@@ -76,7 +76,7 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
         Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Thin.ttf");
         holder.title.setTypeface(descriptiontf);
         holder.title.setTextColor(Color.parseColor(cmsSlide.getTheme().getTitleFontColor()));
-        holder.title.setTextSize(Integer.parseInt(cmsSlide.getTheme().getTitleFontSize())/3);
+        holder.title.setTextSize(Integer.parseInt(cmsSlide.getTheme().getTitleFontSize())/5);
         holder.title.setText(sb);
 
     }
