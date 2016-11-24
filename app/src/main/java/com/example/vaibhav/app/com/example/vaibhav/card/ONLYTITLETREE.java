@@ -44,7 +44,6 @@ public class ONLYTITLETREE extends Card {
             if(cms.getList() != null){
 
 
-                System.out.print("---------------------Plines------------------------------"+Plines.size());
                 onlyListRecycleAdapter = new OnlyTitleTreeRecycleAdapter(cms,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 ParentrecyclerView.setLayoutManager(mLayoutManager);

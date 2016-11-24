@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyListNumberedAdapter;
 import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyListRecycleAdapter;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ import java.util.List;
  */
 public class ONLYLIST extends Card {
     private RecyclerView recyclerView;
-    private OnlyListRecycleAdapter onlyListRecycleAdapter;
+    private OnlyListNumberedAdapter onlyListNumberedRecycleAdapter;
+    private  OnlyListRecycleAdapter onlyListRecycleAdapter;
 
 
     @Nullable
@@ -38,11 +40,24 @@ public class ONLYLIST extends Card {
 
             if(cms.getList() != null){
 
-                onlyListRecycleAdapter = new OnlyListRecycleAdapter(cms,getContext());
+                if(cms.getTemplateName().equalsIgnoreCase("ONLY_LIST_NUMBERED")){
+
+                onlyListNumberedRecycleAdapter = new OnlyListNumberedAdapter(cms,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(onlyListRecycleAdapter);
+                recyclerView.setAdapter(onlyListNumberedRecycleAdapter);
+
+                }else  if(cms.getTemplateName().equalsIgnoreCase("ONLY_LIST")){
+
+                    onlyListRecycleAdapter = new OnlyListRecycleAdapter(cms,getContext());
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(mLayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(onlyListRecycleAdapter);
+
+
+                }
 
                 }
 

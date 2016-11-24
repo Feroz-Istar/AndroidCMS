@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyListRecycleAdapter;
+import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyTitleListNumberedRecycleAdapter;
+import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyTitleListRecycleAdapter;
 
 /**
  * Created by Feroz on 21/11/2016.
@@ -22,14 +24,17 @@ import com.example.vaibhav.app.com.example.vaibhav.card.adapter.OnlyListRecycleA
 
 public class ONLYTITLELIST extends Card {
     private RecyclerView recyclerView;
-    private TextView textView;
-    private OnlyListRecycleAdapter onlyListRecycleAdapter;
+    private TextView title1,title2;
+    private OnlyTitleListRecycleAdapter onlyTitleListRecycleAdapter;
+    private OnlyTitleListNumberedRecycleAdapter onlyTitleListNumberedRecycleAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.only_title_list, container, false);
-        textView = (TextView) view.findViewById(R.id.title);
-       // textView.setText("Title for Only Title List");
+        title1 = (TextView) view.findViewById(R.id.title);
+        title2 = (TextView) view.findViewById(R.id.title1);
+
+        // textView.setText("Title for Only Title List");
         Typeface titletf = Typeface.createFromAsset(getActivity().getAssets(),"Raleway-Thin.ttf");
 
 
@@ -38,19 +43,42 @@ public class ONLYTITLELIST extends Card {
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
             if(cms.getTitle() != null){
-                textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                textView.setText(cms.getTitle().getText());
-                textView.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
-                textView.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
-                textView.setTypeface(titletf);
+                title1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                title1.setText(cms.getTitle().getText());
+                title1.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                title1.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+                title1.setTypeface(titletf);
             }
+
+            if(cms.getTitle2() != null){
+                title2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                title2.setText(cms.getTitle().getText());
+                title2.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                title2.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize())/3);
+                title2.setTypeface(titletf);
+            }
+
+
             if(cms.getList() != null){
 
-                onlyListRecycleAdapter = new OnlyListRecycleAdapter(cms,getContext());
+                if(cms.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST_NUMBERED")){
+
+                onlyTitleListNumberedRecycleAdapter = new OnlyTitleListNumberedRecycleAdapter(cms,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(onlyListRecycleAdapter);
+                recyclerView.setAdapter(onlyTitleListNumberedRecycleAdapter);
+
+                }else  if(cms.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")){
+
+
+                    onlyTitleListRecycleAdapter = new OnlyTitleListRecycleAdapter(cms,getContext());
+                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(mLayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(onlyTitleListRecycleAdapter);
+
+                }
 
             }
 

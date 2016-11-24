@@ -1,22 +1,21 @@
 package com.example.vaibhav.app.com.example.vaibhav.card.adapter;
+        import android.content.Context;
+        import android.graphics.Color;
+        import android.graphics.Typeface;
+        import android.support.v7.widget.RecyclerView;
+        import android.text.Spannable;
+        import android.text.SpannableString;
+        import android.text.SpannableStringBuilder;
+        import android.text.Spanned;
+        import android.text.style.BulletSpan;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.TextView;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.BulletSpan;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.example.vaibhav.app.R;
-import com.example.vaibhav.app.cmspojo.CMSSlide;
-import com.example.vaibhav.app.util.NumberIndentSpan;
+        import com.example.vaibhav.app.R;
+        import com.example.vaibhav.app.cmspojo.CMSSlide;
+        import com.example.vaibhav.app.util.NumberIndentSpan;
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -25,10 +24,10 @@ import com.example.vaibhav.app.util.NumberIndentSpan;
 
 
 
-public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycleAdapter.MyViewHolder> {
+public class OnlyListNumberedAdapter extends RecyclerView.Adapter<OnlyListNumberedAdapter.MyViewHolder> {
 
     private CMSSlide cmsSlide;
-    private  Context context;
+    private Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title ;
@@ -41,7 +40,7 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
     }
 
 
-    public OnlyListRecycleAdapter(CMSSlide cmsSlide, Context context) {
+    public OnlyListNumberedAdapter(CMSSlide cmsSlide, Context context) {
         this.cmsSlide = cmsSlide;
         this.context = context;
     }
@@ -60,10 +59,17 @@ public class OnlyListRecycleAdapter extends RecyclerView.Adapter<OnlyListRecycle
         SpannableStringBuilder sb = new SpannableStringBuilder();
         Spannable spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
 
-        spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
-                Spanned.SPAN_USER);
+            spannable.setSpan(new NumberIndentSpan(60, 60,position), 0, spannable.length(),
+                    Spanned.SPAN_USER);
 
-             sb.append(spannable);
+
+
+
+        sb.append(spannable);
+
+
+        //  holder.title.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+
         Typeface descriptiontf = Typeface.createFromAsset(context.getAssets(),"Raleway-Thin.ttf");
         holder.title.setTypeface(descriptiontf);
         holder.title.setTextColor(Color.parseColor(cmsSlide.getTheme().getTitleFontColor()));
