@@ -57,20 +57,36 @@ public class OnlyTitleListRecycleAdapter extends RecyclerView.Adapter<OnlyTitleL
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
-
-        if(cmsSlide.getList().getList_type().equalsIgnoreCase("SIMPLE_LIST")){}
-        if(cmsSlide.getList().getList_type().equalsIgnoreCase("IN_OUT_1")){}
-        if(cmsSlide.getList().getList_type().equalsIgnoreCase("IN_OUT_2")){}
-        if(cmsSlide.getList().getList_type().equalsIgnoreCase("TWO_LIST")){}
-
-
-
-
-
         SpannableStringBuilder sb = new SpannableStringBuilder();
-        Spannable spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
+        Spannable spannable = null;
+
+
+        if(cmsSlide.getList().getList_type().equalsIgnoreCase("SIMPLE_LIST")){
+
+             spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
             spannable.setSpan(new BulletSpan(60), 0, spannable.length(),Spanned.SPAN_USER);
+        }
+        if(cmsSlide.getList().getList_type().equalsIgnoreCase("IN_OUT_1")){
+
+             spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
+            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),Spanned.SPAN_USER);
+        }
+        if(cmsSlide.getList().getList_type().equalsIgnoreCase("IN_OUT_2")){
+
+             spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
+            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),Spanned.SPAN_USER);
+        }
+        if(cmsSlide.getList().getList_type().equalsIgnoreCase("TWO_LIST")){
+
+             spannable = new SpannableString(cmsSlide.getList().getItems().get(position).getText());
+            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),Spanned.SPAN_USER);
+        }
+
+
+
+
+
+
 
 
         sb.append(spannable);
