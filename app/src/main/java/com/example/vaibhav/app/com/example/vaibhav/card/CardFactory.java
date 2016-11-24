@@ -38,8 +38,6 @@ public class CardFactory {
                 return new ONLYLIST();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_TREE")) {
                 return new ONLYTITLETREE();
-            }else if (cradType.equalsIgnoreCase("ONLY_TITLE_IMAGE")) {
-                return new ONLY_TITLE_IMAGE();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH")) {
                 return new ONLY_TITLE_PARAGRAPH();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH_IMAGE")) {
