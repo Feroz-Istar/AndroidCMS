@@ -163,7 +163,7 @@ public class ThemeUtils {
 
     public void massageList(CMSSlide cms, TextView paragraph, Context context) {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
-        if (cms.getList() != null) {
+        if (cms.getList() != null && cms.getList().getItems() != null) {
             SpannableStringBuilder sb = new SpannableStringBuilder();
             List<String> lines = new ArrayList<>();
             for (CMSTextItem item : cms.getList().getItems()) {
