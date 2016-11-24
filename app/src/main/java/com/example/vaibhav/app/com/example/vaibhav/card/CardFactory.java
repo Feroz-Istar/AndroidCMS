@@ -23,7 +23,7 @@ public class CardFactory {
             }  else if (cradType.equalsIgnoreCase("ONLY_LIST")) {
                 return new ONLYLIST();
             }  else if (cradType.equalsIgnoreCase("ONLY_TITLE_LIST_NUMBERED")) {
-                return new ONLYTITLELIST();
+                return new ONLY_TITLE_LIST_NUMBERED();
             }else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH_IMAGE")) {
                 return new ONLYPARAGRAPHIMAGE();
             }  else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH")) {
@@ -35,7 +35,7 @@ public class CardFactory {
             }else if (cradType.equalsIgnoreCase("ONLY_PARAGRAPH_TITLE")) {
                 return new ONLY_PARAGRAPH_TITLE();
             }  else if (cradType.equalsIgnoreCase("ONLY_LIST_NUMBERED")) {
-                return new ONLYLIST();
+                return new ONLY_LIST_NUMBERED();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_TREE")) {
                 return new ONLYTITLETREE();
             } else if (cradType.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH")) {

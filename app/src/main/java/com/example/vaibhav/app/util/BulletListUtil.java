@@ -13,6 +13,8 @@ import android.text.Spanned;
 import android.text.style.BulletSpan;
 import android.text.style.UnderlineSpan;
 
+import com.example.vaibhav.app.cmspojo.CMSTextItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,33 @@ public final class BulletListUtil {
         for (String line : lines) {
             if (!line.trim().isEmpty()) {
                 Spanned spannedLine = Html.fromHtml(removeBadFirstCharacters(line.trim()));
+                spanned.add(spannedLine);
+            }
+        }
+
+        SpannableStringBuilder sb = new SpannableStringBuilder();
+        for (int i = 0; i < spanned.size(); i++) {
+            CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
+            boolean underlineNeeded = isUpperCase(line);
+            Spannable spannable = new SpannableString(line);
+            if (underlineNeeded) {
+                spannable.setSpan(new UnderlineSpan(), 0, spannable.length(),
+                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            } else {
+                spannable.setSpan(new BulletSpan(leadingMargin), 0, spannable.length(),
+                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
+            sb.append(spannable);
+        }
+        return sb;
+    }
+
+
+    public static CharSequence makeBulletListCMS(List<CMSTextItem> lines, int leadingMargin) {
+        List<Spanned> spanned = new ArrayList<>(lines.size());
+        for (CMSTextItem line : lines) {
+            if (line.getText() != null&&!line.getText().isEmpty()) {
+                Spanned spannedLine = Html.fromHtml(removeBadFirstCharacters(line.getText().trim()));
                 spanned.add(spannedLine);
             }
         }

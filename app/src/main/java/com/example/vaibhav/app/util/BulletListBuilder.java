@@ -10,7 +10,6 @@ import android.text.TextPaint;
 import android.text.style.BulletSpan;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vaibhav.app.R;
@@ -29,12 +28,12 @@ public class BulletListBuilder {
     private static final String EOL = System.getProperty("line.separator");
     private static final String TAB = "\t";
     private static final String MUTABLE_FOREGROUND_COLOR_SPAN_FC_PROPERTY="#000";
-    private  Context context;
+    private Context context;
     public BulletListBuilder(Context context) {
     this.context = context;
     }
 
-    public  CharSequence getBulletList(String header, List<String> items, String bullet,final TextView tx) {
+    public CharSequence getBulletList( List<String> items, String bullet,int spacing) {
 
         List<Spanned> spanned = new ArrayList<>(items.size());
         for (String line : items) {
@@ -49,22 +48,14 @@ public class BulletListBuilder {
         for (int i = 0; i < spanned.size(); i++) {
             CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
             Spannable spannable = new SpannableString(line);
-            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
+            spannable.setSpan(new BulletSpan(spacing), 0, spannable.length(),
                     Spanned.SPAN_USER);
             sb.append(spannable);
-
-
         }
-
-
-
-
-
-
         return sb;
     }
 
-    public  CharSequence getBulletList(List<String> items) {
+    public CharSequence getNumberList( List<String> items, String bullet,int spacing) {
 
         List<Spanned> spanned = new ArrayList<>(items.size());
         for (String line : items) {
@@ -79,18 +70,10 @@ public class BulletListBuilder {
         for (int i = 0; i < spanned.size(); i++) {
             CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
             Spannable spannable = new SpannableString(line);
-            spannable.setSpan(new BulletSpan(60), 0, spannable.length(),
+            spannable.setSpan(new NumberIndentSpan(15, 15,i+1), 0, spannable.length(),
                     Spanned.SPAN_USER);
             sb.append(spannable);
-
-
         }
-
-
-
-
-
-
         return sb;
     }
 

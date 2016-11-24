@@ -8,26 +8,25 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.BulletSpan;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.example.vaibhav.app.cmspojo.CMSList;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.cmspojo.CMSTextItem;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveImageAsync;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
 import com.example.vaibhav.app.mediautility.ImageSaver;
+import com.example.vaibhav.app.util.BulletListBuilder;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Feroz on 24/11/2016.
@@ -166,47 +165,37 @@ public class ThemeUtils {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
         if (cms.getList() != null) {
             SpannableStringBuilder sb = new SpannableStringBuilder();
+            List<String> lines = new ArrayList<>();
             for (CMSTextItem item : cms.getList().getItems()) {
-                Spannable spannable = new SpannableString(item.getText());
-                spannable.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_POINT_MARK);
-                sb.append(spannable);
+                lines.add(item.getText());
             }
-            paragraph.setText(sb);
+            paragraph.setText(new BulletListBuilder(context).getBulletList(lines,"",15));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
             paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
-
         }
 
 
     }
 
     public void massageTreeList(CMSSlide cms, TextView paragraph, Context context) {
-        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
-        if (cms.getList() != null) {
-            SpannableStringBuilder sb = new SpannableStringBuilder();
-            for (CMSTextItem item : cms.getList().getItems()) {
-                Spannable spannable = new SpannableString(item.getText());
-                if(item.getList() != null){
-                    CMSList cmsList = item.getList();
-                    if(cmsList.getItems() != null){
-                        for (CMSTextItem items : cmsList.getItems()) {
-                            Spannable spannable1 = new SpannableString(items.getText());
-                            spannable1.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_PARAGRAPH);
-                            sb.append(spannable1);
 
-                        }
-                        }
-                }
-                spannable.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-                sb.append(spannable);
+
+    }
+
+    public void massageNumberList(CMSSlide cms, TextView paragraph, Context context) {
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+        if (cms.getList() != null && cms.getList().getItems()!=null) {
+            SpannableStringBuilder sb = new SpannableStringBuilder();
+            List<String> lines = new ArrayList<>();
+            for (CMSTextItem item : cms.getList().getItems()) {
+                lines.add(item.getText());
             }
-            paragraph.setText(sb);
+            paragraph.setText(new BulletListBuilder(context).getNumberList(lines,"",15));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
             paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
 
         }
     }
-
 }

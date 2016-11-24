@@ -16,7 +16,7 @@
 
         android:fontFamily="sans-serif"
         android:padding="10dp"
-        android:text="What are the action and interaction"
+        android:text=""
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
         android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_margin="20dp"
         android:fontFamily="sans-serif"
         android:text=""
         android:textColor="@color/colorPrimary"
