@@ -22,7 +22,7 @@ public class SaveImageAsync extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... params) {
         Bitmap bmp = null;
         try{
-        URL url = new URL(params[0]);
+        URL url = new URL(params[0].replace(" ", "%20"));
             bmp   = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 
         }catch (Exception e){

@@ -8,13 +8,20 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.BulletSpan;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.vaibhav.app.cmspojo.CMSList;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.cmspojo.CMSTextItem;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveImageAsync;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
@@ -60,6 +67,7 @@ public class ThemeUtils {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
+
             paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
@@ -71,18 +79,18 @@ public class ThemeUtils {
     public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context) {
         if (cms.getImage_BG() != null && !cms.getImage_BG().equalsIgnoreCase("none") && !cms.getImage_BG().equalsIgnoreCase("null")) {
             int index = cms.getImage_BG().lastIndexOf("/");
-            System.out.println("cms.getImage_BG() "+cms.getImage_BG()+" index "+ index);
+            System.out.println("cms.getImage_BG() " + cms.getImage_BG() + " index " + index);
             String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
             ImageSaver imageSaver = new ImageSaver(context).
                     setFileName(bg_image_name).
                     setExternal(externalReadable);
             Boolean file_exist = imageSaver.checkFile();
 
-            if(cms.getBackground() != null){
-                if(!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none")){
+            if (cms.getBackground() != null) {
+                if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none")) {
                     main_layout.setBackgroundColor(Color.parseColor(cms.getBackground()));
-                }else{
-                    if(cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
+                } else {
+                    if (cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
                         main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
                 }
 
@@ -116,22 +124,22 @@ public class ThemeUtils {
         }
     }
 
-    public void massageVideo(CMSSlide cms, final VideoView video,Boolean externalReadable,Context context) {
+    public void massageVideo(CMSSlide cms, final VideoView video, Boolean externalReadable, Context context) {
         if (cms.getVideo() != null && cms.getVideo().getUrl() != null) {
-            String url= "http://api.talentify.in/"+cms.getVideo().getUrl();
+            String url = "http://api.talentify.in/" + cms.getVideo().getUrl();
             int index = url.lastIndexOf("/");
             String bg_image_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
-                    setFileName(bg_image_name+".mp4").
+                    setFileName(bg_image_name + ".mp4").
                     setExternal(externalReadable);
             Boolean file_exist = audioVideoSaver.checkFile();
             Uri videouri = null;
-            if(file_exist){
+            if (file_exist) {
                 System.out.println("VIdeo existr just play it");
-                videouri= Uri.fromFile(audioVideoSaver.load());
-            }else {
+                videouri = Uri.fromFile(audioVideoSaver.load());
+            } else {
                 try {
-                    videouri= Uri.parse(url);
+                    videouri = Uri.parse(url);
                 } catch (Exception e) {
                     Log.e("Error", e.getMessage());
                     e.printStackTrace();
@@ -142,15 +150,63 @@ public class ThemeUtils {
             mediacontroller.setAnchorView(video);
             video.setMediaController(mediacontroller);
             video.setVideoURI(videouri);
-                video.requestFocus();
-                video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    // Close the progress bar and play the video
-                    public void onPrepared(MediaPlayer mp) {
-                        video.start();
-                    }
-                });
+            video.requestFocus();
+            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                // Close the progress bar and play the video
+                public void onPrepared(MediaPlayer mp) {
+                    video.start();
+                }
+            });
 
 
         }
     }
+
+    public void massageList(CMSSlide cms, TextView paragraph, Context context) {
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+        if (cms.getList() != null) {
+            SpannableStringBuilder sb = new SpannableStringBuilder();
+            for (CMSTextItem item : cms.getList().getItems()) {
+                Spannable spannable = new SpannableString(item.getText());
+                spannable.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_POINT_MARK);
+                sb.append(spannable);
+            }
+            paragraph.setText(sb);
+            paragraph.setTypeface(paragraphtf);
+            paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
+            paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+
+        }
+
+
+    }
+
+    public void massageTreeList(CMSSlide cms, TextView paragraph, Context context) {
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+        if (cms.getList() != null) {
+            SpannableStringBuilder sb = new SpannableStringBuilder();
+            for (CMSTextItem item : cms.getList().getItems()) {
+                Spannable spannable = new SpannableString(item.getText());
+                if(item.getList() != null){
+                    CMSList cmsList = item.getList();
+                    if(cmsList.getItems() != null){
+                        for (CMSTextItem items : cmsList.getItems()) {
+                            Spannable spannable1 = new SpannableString(items.getText());
+                            spannable1.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_PARAGRAPH);
+                            sb.append(spannable1);
+
+                        }
+                        }
+                }
+                spannable.setSpan(new BulletSpan(15), 0, spannable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                sb.append(spannable);
+            }
+            paragraph.setText(sb);
+            paragraph.setTypeface(paragraphtf);
+            paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
+            paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+
+        }
+    }
+
 }

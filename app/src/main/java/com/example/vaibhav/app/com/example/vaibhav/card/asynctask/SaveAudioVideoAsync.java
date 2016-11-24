@@ -21,7 +21,7 @@ public class SaveAudioVideoAsync extends AsyncTask<String, Void, InputStream> {
     protected InputStream doInBackground(String... params) {
         InputStream fileInputStream = null;
         try {
-            fileInputStream  = new URL(params[0]).openStream();
+            fileInputStream  = new URL(params[0].replace(" ", "%20")).openStream();
             audioVideoSaver.save(fileInputStream);
 
         }catch (Exception e){
