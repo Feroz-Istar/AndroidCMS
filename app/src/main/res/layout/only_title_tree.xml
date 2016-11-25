@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      android:layout_margin="30dp"
+        android:layout_margin="30dp"
         android:id="@+id/text"
         android:textColor="@color/colorPrimary"
         android:text="dummy"
@@ -16,11 +16,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/only_title_tree_parent_itemListRV"
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/text"
         android:scrollbars="vertical"
-        android:layout_margin="10dp"/>
+        android:layout_marginLeft="10dp"/>
 
 </com.example.vaibhav.app.util.CustomLayout>

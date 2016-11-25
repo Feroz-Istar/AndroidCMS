@@ -43,11 +43,13 @@ public class ONLYTITLETREE extends Card {
 
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide)getArguments().getSerializable("CMSSLIDE");
-            if(cms.getList() != null){
+            if(cms != null){
 
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageTitle(cms,textView,getContext());
                 themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
+
+            if(cms.getList() != null){
 
                 onlytitletreeRecycleAdapter = new OnlyTitleTreeRecycleAdapter(cms,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -56,7 +58,7 @@ public class ONLYTITLETREE extends Card {
                 ParentrecyclerView.setAdapter(onlytitletreeRecycleAdapter);
 
             }
-
+            }
         }
 
         return view ;

@@ -10,6 +10,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eftimoff.viewpagertransformers.AccordionTransformer;
+import com.eftimoff.viewpagertransformers.BackgroundToForegroundTransformer;
+import com.eftimoff.viewpagertransformers.CubeOutTransformer;
+import com.eftimoff.viewpagertransformers.DepthPageTransformer;
+import com.eftimoff.viewpagertransformers.FlipVerticalTransformer;
+import com.eftimoff.viewpagertransformers.RotateUpTransformer;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
@@ -23,6 +29,7 @@ import org.simpleframework.xml.core.Persister;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -41,30 +48,49 @@ public class SampleActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.setPageTransformer(true, getPageTransoformer(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         error_text = (TextView) findViewById(R.id.error_text);
-        if(getIntent() != null){
+        if (getIntent() != null) {
             Intent mIntent = getIntent();
             int intValue = Integer.parseInt(mIntent.getStringExtra("ppt_id"));
-            checkLogin(progressBar,intValue);
+            checkLogin(progressBar, intValue);
 
-        }else {
+        } else {
             checkLogin(progressBar, 0);
         }
     }
 
 
-    public void checkLogin(final ProgressBar progressBar,int ppt_id) {
+    public void checkLogin(final ProgressBar progressBar, int ppt_id) {
         error_text.setVisibility(View.GONE);
         final long t = System.currentTimeMillis();
         System.out.println("Here" + t);
-        String BASE_URL="";
-        if(ppt_id ==0) {
+        String BASE_URL = "";
+        if (ppt_id == 0) {
             BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=416";
-        }else{
-            BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id="+ppt_id;
+        } else {
+            BASE_URL = getResources().getString(R.string.server_ip) + "/get_ppt?ppt_id=" + ppt_id;
         }
-            System.out.println("BASE_URL " + BASE_URL);
+        System.out.println("BASE_URL " + BASE_URL);
         AsyncHttpClient myClient = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         myClient.setTimeout(120000);
@@ -127,12 +153,40 @@ public class SampleActivity extends AppCompatActivity {
 
     }
 
+    public ViewPager.PageTransformer getPageTransoformer(int position) {
 
+        int random = randInt(0, 3);
+        ViewPager.PageTransformer pageTransformer = new AccordionTransformer();
+        System.out.println("Random Transform---------" + random);
+        switch (random) {
+            case 0:
+                pageTransformer = new AccordionTransformer();
+                break;
+            case 1:
+                pageTransformer = new BackgroundToForegroundTransformer();
+                break;
+            case 2:
+                pageTransformer = new FlipVerticalTransformer();
+                break;
+            case 3:
+                pageTransformer = new CubeOutTransformer();
+                break;
+            default:
+                pageTransformer = new DepthPageTransformer();
+                break;
+        }
+        return pageTransformer;
+    }
 
+    public static int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(SampleActivity.this,LoginActivity.class);
+        Intent i = new Intent(SampleActivity.this, LoginActivity.class);
         startActivity(i);
     }
 }
