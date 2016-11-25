@@ -67,7 +67,7 @@ public class ThemeUtils {
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
 
-            paragraph.setText(cms.getParagraph().getText().replaceAll("ndash;", "-").replaceAll("", "").replaceAll("&nbsp;", " ").replaceAll("<br>", " ").replaceAll("<br/>", " ").replaceAll("<br/>", " ").replaceAll("&rsquo;", "'").replaceAll("&rsquo;", "'"));
+            paragraph.setText(cms.getParagraph().getText());
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
             paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
@@ -197,19 +197,5 @@ public class ThemeUtils {
             paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
 
         }
-    }
-
-    public void massagetransition(CMSSlide cms, TextView title, Context context) {
-        Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
-
-        if (cms.getTitle() != null && cms.getTitle().getText() != null) {
-            title.setText(cms.getTitle().getText());
-            title.setTypeface(titletf, Typeface.BOLD);
-        }
-        if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
-            title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
-            title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize()) / 3);
-        }
-
     }
 }
