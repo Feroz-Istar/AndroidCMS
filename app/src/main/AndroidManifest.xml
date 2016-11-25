@@ -17,10 +17,8 @@
         <activity
             android:name=".cmspojo.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".viewpager.SampleActivity">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".viewpager.SampleActivity"></activity>
         <activity android:name=".viewpager.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".viewpager.ListViewActivity"></activity>
     </application>
 
 </manifest>

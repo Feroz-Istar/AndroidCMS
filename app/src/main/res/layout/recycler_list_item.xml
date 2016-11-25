@@ -1,0 +1,47 @@
+
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/coordinatorLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".viewpager.ListViewActivity">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#004D79"
+    >
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:text="123"
+        android:layout_weight="1"
+        android:id="@+id/ppt_id"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
+    </TextView>
+    <Button android:text="Update"
+        android:id="@+id/update"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+    </Button>
+    <Button android:text="View"
+        android:id="@+id/detail"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+    </Button>
+
+</LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>

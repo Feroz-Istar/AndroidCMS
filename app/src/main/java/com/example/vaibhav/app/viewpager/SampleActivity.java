@@ -1,6 +1,7 @@
 package com.example.vaibhav.app.viewpager;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -10,18 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eftimoff.viewpagertransformers.AccordionTransformer;
-import com.eftimoff.viewpagertransformers.BackgroundToForegroundTransformer;
-import com.eftimoff.viewpagertransformers.CubeOutTransformer;
 import com.eftimoff.viewpagertransformers.DefaultTransformer;
 import com.eftimoff.viewpagertransformers.DepthPageTransformer;
-import com.eftimoff.viewpagertransformers.FlipVerticalTransformer;
-import com.eftimoff.viewpagertransformers.RotateUpTransformer;
-import com.eftimoff.viewpagertransformers.ZoomInTransformer;
 import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -32,7 +28,6 @@ import org.simpleframework.xml.core.Persister;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -44,6 +39,8 @@ public class SampleActivity extends AppCompatActivity {
     private int progressStatus = 0;
     private Handler handler = new Handler();
     private TextView error_text;
+    private DatabaseHandler databaseHandler;
+    private int ppt_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +76,25 @@ public class SampleActivity extends AppCompatActivity {
         if (getIntent() != null) {
             Intent mIntent = getIntent();
             int intValue = Integer.parseInt(mIntent.getStringExtra("ppt_id"));
-            checkLogin(progressBar, intValue);
+            databaseHandler = new DatabaseHandler(getBaseContext());
+            ppt_id = intValue;
+            Cursor c =databaseHandler.getData(ppt_id);
 
+
+            if(c.moveToFirst()){
+                System.out.println("C is  nullldklkdkd");
+                setObject(c.getString(1));
+            }else{
+                checkLogin(progressBar,intValue);
+
+            }
         } else {
             checkLogin(progressBar, 0);
         }
     }
 
 
-    public void checkLogin(final ProgressBar progressBar, int ppt_id) {
+    public void checkLogin(final ProgressBar progressBar,final int ppt_id) {
         error_text.setVisibility(View.GONE);
         final long t = System.currentTimeMillis();
         System.out.println("Here" + t);
@@ -125,27 +132,9 @@ public class SampleActivity extends AppCompatActivity {
 
                 String xml_object = responseString;
                 xml_object = xml_object.replaceAll("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
-                StringReader reader = new StringReader(xml_object);
-                Serializer serializer = new Persister();
-                try {
-                    CMSPresentation cmsPresentation = serializer.read(CMSPresentation.class, reader);
-                    System.out.println("total time " + cmsPresentation.getSlides().size());
-                    //System.out.println("total time " + time_taken);
-                    cmsSlides = new ArrayList<>();
+                databaseHandler.saveContent(ppt_id+"",xml_object);;
 
-
-                    for (CMSSlide cmsSlide : cmsPresentation.getSlides()) {
-
-                        cmsSlides.add(cmsSlide);
-
-                    }
-                    viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
-                    viewPager.setAdapter(viewPagerAdapter);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                }
+                setObject(xml_object);
 
 
                 progressBar.setVisibility(View.GONE);
@@ -186,4 +175,29 @@ public class SampleActivity extends AppCompatActivity {
         Intent i = new Intent(SampleActivity.this, LoginActivity.class);
         startActivity(i);
     }
+    public void setObject(String xml_object ){
+        StringReader reader = new StringReader(xml_object);
+        Serializer serializer = new Persister();
+        try {
+            CMSPresentation cmsPresentation = serializer.read(CMSPresentation.class, reader);
+            System.out.println("total time " + cmsPresentation.getSlides().size());
+            //System.out.println("total time " + time_taken);
+            cmsSlides = new ArrayList<>();
+//
+            for (CMSSlide cmsSlide : cmsPresentation.getSlides()) {
+
+                cmsSlides.add(cmsSlide);
+            }
+            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
+            viewPager.setAdapter(viewPagerAdapter);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+
+
+
 }
