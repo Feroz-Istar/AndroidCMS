@@ -24,8 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/da_session6_slide5"
-        android:scaleType="fitEnd"
+        android:src="@drawable/title"
          />
 
 
