@@ -22,7 +22,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="10dp"/>
 
-    <TextView
+    <WebView
         android:id="@+id/paragraph"
         android:layout_below="@+id/title"
         android:layout_width="match_parent"

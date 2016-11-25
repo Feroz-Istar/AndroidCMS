@@ -21,22 +21,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/paragraph1"
-        android:layout_below="@+id/title1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:fontFamily="sans-serif"
-        android:padding="10dp"
-        android:text="What are the action and interaction"
-        android:textAlignment="gravity"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="italic" />
-
-    <TextView
         android:id="@+id/title2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,21 +34,5 @@
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/paragraph2"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/title2"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:fontFamily="sans-serif"
-        android:padding="10dp"
-        android:text="What are the action and interaction"
-        android:textAlignment="gravity"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="italic" />
 
 </com.example.vaibhav.app.util.CustomLayout>

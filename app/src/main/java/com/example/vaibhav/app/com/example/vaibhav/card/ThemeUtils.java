@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -66,11 +67,24 @@ public class ThemeUtils {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
-
-            paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
+            System.out.println("--------------------->"+ cms.getParagraph().getText());
+            paragraph.setText(Html. fromHtml(cms.getParagraph().getText()));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
             paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
+
+        }
+    }
+
+    public void massageParagraph(CMSSlide cms, WebView paragraph, Context context) {
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+
+        if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
+            System.out.println("--------------------->"+ cms.getParagraph().getText());
+            paragraph.loadDataWithBaseURL(null, cms.getParagraph().getText(), "text/html", "utf-8", null);
+          //  paragraph.setTypeface(paragraphtf);
+          //  paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+          //  paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
 
         }
     }

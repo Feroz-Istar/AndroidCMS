@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
@@ -19,7 +20,10 @@ import com.squareup.picasso.Picasso;
 
 public class ONLY_TITLE_PARAGRAPH extends Card {
 
-    private TextView paragraph,title;
+    private TextView title;
+
+    private WebView paragraph;
+
     private Picasso mPicasso;
     private CustomLayout main_layout;
     @Nullable
@@ -27,7 +31,7 @@ public class ONLY_TITLE_PARAGRAPH extends Card {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.only_title_paragraph, container, false);
-        paragraph = (TextView) view.findViewById(R.id.paragraph);
+        paragraph = (WebView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
         mPicasso = Picasso.with(getContext());
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);

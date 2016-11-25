@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
  */
 public class ONLY_2BOX extends Card {
 
-    private TextView title1,title2,description1,description2;
+    private TextView title1,title2;
     private Picasso mPicasso;
     private CustomLayout main_layout;
 
@@ -28,8 +28,8 @@ public class ONLY_2BOX extends Card {
         View view = inflater.inflate(R.layout.only_2box, container, false);
         title1 = (TextView) view.findViewById(R.id.title1);
         title2 = (TextView) view.findViewById(R.id.title2);
-        description1 = (TextView) view.findViewById(R.id.paragraph1);
-        description2 = (TextView) view.findViewById(R.id.paragraph2);
+       // description1 = (TextView) view.findViewById(R.id.paragraph1);
+       // description2 = (TextView) view.findViewById(R.id.paragraph2);
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         mPicasso = Picasso.with(getContext()); //Single instance
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
@@ -40,8 +40,8 @@ public class ONLY_2BOX extends Card {
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageTitle(cms,title1,getContext());
                 themeUtils.massageTitle2(cms,title2,getContext());
-                themeUtils.massageParagraph(cms,description1,getContext());
-                themeUtils.massageParagraph(cms,description2,getContext());
+               // themeUtils.massageParagraph(cms,description1,getContext());
+               // themeUtils.massageParagraph(cms,description2,getContext());
                 themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
 
             }
