@@ -32,6 +32,25 @@ public class BulletListBuilder {
     public BulletListBuilder(Context context) {
     this.context = context;
     }
+    public CharSequence getBulletListTitle ( String items, String bullet,int spacing) {
+
+        List<Spanned> spanned = new ArrayList<>(1);
+        if (!items.trim().isEmpty()) {
+            Spanned spannedLine = Html.fromHtml(items.trim());
+            spanned.add(spannedLine);
+        }
+
+        sb = new SpannableStringBuilder();
+
+        for (int i = 0; i < spanned.size(); i++) {
+            CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
+            Spannable spannable = new SpannableString(line);
+            spannable.setSpan(new BulletSpan(spacing), 0, spannable.length(),
+                    Spanned.SPAN_USER);
+            sb.append(spannable);
+        }
+        return sb;
+    }
 
     public CharSequence getBulletList( List<String> items, String bullet,int spacing) {
 

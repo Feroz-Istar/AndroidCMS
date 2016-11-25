@@ -67,7 +67,8 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
         holder.title1.setTypeface(paragraphtf);
         holder.title1.setTextColor(Color.parseColor(cmsSlide.getTheme().getParagraphFontColor()));
         holder.title1.setTextSize(Integer.parseInt(cmsSlide.getTheme().getParagraphFontSize()) / 3);
-        holder.title1.setText(listitems);
+        holder.title1.setText(new BulletListBuilder(context).getBulletListTitle(listitems,"",15));
+        //holder.title1.setText(listitems);
 
         if(bulletList.size() > 0)
 

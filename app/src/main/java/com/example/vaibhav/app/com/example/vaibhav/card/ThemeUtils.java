@@ -67,7 +67,7 @@ public class ThemeUtils {
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
 
-            paragraph.setText(cms.getParagraph().getText());
+            paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
             paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
@@ -198,4 +198,6 @@ public class ThemeUtils {
 
         }
     }
+
+
 }

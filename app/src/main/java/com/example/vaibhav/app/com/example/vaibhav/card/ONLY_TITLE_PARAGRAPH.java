@@ -42,7 +42,7 @@ public class ONLY_TITLE_PARAGRAPH extends Card {
                 themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext());
             }
 
-        }
+        }//transition="slide"
 
         return view;
     }

@@ -13,9 +13,12 @@ import android.widget.Toast;
 import com.eftimoff.viewpagertransformers.AccordionTransformer;
 import com.eftimoff.viewpagertransformers.BackgroundToForegroundTransformer;
 import com.eftimoff.viewpagertransformers.CubeOutTransformer;
+import com.eftimoff.viewpagertransformers.DefaultTransformer;
 import com.eftimoff.viewpagertransformers.DepthPageTransformer;
 import com.eftimoff.viewpagertransformers.FlipVerticalTransformer;
 import com.eftimoff.viewpagertransformers.RotateUpTransformer;
+import com.eftimoff.viewpagertransformers.ZoomInTransformer;
+import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
@@ -49,7 +52,6 @@ public class SampleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
 
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -58,7 +60,12 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                viewPager.setPageTransformer(true, getPageTransoformer(position));
+                if(null !=viewPagerAdapter.getItem(position) && null  != viewPagerAdapter.getItem(position).getArguments()
+                        && viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION") !=null) {
+                    viewPager.setPageTransformer(true, getPageTransoformer(viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION")));
+                }else {
+                    viewPager.setPageTransformer(true, new DefaultTransformer());
+                }
             }
 
             @Override
@@ -126,10 +133,11 @@ public class SampleActivity extends AppCompatActivity {
                     //System.out.println("total time " + time_taken);
                     cmsSlides = new ArrayList<>();
 
-//
+
                     for (CMSSlide cmsSlide : cmsPresentation.getSlides()) {
 
                         cmsSlides.add(cmsSlide);
+
                     }
                     viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
                     viewPager.setAdapter(viewPagerAdapter);
@@ -153,35 +161,24 @@ public class SampleActivity extends AppCompatActivity {
 
     }
 
-    public ViewPager.PageTransformer getPageTransoformer(int position) {
+    public ViewPager.PageTransformer getPageTransoformer(String transformer) {
 
-        int random = randInt(0, 3);
-        ViewPager.PageTransformer pageTransformer = new AccordionTransformer();
-        System.out.println("Random Transform---------" + random);
-        switch (random) {
-            case 0:
-                pageTransformer = new AccordionTransformer();
+         ViewPager.PageTransformer pageTransformer = new ZoomOutSlideTransformer();
+        System.out.println("Selected transition---------" + transformer);
+
+        switch (transformer) {
+            case "slide":
+                pageTransformer = new DefaultTransformer();
                 break;
-            case 1:
-                pageTransformer = new BackgroundToForegroundTransformer();
-                break;
-            case 2:
-                pageTransformer = new FlipVerticalTransformer();
-                break;
-            case 3:
-                pageTransformer = new CubeOutTransformer();
+            case "zoom":
+                pageTransformer = new ZoomOutSlideTransformer();
                 break;
             default:
                 pageTransformer = new DepthPageTransformer();
                 break;
         }
-        return pageTransformer;
-    }
 
-    public static int randInt(int min, int max) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
+       return pageTransformer;
     }
 
     @Override
