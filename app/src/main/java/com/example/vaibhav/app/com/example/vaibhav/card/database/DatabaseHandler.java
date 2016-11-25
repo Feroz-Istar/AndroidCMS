@@ -19,25 +19,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     private static final int DATABASE_VERSION = 1;
-    // Database Name
     private static final String DATABASE_NAME = "talentify";
-    // Contacts table name
-    private static final String TABLE_CONTACTS = "content";
-    // Contacts Table Columns names
+    private static final String TABLE = "content";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
 
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_CONTENT_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
+        String CREATE_CONTENT_TABLE = "CREATE TABLE " + TABLE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT"+ ")";
         sqLiteDatabase.execSQL(CREATE_CONTENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE);
         // Create tables again
         onCreate(sqLiteDatabase);
     }
@@ -53,7 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(KEY_ID, id);
             contentValues.put(KEY_NAME, content);
-            db.insert(TABLE_CONTACTS, null, contentValues);
+            db.insert(TABLE, null, contentValues);
             System.out.println("saveContent done");
         }
     }
@@ -63,16 +60,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_ID,id);
         contentValues.put(KEY_NAME,content);
-        db.update(TABLE_CONTACTS, contentValues, "id = ? ", new String[] { id} );
+        db.update(TABLE, contentValues, "id = ? ", new String[] { id} );
         System.out.println("updateContent done");
 
     }
 
-    public Integer deleteContact (Integer id) {
+    public Integer deleteContent (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         System.out.println("delete content done");
-
-        return db.delete(TABLE_CONTACTS,
+        return db.delete(TABLE,
                 "id = ? ",
                 new String[] { Integer.toString(id) });
 
@@ -87,22 +83,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public List<String> getAllContacts() {
-        List<String> contactList = new ArrayList<String>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
-
+    public List<String> getAllContent() {
+        List<String> ppt_ids = new ArrayList<String>();
+        String selectQuery = "SELECT  * FROM " + TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                contactList.add(cursor.getString(0));
+                ppt_ids.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
-
-        // return contact list
-        return contactList;
+        return ppt_ids;
     }
 }

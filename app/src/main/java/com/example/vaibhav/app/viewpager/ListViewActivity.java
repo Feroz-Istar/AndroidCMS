@@ -28,7 +28,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         ppt_ids = new ArrayList<>();
         databaseHandler = new DatabaseHandler(getBaseContext());
-        ppt_ids = databaseHandler.getAllContacts();
+        ppt_ids = databaseHandler.getAllContent();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
