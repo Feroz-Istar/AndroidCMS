@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.Html;
@@ -70,14 +71,9 @@ public class ThemeUtils {
                     new SaveAudioVideoAsync(audioVideoSaver).execute(url);
                 }
                 try{
-
-                    if (mediaPlayer.isPlaying()) {
-                        mediaPlayer.stop();
-                        mediaPlayer.release();
-                        mediaPlayer=new MediaPlayer();
-                    }
-
                     mediaPlayer.setDataSource(context,videouri);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
                     /*mediaPlayer.prepare();
                     mediaPlayer.start();*/
                 }catch (Exception e){

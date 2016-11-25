@@ -48,7 +48,8 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
                     mPlayer.prepare();
                 }catch (Exception e){
 
-                }}
+                }
+            }
 
         }
 
@@ -73,31 +74,9 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
     }
 
     @Override
-    public void onDestroy() {
-        if (mPlayer != null && mPlayer.isPlaying()) {
-            mPlayer.stop();
-            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
-            mPlayer.release();
-            mPlayer = null;
-        }
-        super.onDestroy();
-
-    }
-
-    @Override
-    public void onPause() {
-        if (mPlayer != null && mPlayer.isPlaying()) {
-            mPlayer.stop();
-            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
-            mPlayer.release();
-            mPlayer = null;
-        }
-        super.onPause();
-    }
-
-    @Override
     public void onStop() {
         if (mPlayer != null && mPlayer.isPlaying()) {
+            System.out.println("Only titile list destryeddddddddddd");
             mPlayer.stop();
             mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
             mPlayer.release();
