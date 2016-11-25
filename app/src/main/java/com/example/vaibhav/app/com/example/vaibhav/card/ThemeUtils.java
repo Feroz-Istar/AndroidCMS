@@ -35,18 +35,57 @@ import java.util.List;
 
 public class ThemeUtils {
 
-    public void massageTitle(CMSSlide cms, TextView title, Context context) {
+    public void massageTitle(CMSSlide cms, TextView title, Context context,MediaPlayer mediaPlayer) {
         Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
-        if (cms.getTitle() != null && cms.getTitle().getText() != null) {
-            title.setText(cms.getTitle().getText());
-            title.setTypeface(titletf, Typeface.BOLD);
-        }
-        if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
-            title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
-            title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize()) / 3);
-        }
+        if(cms.getTitle() != null ) {
+            if (cms.getTitle().getText() != null) {
+                title.setText(cms.getTitle().getText());
+                title.setTypeface(titletf, Typeface.BOLD);
+            }
+            if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
+                title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
+                title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize()) / 3);
+            }
 
+            if (cms.getTitle().getFragmentAudioUrl() != null) {
+                String url = "http://api.talentify.in/video/audio/" + cms.getTitle().getFragmentAudioUrl();
+                int index = url.lastIndexOf("/");
+                String audio_name = url.substring(index, url.length()).replace("/", "");
+                AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
+                        setFileName(audio_name).
+                        setExternal(ImageSaver.isExternalStorageReadable());
+                Boolean file_exist = audioVideoSaver.checkFile();
+                Uri videouri = null;
+                if (file_exist) {
+                    System.out.println("audio  just play it");
+                    videouri = Uri.fromFile(audioVideoSaver.load());
+                } else {
+                    try {
+                        videouri = Uri.parse(url);
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
+                        e.printStackTrace();
+                    }
+                    new SaveAudioVideoAsync(audioVideoSaver).execute(url);
+                }
+                try{
+
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        mediaPlayer=new MediaPlayer();
+                    }
+
+                    mediaPlayer.setDataSource(context,videouri);
+                    /*mediaPlayer.prepare();
+                    mediaPlayer.start();*/
+                }catch (Exception e){
+
+                }
+
+            }
+        }
     }
 
     public void massageTitle2(CMSSlide cms, TextView title, Context context) {
@@ -177,16 +216,20 @@ public class ThemeUtils {
 
     public void massageList(CMSSlide cms, TextView paragraph, Context context) {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
-        if (cms.getList() != null && cms.getList().getItems() != null) {
-            SpannableStringBuilder sb = new SpannableStringBuilder();
-            List<String> lines = new ArrayList<>();
-            for (CMSTextItem item : cms.getList().getItems()) {
-                lines.add(item.getText());
+        try {
+            if (cms.getList() != null && cms.getList().getItems() != null) {
+                SpannableStringBuilder sb = new SpannableStringBuilder();
+                List<String> lines = new ArrayList<>();
+                for (CMSTextItem item : cms.getList().getItems()) {
+                    lines.add(item.getText());
+                }
+                paragraph.setText(new BulletListBuilder(context).getBulletList(lines, "", 15));
+                paragraph.setTypeface(paragraphtf);
+                paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
+                paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
             }
-            paragraph.setText(new BulletListBuilder(context).getBulletList(lines,"",15));
-            paragraph.setTypeface(paragraphtf);
-            paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
-            paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+        }catch (Exception e){
+
         }
 
 

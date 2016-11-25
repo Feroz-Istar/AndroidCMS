@@ -48,7 +48,7 @@ public class SampleActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-
+        viewPager.setOffscreenPageLimit(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -36,4 +36,16 @@ public class ONLY_VIDEO extends Card {
         }
         return  view;
     }
+
+    @Override
+    public void onDestroy() {
+        if (video != null && video.isPlaying()) {
+            video.stopPlayback();
+            video = null;
+        }
+        super.onDestroy();
+
+    }
+
+
 }

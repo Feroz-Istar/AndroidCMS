@@ -44,4 +44,7 @@ public class ONLY_PARAGRAPH extends Card {
         return view;
 
     }
+
+
+
     }

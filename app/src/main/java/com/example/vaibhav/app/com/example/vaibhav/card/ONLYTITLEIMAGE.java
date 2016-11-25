@@ -1,5 +1,6 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class ONLYTITLEIMAGE extends Card {
     private ImageView image;
     private CustomLayout main_layout;
     private Picasso mPicasso;
+    private MediaPlayer mPlayer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class ONLYTITLEIMAGE extends Card {
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         mPicasso = Picasso.with(getContext()); //Single instance
+        mPlayer = new MediaPlayer();
 
 
         if(getArguments() != null){
@@ -40,7 +43,7 @@ public class ONLYTITLEIMAGE extends Card {
 
             if(cms != null){
                ThemeUtils themeUtils = new ThemeUtils();
-                themeUtils.massageTitle(cms,title,getContext());
+                themeUtils.massageTitle(cms,title,getContext(),mPlayer);
                 themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
 
 
@@ -48,7 +51,11 @@ public class ONLYTITLEIMAGE extends Card {
 
                 String url = "http://api.talentify.in/" + cms.getImage().getUrl();
                 themeUtils.massageImage(url,mPicasso,image,externalReadable,getContext());
-            }
+                try {
+                    mPlayer.prepare();
+                }catch (Exception e){
+
+                }}
             }
 
         }
@@ -57,6 +64,57 @@ public class ONLYTITLEIMAGE extends Card {
 
 
 
+
+
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (mPlayer != null ) {
+                mPlayer.start();
+            }
+        } else {
+            if (mPlayer != null && mPlayer.isPlaying()) {
+                mPlayer.pause();
+                mPlayer.seekTo(0);
+            }
+        }
+    }
+    @Override
+    public void onDestroy() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onPause() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onStop();
+    }
 
 
 }

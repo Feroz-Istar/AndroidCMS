@@ -1,5 +1,6 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,9 +18,6 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -30,6 +28,8 @@ public class ONLYTITLETREE extends Card {
     private OnlyTitleTreeRecycleAdapter onlytitletreeRecycleAdapter;
     private Picasso mPicasso;
     private CustomLayout main_layout;
+    private MediaPlayer mPlayer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -38,6 +38,7 @@ public class ONLYTITLETREE extends Card {
         mPicasso = Picasso.with(getContext()); //Single instance
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        mPlayer = new MediaPlayer();
 
         ParentrecyclerView = (RecyclerView) view.findViewById(R.id.only_title_tree_parent_itemListRV);
 
@@ -46,9 +47,13 @@ public class ONLYTITLETREE extends Card {
             if(cms != null){
 
                 ThemeUtils themeUtils = new ThemeUtils();
-                themeUtils.massageTitle(cms,textView,getContext());
+                themeUtils.massageTitle(cms,textView,getContext(),mPlayer);
                 themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
+                try {
+                    mPlayer.prepare();
+                }catch (Exception e){
 
+                }
             if(cms.getList() != null){
 
                 onlytitletreeRecycleAdapter = new OnlyTitleTreeRecycleAdapter(cms,getContext());
@@ -63,5 +68,55 @@ public class ONLYTITLETREE extends Card {
 
         return view ;
 
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (mPlayer != null ) {
+                mPlayer.start();
+            }
+        } else {
+            if (mPlayer != null && mPlayer.isPlaying()) {
+                mPlayer.pause();
+                mPlayer.seekTo(0);
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onPause() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        if (mPlayer != null && mPlayer.isPlaying()) {
+            mPlayer.stop();
+            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
+            mPlayer.release();
+            mPlayer = null;
+        }
+        super.onStop();
     }
 }
