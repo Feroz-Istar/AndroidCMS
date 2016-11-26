@@ -2,12 +2,12 @@ package com.example.vaibhav.app.viewpager;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +19,7 @@ import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
+import com.github.clans.fab.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -38,32 +39,51 @@ public class SampleActivity extends AppCompatActivity {
     private List<CMSSlide> cmsSlides;
     private ProgressBar progressBar;
     private int progressStatus = 0;
-    private Handler handler ;
+    private Handler handler;
     private TextView error_text;
     private DatabaseHandler databaseHandler;
     private int ppt_id;
-    private int delay = 5000; //milliseconds
+    private int delay = 10000; //milliseconds
     private int page = 0;
-    private  Runnable runnable;
-    int clickcount =0;
+
+
+    FloatingActionButton fab;
+    private int mMaxProgress = 100, currentProgress = 0;
+
+    private Runnable runnable, progreessRunnable;
+    int clickcount = 0;
+    private Handler mUiHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handler = new Handler();
+        mUiHandler = new Handler();
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        Button stop = (Button) findViewById(R.id.stop);
-        stop.setOnClickListener(new View.OnClickListener() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setMax(mMaxProgress);
+        fab.setShowProgressBackground(false);
+        fab.setIndeterminate(false);
+        fab.setColorNormal(Color.parseColor("#ff4444"));
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(clickcount %2 ==0) {
+                if (clickcount % 2 == 0) {
+                    fab.setColorNormal(Color.parseColor("#00C851"));
+                    fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
                     handler.removeCallbacks(runnable);
-                }else{
+                    mUiHandler.removeCallbacks(progreessRunnable);
+                } else {
+                    fab.setImageResource(R.mipmap.ic_pause_white_24dp);
+                    fab.setColorNormal(Color.parseColor("#ff4444"));
                     handler.postDelayed(runnable, delay);
+                    mUiHandler.postDelayed(progreessRunnable, (delay / 100));
                 }
                 clickcount++;
             }
         });
+
         viewPager.setOffscreenPageLimit(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -73,10 +93,11 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(null !=viewPagerAdapter.getItem(position) && null  != viewPagerAdapter.getItem(position).getArguments()
-                        && viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION") !=null) {
+                increaseProgress(fab, 0);
+                if (null != viewPagerAdapter.getItem(position) && null != viewPagerAdapter.getItem(position).getArguments()
+                        && viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION") != null) {
                     viewPager.setPageTransformer(true, getPageTransoformer(viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION")));
-                }else {
+                } else {
                     viewPager.setPageTransformer(true, new DefaultTransformer());
                 }
             }
@@ -94,19 +115,19 @@ public class SampleActivity extends AppCompatActivity {
             int intValue = Integer.parseInt(mIntent.getStringExtra("ppt_id"));
             databaseHandler = new DatabaseHandler(getBaseContext());
             ppt_id = intValue;
-            Cursor c =databaseHandler.getData(ppt_id);
-            if(c.moveToFirst()){
+            Cursor c = databaseHandler.getData(ppt_id);
+            if (c.moveToFirst()) {
                 System.out.println("C is  nullldklkdkd");
                 setObject(c.getString(1));
-            }else{
-                checkLogin(progressBar,intValue);
+            } else {
+                checkLogin(progressBar, intValue);
             }
         } else {
             checkLogin(progressBar, 0);
         }
 
 
-        runnable   = new Runnable() {
+        runnable = new Runnable() {
             public void run() {
                 if (viewPager.getAdapter().getCount() == page) {
                     page = 0;
@@ -115,13 +136,26 @@ public class SampleActivity extends AppCompatActivity {
                 }
                 viewPager.setCurrentItem(page, true);
                 handler.postDelayed(this, delay);
+
             }
         };
-
+        progreessRunnable = new Runnable() {
+            @Override
+            public void run() {
+                increaseProgress(fab, currentProgress);
+                mUiHandler.postDelayed(this, (delay / 100));
+            }
+        };
     }
 
+    private void increaseProgress(final FloatingActionButton fab, int i) {
+        if (i <= mMaxProgress) {
+            fab.setProgress(i, false);
+            currentProgress = ++i;
+        }
+    }
 
-    public void checkLogin(final ProgressBar progressBar,final int ppt_id) {
+    public void checkLogin(final ProgressBar progressBar, final int ppt_id) {
         error_text.setVisibility(View.GONE);
         final long t = System.currentTimeMillis();
         System.out.println("Here" + t);
@@ -159,7 +193,8 @@ public class SampleActivity extends AppCompatActivity {
 
                 String xml_object = responseString;
                 xml_object = xml_object.replaceAll("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
-                databaseHandler.saveContent(ppt_id+"",xml_object);;
+                databaseHandler.saveContent(ppt_id + "", xml_object);
+                ;
 
                 setObject(xml_object);
 
@@ -179,7 +214,7 @@ public class SampleActivity extends AppCompatActivity {
 
     public ViewPager.PageTransformer getPageTransoformer(String transformer) {
 
-         ViewPager.PageTransformer pageTransformer = new ZoomOutSlideTransformer();
+        ViewPager.PageTransformer pageTransformer = new ZoomOutSlideTransformer();
         System.out.println("Selected transition---------" + transformer);
 
         switch (transformer) {
@@ -194,7 +229,7 @@ public class SampleActivity extends AppCompatActivity {
                 break;
         }
 
-       return pageTransformer;
+        return pageTransformer;
     }
 
     @Override
@@ -202,7 +237,8 @@ public class SampleActivity extends AppCompatActivity {
         Intent i = new Intent(SampleActivity.this, LoginActivity.class);
         startActivity(i);
     }
-    public void setObject(String xml_object ){
+
+    public void setObject(String xml_object) {
         StringReader reader = new StringReader(xml_object);
         Serializer serializer = new Persister();
         try {
@@ -228,12 +264,16 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mUiHandler.postDelayed(progreessRunnable, (delay / 100));
         handler.postDelayed(runnable, delay);
+
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        mUiHandler.postDelayed(progreessRunnable, (delay / 100));
         handler.removeCallbacks(runnable);
     }
 

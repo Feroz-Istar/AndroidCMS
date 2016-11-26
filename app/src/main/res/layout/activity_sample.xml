@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sample"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.vaibhav.app.viewpager.SampleActivity">
-<android.support.v4.view.ViewPager
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/view_pager"
-    ></android.support.v4.view.ViewPager>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -17,24 +19,31 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:indeterminate="false"
-        android:visibility="gone"
         android:max="100"
         android:minHeight="50dp"
         android:minWidth="200dp"
-        android:progress="1" />
+        android:progress="1"
+        android:visibility="gone" />
+
     <TextView
+        android:id="@+id/error_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/error_text"
-        android:textColor="@android:color/holo_red_dark"
+        android:layout_centerInParent="true"
         android:text="Opps Something Went Wrong!!"
         android:textAlignment="center"
-        android:layout_centerInParent="true"
+        android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp"
-        android:visibility="gone"/>
-    <Button
+        android:visibility="gone" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/stop"/>
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:src="@mipmap/ic_pause_white_24dp"
+        fab:fabSize="mini" />
 </RelativeLayout>
