@@ -21,6 +21,7 @@ import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
+import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
 import com.example.vaibhav.app.mediautility.ImageSaver;
@@ -200,6 +201,8 @@ public class SampleActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                new SaveAudioVideoAsync(audioVideoSaver).execute(url);
+
 
             }
         }else {
