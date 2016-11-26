@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.Html;
@@ -36,7 +35,7 @@ import java.util.List;
 
 public class ThemeUtils {
 
-    public void massageTitle(CMSSlide cms, TextView title, Context context,MediaPlayer mediaPlayer) {
+    public void massageTitle(CMSSlide cms, TextView title, Context context) {
         Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
         if(cms.getTitle() != null ) {
@@ -49,7 +48,7 @@ public class ThemeUtils {
                 title.setTextSize(Integer.parseInt(cms.getTheme().getTitleFontSize()) / 3);
             }
 
-            if (cms.getTitle().getFragmentAudioUrl() != null) {
+            /*if (cms.getTitle().getFragmentAudioUrl() != null) {
                 String url = "http://api.talentify.in/video/audio/" + cms.getTitle().getFragmentAudioUrl();
                 int index = url.lastIndexOf("/");
                 String audio_name = url.substring(index, url.length()).replace("/", "");
@@ -74,13 +73,13 @@ public class ThemeUtils {
                     mediaPlayer.setDataSource(context,videouri);
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-                    /*mediaPlayer.prepare();
-                    mediaPlayer.start();*/
+                    *//*mediaPlayer.prepare();
+                    mediaPlayer.start();*//*
                 }catch (Exception e){
 
                 }
 
-            }
+            }*/
         }
     }
 
@@ -147,6 +146,7 @@ public class ThemeUtils {
             if (file_exist) {
                 Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
                 BitmapDrawable background = new BitmapDrawable(bitmap);
+
                 main_layout.setBackgroundDrawable(background);
             } else {
                 mPicasso.load("http://api.talentify.in" + cms.getImage_BG()).into(main_layout);
@@ -165,7 +165,11 @@ public class ThemeUtils {
         Boolean file_exist = imageSaver.checkFile();
         if (file_exist) {
             Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
+
+
+
             imageView.setImageBitmap(bitmap);
+
         } else {
             mPicasso.load(url).fit().into(imageView);
             new SaveImageAsync(imageSaver).execute(url);

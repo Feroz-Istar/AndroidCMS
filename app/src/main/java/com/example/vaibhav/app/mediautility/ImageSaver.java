@@ -133,6 +133,11 @@ public class ImageSaver {
         return file.exists();
     }
 
+    public File pathFile(){
+        File file = createFile();
+        return file;
+    }
+
     public boolean deleteFile() {
         File file = createFile();
         return file.delete();
@@ -152,46 +157,6 @@ public class ImageSaver {
         Log.d("talentify", "debug.memory: allocated: " + df.format(new Double(Runtime.getRuntime().totalMemory()/1048576)) + "MB of " + df.format(new Double(Runtime.getRuntime().maxMemory()/1048576))+ "MB (" + df.format(new Double(Runtime.getRuntime().freeMemory()/1048576)) +"MB free)");
     }
 
-   /* public Bitmap getImage(String path) throws IOException {
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(metrics);
-        int w = metrics.widthPixels;
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, options);
-        int srcWidth = options.outWidth;
-        int srcHeight = options.outHeight;
-        int[] newWH = new int[2];
-        newWH[0] = srcWidth / 2;
-        newWH[1] = (newWH[0] * srcHeight) / srcWidth;
-
-        int inSampleSize = 1;
-        while (srcWidth / 2 >= newWH[0]) {
-            srcWidth /= 2;
-            srcHeight /= 2;
-            inSampleSize *= 2;
-        }
-
-        options.inJustDecodeBounds = false;
-        options.inDither = false;
-        options.inSampleSize = inSampleSize;
-        options.inScaled = false;
-        options.inPreferredConfig = Bitmap.Config.RGB_565;
-        Bitmap sampledSrcBitmap = BitmapFactory.decodeFile(path, options);
-        ExifInterface exif = new ExifInterface(path);
-        String s = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
-        System.out.println("Orientation>>>>>>>>>>>>>>>>>>>>" + s);
-        Matrix matrix = new Matrix();
-        int newh = (w * sampledSrcBitmap.getHeight()) / sampledSrcBitmap.getWidth();
-        System.out.println("newh------>"+newh);
-        Bitmap r = Bitmap.createScaledBitmap(sampledSrcBitmap, w, newh, true);
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                r, 0, 0, w, newh, matrix, true);
-
-        return resizedBitmap;
-    }*/
 
 
 }

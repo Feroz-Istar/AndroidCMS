@@ -1,6 +1,5 @@
 package com.example.vaibhav.app.com.example.vaibhav.card;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
     private TextView paragraph, title;
     private Picasso mPicasso;
     private CustomLayout main_layout;
-    private MediaPlayer mPlayer;
 
     @Nullable
     @Override
@@ -32,7 +30,6 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         title = (TextView) view.findViewById(R.id.title);
         mPicasso = Picasso.with(getContext());
-        mPlayer = new MediaPlayer();
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
@@ -40,47 +37,12 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
             cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if (cms != null) {
                 ThemeUtils themeUtils = new ThemeUtils();
-                themeUtils.massageTitle(cms, title, getContext(),mPlayer);
+                themeUtils.massageTitle(cms, title, getContext());
                 themeUtils.massageParagraph(cms, paragraph, getContext());
                 themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext());
-
-                try {
-                    mPlayer.prepare();
-                }catch (Exception e){
-
-                }
             }
         }
         return view;
-    }
-
-
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            if (mPlayer != null ) {
-                mPlayer.start();
-            }
-        } else {
-            if (mPlayer != null && mPlayer.isPlaying()) {
-                mPlayer.pause();
-                mPlayer.seekTo(0);
-            }
-        }
-    }
-
-    @Override
-    public void onStop() {
-        if (mPlayer != null && mPlayer.isPlaying()) {
-            System.out.println("Only titile list destryeddddddddddd");
-            mPlayer.stop();
-            mPlayer.reset(); // Might not be necessary, since release() is called right after, but it doesn't seem to hurt/cause issues
-            mPlayer.release();
-            mPlayer = null;
-        }
-        super.onStop();
     }
 
 }
