@@ -24,6 +24,7 @@ import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
 import com.example.vaibhav.app.mediautility.ImageSaver;
+import com.example.vaibhav.app.util.LockableViewPager;
 import com.github.clans.fab.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -39,7 +40,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 public class SampleActivity extends AppCompatActivity {
-    private ViewPager viewPager;
+    private LockableViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private List<CMSSlide> cmsSlides;
     private ProgressBar progressBar;
@@ -62,7 +63,8 @@ public class SampleActivity extends AppCompatActivity {
         handler = new Handler();
         mUiHandler = new Handler();
         setContentView(R.layout.activity_sample);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (LockableViewPager) findViewById(R.id.view_pager);
+        viewPager.setSwipeLocked(true);
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -83,11 +85,15 @@ public class SampleActivity extends AppCompatActivity {
                     fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
                     handler.removeCallbacks(runnable);
                     mUiHandler.removeCallbacks(progreessRunnable);
+                    viewPager.setSwipeLocked(false);
+
                 } else {
                     fab.setImageResource(R.mipmap.ic_pause_white_24dp);
                     fab.setColorNormal(Color.parseColor("#ff4444"));
                     handler.postDelayed(runnable, delay);
                     mUiHandler.postDelayed(progreessRunnable, (delay / 100));
+                    viewPager.setSwipeLocked(true);
+
                 }
                 clickcount++;
             }
