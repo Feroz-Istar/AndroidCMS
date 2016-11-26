@@ -1,8 +1,11 @@
 package com.example.vaibhav.app.viewpager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -19,6 +22,8 @@ import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSPresentation;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
+import com.example.vaibhav.app.mediautility.AudioVideoSaver;
+import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.github.clans.fab.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -45,15 +50,12 @@ public class SampleActivity extends AppCompatActivity {
     private int ppt_id;
     private int delay = 10000; //milliseconds
     private int page = 0;
-
-
     FloatingActionButton fab;
     private int mMaxProgress = 100, currentProgress = 0;
-
     private Runnable runnable, progreessRunnable;
     int clickcount = 0;
     private Handler mUiHandler;
-
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,13 @@ public class SampleActivity extends AppCompatActivity {
         mUiHandler = new Handler();
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.reset();
+            }
+        });
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setMax(mMaxProgress);
         fab.setShowProgressBackground(false);
@@ -85,6 +94,7 @@ public class SampleActivity extends AppCompatActivity {
         });
 
         viewPager.setOffscreenPageLimit(1);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -93,6 +103,7 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                checkAudio(cmsSlides.get(position),mediaPlayer,getBaseContext());
                 increaseProgress(fab, 0);
                 if (null != viewPagerAdapter.getItem(position) && null != viewPagerAdapter.getItem(position).getArguments()
                         && viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION") != null) {
@@ -148,6 +159,49 @@ public class SampleActivity extends AppCompatActivity {
         };
     }
 
+    private void checkAudio(CMSSlide cmsSlide, MediaPlayer mediaPlayer, Context context) {
+        //here we will check whether audio exist or not
+        if(cmsSlide.getTitle() != null && cmsSlide.getTitle().getFragmentAudioUrl() != null){
+            String url = "http://api.talentify.in/video/audio/" + cmsSlide.getTitle().getFragmentAudioUrl();
+            int index = url.lastIndexOf("/");
+            String audio_name = url.substring(index, url.length()).replace("/", "");
+            AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
+                    setFileName(audio_name).
+                    setExternal(ImageSaver.isExternalStorageReadable());
+            Boolean file_exist = audioVideoSaver.checkFile();
+            if(mediaPlayer != null && mediaPlayer.isPlaying()){
+                mediaPlayer.reset();
+            }
+            Uri videouri = null;
+
+            if(file_exist){
+                try {
+                    videouri = Uri.fromFile(audioVideoSaver.load());
+
+                    mediaPlayer.setDataSource(context,videouri);
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }else {
+                try {
+                    videouri = Uri.parse(url);
+                    mediaPlayer.setDataSource(context,videouri);
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }else {
+            mediaPlayer.reset();
+        }
+
+    }
+
     private void increaseProgress(final FloatingActionButton fab, int i) {
         if (i <= mMaxProgress) {
             fab.setProgress(i, false);
@@ -177,7 +231,6 @@ public class SampleActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 error_text.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-
             }
 
             @Override
@@ -189,16 +242,10 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
-
                 String xml_object = responseString;
                 xml_object = xml_object.replaceAll("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
                 databaseHandler.saveContent(ppt_id + "", xml_object);
-                ;
-
                 setObject(xml_object);
-
-
                 progressBar.setVisibility(View.GONE);
 
             }
@@ -254,6 +301,8 @@ public class SampleActivity extends AppCompatActivity {
             viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
             viewPager.setAdapter(viewPagerAdapter);
 
+            checkAudio(cmsSlides.get(0),mediaPlayer,getBaseContext());
+
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -267,6 +316,10 @@ public class SampleActivity extends AppCompatActivity {
         mUiHandler.postDelayed(progreessRunnable, (delay / 100));
         handler.postDelayed(runnable, delay);
 
+        if(mediaPlayer != null){
+            mediaPlayer.start();
+        }
+
 
     }
 
@@ -275,6 +328,20 @@ public class SampleActivity extends AppCompatActivity {
         super.onPause();
         mUiHandler.postDelayed(progreessRunnable, (delay / 100));
         handler.removeCallbacks(runnable);
+        if(mediaPlayer != null && mediaPlayer.isPlaying()){
+            mediaPlayer.pause();
+        }
     }
+
+    @Override
+    public void onDestroy(){
+        if(mediaPlayer != null ){
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;        }
+        super.onDestroy();
+    }
+
 
 }

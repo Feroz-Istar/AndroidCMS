@@ -51,9 +51,9 @@ public class ThemeUtils {
             /*if (cms.getTitle().getFragmentAudioUrl() != null) {
                 String url = "http://api.talentify.in/video/audio/" + cms.getTitle().getFragmentAudioUrl();
                 int index = url.lastIndexOf("/");
-                String audio_name = url.substring(index, url.length()).replace("/", "");
+                String audio_nasetFileNameme = url.substring(index, url.length()).replace("/", "");
                 AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
-                        setFileName(audio_name).
+                        (audio_name).
                         setExternal(ImageSaver.isExternalStorageReadable());
                 Boolean file_exist = audioVideoSaver.checkFile();
                 Uri videouri = null;
