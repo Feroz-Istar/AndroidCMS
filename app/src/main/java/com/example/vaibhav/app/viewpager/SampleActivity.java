@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,17 +38,32 @@ public class SampleActivity extends AppCompatActivity {
     private List<CMSSlide> cmsSlides;
     private ProgressBar progressBar;
     private int progressStatus = 0;
-    private Handler handler = new Handler();
+    private Handler handler ;
     private TextView error_text;
     private DatabaseHandler databaseHandler;
     private int ppt_id;
-
+    private int delay = 5000; //milliseconds
+    private int page = 0;
+    private  Runnable runnable;
+    int clickcount =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        handler = new Handler();
         setContentView(R.layout.activity_sample);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
+        Button stop = (Button) findViewById(R.id.stop);
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(clickcount %2 ==0) {
+                    handler.removeCallbacks(runnable);
+                }else{
+                    handler.postDelayed(runnable, delay);
+                }
+                clickcount++;
+            }
+        });
         viewPager.setOffscreenPageLimit(1);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -79,18 +95,29 @@ public class SampleActivity extends AppCompatActivity {
             databaseHandler = new DatabaseHandler(getBaseContext());
             ppt_id = intValue;
             Cursor c =databaseHandler.getData(ppt_id);
-
-
             if(c.moveToFirst()){
                 System.out.println("C is  nullldklkdkd");
                 setObject(c.getString(1));
             }else{
                 checkLogin(progressBar,intValue);
-
             }
         } else {
             checkLogin(progressBar, 0);
         }
+
+
+        runnable   = new Runnable() {
+            public void run() {
+                if (viewPager.getAdapter().getCount() == page) {
+                    page = 0;
+                } else {
+                    page++;
+                }
+                viewPager.setCurrentItem(page, true);
+                handler.postDelayed(this, delay);
+            }
+        };
+
     }
 
 
@@ -198,6 +225,16 @@ public class SampleActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, delay);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
+    }
 
 }
