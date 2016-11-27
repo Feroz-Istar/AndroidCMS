@@ -146,7 +146,6 @@ public class ThemeUtils {
             if (file_exist) {
                 Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
                 BitmapDrawable background = new BitmapDrawable(bitmap);
-
                 main_layout.setBackgroundDrawable(background);
             } else {
                 mPicasso.load("http://api.talentify.in" + cms.getImage_BG()).into(main_layout);

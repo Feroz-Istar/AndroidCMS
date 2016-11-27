@@ -11,4 +11,12 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:id="@+id/image"/>
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mine"
+        android:visibility="gone"
+        android:scaleType="fitXY"
+        android:translationZ="-2dp"
+        />
 </LinearLayout>

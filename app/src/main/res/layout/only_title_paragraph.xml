@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
-    android:padding="10dp"
     android:background="#ffffff"
     >
 
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="sans-serif"
-        android:padding="10dp"
+        android:layout_margin="20dp"
         android:text="What are the action and interaction"
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
@@ -31,10 +30,18 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:fontFamily="sans-serif"
-        android:padding="10dp"
+        android:layout_margin="20dp"
         android:text="What are the action and interaction"
         android:textAlignment="gravity"
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mine"
+        android:visibility="gone"
+        android:scaleType="fitXY"
+        android:translationZ="-2dp"
+        />
 </com.example.vaibhav.app.util.CustomLayout>
