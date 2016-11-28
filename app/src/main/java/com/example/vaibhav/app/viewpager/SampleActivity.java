@@ -26,6 +26,7 @@ import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
+import com.example.vaibhav.app.mediautility.CMSResourceUtility;
 import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.LockableViewPager;
 import com.github.clans.fab.FloatingActionButton;
@@ -270,8 +271,8 @@ public class SampleActivity extends AppCompatActivity {
                 xml_object = xml_object.replaceAll("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
                 databaseHandler.saveContent(ppt_id + "", xml_object);
                 setObject(xml_object);
+                CMSResourceUtility cmsResourceUtility = new CMSResourceUtility(getBaseContext(),xml_object,ppt_id);
                 progressBar.setVisibility(View.GONE);
-
             }
 
 
