@@ -95,4 +95,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return ppt_ids;
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        this.close();
+        super.finalize();
+    }
 }

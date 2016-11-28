@@ -193,7 +193,7 @@ public class SampleActivity extends AppCompatActivity {
             int index = url.lastIndexOf("/");
             String audio_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
-                    setFileName(audio_name).
+                    setFileName(audio_name.replace(".wav",".mp3")).
                     setExternal(ImageSaver.isExternalStorageReadable());
             Boolean file_exist = audioVideoSaver.checkFile();
             if(mediaPlayer != null && mediaPlayer.isPlaying()){

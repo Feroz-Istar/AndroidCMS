@@ -174,6 +174,7 @@ public class ThemeUtils {
         int index = url.lastIndexOf("/");
         String bg_image_name = url.substring(index, url.length()).replace("/", "");
         if(url.contains(".gif")){
+            imageView.setVisibility(View.GONE);
             checkGIFImage(url,context,gifImageView);
         }else {
 
