@@ -10,17 +10,27 @@ import android.net.Uri;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.bumptech.glide.request.target.Target;
+import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.cmspojo.CMSTextItem;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
+import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveGifAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveImageAsync;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
+import com.example.vaibhav.app.mediautility.GifImageSaver;
 import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.BulletListBuilder;
 import com.example.vaibhav.app.util.CustomLayout;
@@ -28,6 +38,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import pl.droidsonroids.gif.GifImageView;
 
 /**
  * Created by Feroz on 24/11/2016.
@@ -123,10 +136,14 @@ public class ThemeUtils {
         }
     }
 
-    public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context) {
+    public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context,GifImageView gifImageView) {
         if (cms.getImage_BG() != null && !cms.getImage_BG().equalsIgnoreCase("none") && !cms.getImage_BG().equalsIgnoreCase("null")) {
             int index = cms.getImage_BG().lastIndexOf("/");
+            String url= "http://api.talentify.in" + cms.getImage_BG();
             System.out.println("cms.getImage_BG() " + cms.getImage_BG() + " index " + index);
+            if(cms.getImage_BG().contains(".gif")){
+                checkGIFImage(url,context,gifImageView);
+            }else{
             String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
             ImageSaver imageSaver = new ImageSaver(context).
                     setFileName(bg_image_name).
@@ -140,38 +157,40 @@ public class ThemeUtils {
                     if (cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
                         main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
                 }
-
             }
-
             if (file_exist) {
                 Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
                 BitmapDrawable background = new BitmapDrawable(bitmap);
                 main_layout.setBackgroundDrawable(background);
             } else {
-                mPicasso.load("http://api.talentify.in" + cms.getImage_BG()).into(main_layout);
-                new SaveImageAsync(imageSaver).execute("http://api.talentify.in/" + cms.getImage_BG());
+                mPicasso.load(url).into(main_layout);
+                new SaveImageAsync(imageSaver).execute(url);
             }
-        }
+        }}
     }
 
 
-    public void massageImage(String url, Picasso mPicasso, ImageView imageView, Boolean externalReadable, Context context) {
+    public void massageImage(String url, Picasso mPicasso, ImageView imageView, Boolean externalReadable, Context context,GifImageView gifImageView) {
         int index = url.lastIndexOf("/");
         String bg_image_name = url.substring(index, url.length()).replace("/", "");
-        ImageSaver imageSaver = new ImageSaver(context).
-                setFileName(bg_image_name).
-                setExternal(externalReadable);
-        Boolean file_exist = imageSaver.checkFile();
-        if (file_exist) {
-            Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
+        if(url.contains(".gif")){
+            checkGIFImage(url,context,gifImageView);
+        }else {
+
+            ImageSaver imageSaver = new ImageSaver(context).
+                    setFileName(bg_image_name).
+                    setExternal(externalReadable);
+            Boolean file_exist = imageSaver.checkFile();
+            if (file_exist) {
+                Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
 
 
+                imageView.setImageBitmap(bitmap);
 
-            imageView.setImageBitmap(bitmap);
-
-        } else {
-            mPicasso.load(url).fit().into(imageView);
-            new SaveImageAsync(imageSaver).execute(url);
+            } else {
+                mPicasso.load(url).fit().into(imageView);
+                new SaveImageAsync(imageSaver).execute(url);
+            }
         }
     }
 
@@ -255,5 +274,42 @@ public class ThemeUtils {
         }
     }
 
+    private void checkGIFImage(String url, Context context, GifImageView gifImageView) {
+        int index = url.lastIndexOf("/");
+        String bg_image_name = url.substring(index, url.length()).replace("/", "");
+        GifImageSaver imageSaver = new GifImageSaver(context).
+                setFileName(bg_image_name).
+                setExternal(GifImageSaver.isExternalStorageReadable());
+        Boolean file_exist = imageSaver.checkFile();
+        gifImageView.setVisibility(View.VISIBLE);
 
+        if (file_exist) {
+            try {
+                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(gifImageView);
+                Glide.with(context).load(imageSaver.pathFile()).into(imageViewTarget);
+
+                //gifImageView.setImageDrawable(new GifDrawable(imageSaver.pathFile()));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+
+            Glide.with(context).load(url).listener(new LoggingListener<String, GlideDrawable>()).diskCacheStrategy(DiskCacheStrategy.NONE ).error(context.getResources().getDrawable(R.mipmap.ic_launcher)).into(gifImageView);
+            new SaveGifAsync(imageSaver).execute(url);
+
+        }
+    }
+
+    public class LoggingListener<T, R> implements RequestListener<T, R> {
+        @Override public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+            android.util.Log.d("GLIDE", String.format(Locale.ROOT,
+                    "onException(%s, %s, %s, %s)", e, model, target, isFirstResource), e);
+            return false;
+        }
+        @Override public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
+            android.util.Log.d("GLIDE", String.format(Locale.ROOT,
+                    "onResourceReady(%s, %s, %s, %s, %s)", resource, model, target, isFromMemoryCache, isFirstResource));
+            return false;
+        }
+    }
 }

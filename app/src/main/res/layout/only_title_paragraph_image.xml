@@ -30,4 +30,12 @@
        android:scaleType="fitXY"
        android:layout_alignParentBottom="true"
        />
+   <pl.droidsonroids.gif.GifImageView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/mine"
+       android:visibility="gone"
+       android:scaleType="fitXY"
+       android:translationZ="-2dp"
+       />
 </com.example.vaibhav.app.util.CustomLayout>

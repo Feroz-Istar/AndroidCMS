@@ -13,6 +13,8 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -21,6 +23,7 @@ public class ONLY_2BOX extends Card {
     private TextView title1, title2;
     private Picasso mPicasso;
     private CustomLayout main_layout;
+    private GifImageView gifImageView;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class ONLY_2BOX extends Card {
         // description2 = (TextView) view.findViewById(R.id.paragraph2);
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         mPicasso = Picasso.with(getContext()); //Single instance
+        gifImageView = (GifImageView) view.findViewById(R.id.mine);
+
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
             CMSSlide cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
@@ -41,7 +46,7 @@ public class ONLY_2BOX extends Card {
                 themeUtils.massageTitle2(cms, title2, getContext());
                 // themeUtils.massageParagraph(cms,description1,getContext());
                 // themeUtils.massageParagraph(cms,description2,getContext());
-                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext());
+                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(),gifImageView);
 
             }
         }

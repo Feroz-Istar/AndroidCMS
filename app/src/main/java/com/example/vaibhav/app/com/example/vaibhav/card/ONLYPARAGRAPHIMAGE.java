@@ -14,6 +14,8 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -23,6 +25,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
     private ImageView image;
     private Picasso mPicasso;
     private CustomLayout main_layout;
+    private GifImageView gifImageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
         mPicasso = Picasso.with(getContext()); //Single instance
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
         if (getArguments() != null) {
             CMSSlide cms = null;
@@ -42,10 +46,10 @@ public class ONLYPARAGRAPHIMAGE extends Card {
             if (cms != null) {
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageParagraph(cms, paragraph, getContext());
-                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
+                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
                 if (cms.getImage() != null && cms.getImage().getUrl() != null) {
                     String url = "http://api.talentify.in" + cms.getImage().getUrl();
-                    themeUtils.massageImage(url, mPicasso, image, externalReadable, getContext());
+                    themeUtils.massageImage(url, mPicasso, image, externalReadable, getContext(),gifImageView);
                 }
             }
         }

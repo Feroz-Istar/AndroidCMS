@@ -14,6 +14,8 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -23,6 +25,7 @@ public class ONLY_2TITLE_IMAGE extends Card {
     private Picasso mPicasso;
     private ImageView image;
     private CustomLayout main_layout;
+    private GifImageView gifImageView;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class ONLY_2TITLE_IMAGE extends Card {
         image = (ImageView) view.findViewById(R.id.image);
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         mPicasso = Picasso.with(getContext());
+        gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
@@ -43,9 +47,9 @@ public class ONLY_2TITLE_IMAGE extends Card {
                 themeUtils.massageTitle2(cms,title2,getContext());
                 if(cms.getImage() != null && cms.getImage().getUrl() != null) {
                     String url = "http://api.talentify.in" + cms.getImage().getUrl();
-                    themeUtils.massageImage(url,mPicasso,image,externalReadable,getContext());
+                    themeUtils.massageImage(url,mPicasso,image,externalReadable,getContext(),gifImageView);
                 }
-                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
+                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
 
             }
         }

@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button button;
     private EditText ppt_id;
     private TextView history;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

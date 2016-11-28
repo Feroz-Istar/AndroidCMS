@@ -7,9 +7,11 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,63 +47,92 @@ public class SampleActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private List<CMSSlide> cmsSlides;
     private ProgressBar progressBar;
-    private int progressStatus = 0;
-    private Handler handler;
     private TextView error_text;
     private DatabaseHandler databaseHandler;
     private int ppt_id;
     private int delay = 10000; //milliseconds
     private int page = 0;
-    FloatingActionButton fab;
-    private int mMaxProgress = 100, currentProgress = 0;
-    private Runnable runnable, progreessRunnable;
-    int clickcount = 0;
-    private Handler mUiHandler;
+    private FloatingActionButton fab;
+    private int clickcount = 0;
     private MediaPlayer mediaPlayer;
+    private Handler viewpagerHandler;
+    private Runnable runnable;
+    private CountDownTimer mCountDownTimer;
+    private int progressstatus=0;
+    private String flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handler = new Handler();
-        mUiHandler = new Handler();
         setContentView(R.layout.activity_sample);
         viewPager = (LockableViewPager) findViewById(R.id.view_pager);
         viewPager.setSwipeLocked(true);
         mediaPlayer = new MediaPlayer();
+        viewpagerHandler = new Handler();
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 mediaPlayer.reset();
             }
         });
+        flag = "play";
+        mCountDownTimer=new CountDownTimer(delay,delay/100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.v("Log_tag", "Tick of Progress"+ progressstatus+ millisUntilFinished);
+                progressstatus++;
+                fab.setProgress(progressstatus,false);
+
+            }
+            @Override
+            public void onFinish() {
+                progressstatus =0;
+                fab.setProgress(0,false);
+            }
+        };
+        runnable = new Runnable() {
+            public void run() {
+                System.out.println("Calling ... Runnable. ...");
+
+                if (viewPager.getAdapter().getCount() == page-1) {
+                    page = 0;
+                } else {
+                    page++;
+                }
+                viewPager.setCurrentItem(page, true);
+                viewpagerHandler.postDelayed(this, delay);
+                progressstatus =0;
+                mCountDownTimer.cancel();
+                mCountDownTimer.start();
+
+            }
+        };
+        viewpagerHandler.postDelayed(runnable, delay);
+        mCountDownTimer.start();
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setMax(mMaxProgress);
-        fab.setShowProgressBackground(false);
-        fab.setIndeterminate(false);
-        fab.setColorNormal(Color.parseColor("#ff4444"));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (clickcount % 2 == 0) {
                     fab.setColorNormal(Color.parseColor("#00C851"));
                     fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
-                    handler.removeCallbacks(runnable);
-                    mUiHandler.removeCallbacks(progreessRunnable);
+                    viewpagerHandler.removeCallbacks(runnable);
+                    mCountDownTimer.cancel();
+                    progressstatus =0;
                     viewPager.setSwipeLocked(false);
+                    flag = "stop";
 
                 } else {
                     fab.setImageResource(R.mipmap.ic_pause_white_24dp);
                     fab.setColorNormal(Color.parseColor("#ff4444"));
-                    handler.postDelayed(runnable, delay);
-                    mUiHandler.postDelayed(progreessRunnable, (delay / 100));
+                    viewpagerHandler.postDelayed(runnable, delay);
+                    mCountDownTimer.start();
+                    flag = "play";
                     viewPager.setSwipeLocked(true);
-
                 }
                 clickcount++;
             }
         });
-
-        viewPager.setOffscreenPageLimit(1);
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -110,14 +141,18 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                checkAudio(cmsSlides.get(position),mediaPlayer,getBaseContext());
-                increaseProgress(fab, 0);
-                if (null != viewPagerAdapter.getItem(position) && null != viewPagerAdapter.getItem(position).getArguments()
-                        && viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION") != null) {
-                    viewPager.setPageTransformer(true, getPageTransoformer(viewPagerAdapter.getItem(position).getArguments().getString("TRANSITION")));
-                } else {
-                    viewPager.setPageTransformer(true, new DefaultTransformer());
+                page=position;
+                if(flag.equalsIgnoreCase("play")){
+                   // viewpagerHandler.postDelayed(runnable, 0);
+                }else{
+                    fab.setProgress(0,false);
+
                 }
+                //check for each audio present in the slide
+                checkAudio(cmsSlides.get(position),mediaPlayer,getBaseContext());
+                //check for slide transition of each slide
+                viewPager.setPageTransformer(true, getPageTransoformer(cmsSlides.get(position)));
+                //progress initialized to 0
             }
 
             @Override
@@ -135,7 +170,6 @@ public class SampleActivity extends AppCompatActivity {
             ppt_id = intValue;
             Cursor c = databaseHandler.getData(ppt_id);
             if (c.moveToFirst()) {
-                System.out.println("C is  nullldklkdkd");
                 setObject(c.getString(1));
             } else {
                 checkLogin(progressBar, intValue);
@@ -145,26 +179,12 @@ public class SampleActivity extends AppCompatActivity {
         }
 
 
-        runnable = new Runnable() {
-            public void run() {
-                if (viewPager.getAdapter().getCount() == page) {
-                    page = 0;
-                } else {
-                    page++;
-                }
-                viewPager.setCurrentItem(page, true);
-                handler.postDelayed(this, delay);
 
-            }
-        };
-        progreessRunnable = new Runnable() {
-            @Override
-            public void run() {
-                increaseProgress(fab, currentProgress);
-                mUiHandler.postDelayed(this, (delay / 100));
-            }
-        };
     }
+
+
+
+
 
     private void checkAudio(CMSSlide cmsSlide, MediaPlayer mediaPlayer, Context context) {
         //here we will check whether audio exist or not
@@ -211,12 +231,7 @@ public class SampleActivity extends AppCompatActivity {
 
     }
 
-    private void increaseProgress(final FloatingActionButton fab, int i) {
-        if (i <= mMaxProgress) {
-            fab.setProgress(i, false);
-            currentProgress = ++i;
-        }
-    }
+
 
     public void checkLogin(final ProgressBar progressBar, final int ppt_id) {
         error_text.setVisibility(View.GONE);
@@ -268,31 +283,27 @@ public class SampleActivity extends AppCompatActivity {
 
     }
 
-    public ViewPager.PageTransformer getPageTransoformer(String transformer) {
+    public ViewPager.PageTransformer getPageTransoformer(CMSSlide cmsSlide) {
+        ViewPager.PageTransformer pageTransformer = new DefaultTransformer();
 
-        ViewPager.PageTransformer pageTransformer = new ZoomOutSlideTransformer();
-        System.out.println("Selected transition---------" + transformer);
-
-        switch (transformer) {
-            case "slide":
-                pageTransformer = new DefaultTransformer();
-                break;
-            case "zoom":
-                pageTransformer = new ZoomOutSlideTransformer();
-                break;
-            default:
-                pageTransformer = new DepthPageTransformer();
-                break;
+        if (cmsSlide != null && cmsSlide.getTransition() != null) {
+            System.out.println("Selected transition---------" + cmsSlide.getTransition());
+            switch (cmsSlide.getTransition()) {
+                case "slide":
+                    pageTransformer = new DefaultTransformer();
+                    break;
+                case "zoom":
+                    pageTransformer = new ZoomOutSlideTransformer();
+                    break;
+                default:
+                    pageTransformer = new DepthPageTransformer();
+                    break;
+            }
         }
-
         return pageTransformer;
+
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(SampleActivity.this, LoginActivity.class);
-        startActivity(i);
-    }
 
     public void setObject(String xml_object) {
         StringReader reader = new StringReader(xml_object);
@@ -322,8 +333,6 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mUiHandler.postDelayed(progreessRunnable, (delay / 100));
-        handler.postDelayed(runnable, delay);
 
         if(mediaPlayer != null){
             mediaPlayer.start();
@@ -335,11 +344,15 @@ public class SampleActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mUiHandler.postDelayed(progreessRunnable, (delay / 100));
-        handler.removeCallbacks(runnable);
+
         if(mediaPlayer != null && mediaPlayer.isPlaying()){
             mediaPlayer.pause();
         }
+
+        viewpagerHandler.removeCallbacks(runnable);
+        progressstatus =0;
+        mCountDownTimer.cancel();
+
     }
 
     @Override
@@ -348,9 +361,16 @@ public class SampleActivity extends AppCompatActivity {
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
-            mediaPlayer = null;        }
+            mediaPlayer = null;
+        }
         super.onDestroy();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(SampleActivity.this, LoginActivity.class);
+        startActivity(i);
+    }
 
 }

@@ -36,8 +36,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         if(cmsSlides.get(position).getTitle().getText() != null)
         bundle.putString(Card.Title,cmsSlides.get(position).getTitle().getText());
 
-        if(cmsSlides.get(position).getTransition()!=null)
-          bundle.putString("TRANSITION",cmsSlides.get(position).getTransition());
+
 
         bundle.putSerializable("CMSSLIDE",cmsSlides.get(position));
         fragment = CardFactory.getCard(cmsSlides.get(position).getTemplateName());

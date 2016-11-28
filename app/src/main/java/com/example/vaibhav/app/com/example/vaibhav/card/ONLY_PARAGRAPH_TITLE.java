@@ -13,6 +13,8 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Sumanth on 11/23/2016.
  */
@@ -21,6 +23,7 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
     private TextView paragraph, title;
     private Picasso mPicasso;
     private CustomLayout main_layout;
+    private GifImageView gifImageView;
 
     @Nullable
     @Override
@@ -31,6 +34,8 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
         title = (TextView) view.findViewById(R.id.title);
         mPicasso = Picasso.with(getContext());
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        gifImageView = (GifImageView) view.findViewById(R.id.mine);
+
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
             CMSSlide cms = null;
@@ -39,7 +44,7 @@ public class ONLY_PARAGRAPH_TITLE extends Card {
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageTitle(cms, title, getContext());
                 themeUtils.massageParagraph(cms, paragraph, getContext());
-                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext());
+                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(),gifImageView);
             }
         }
         return view;

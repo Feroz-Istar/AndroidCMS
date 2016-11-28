@@ -13,6 +13,8 @@ import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.squareup.picasso.Picasso;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Vaibhav on 18-11-2016.
  */
@@ -23,6 +25,7 @@ public class ONLYTITLE extends  Card{
     private TextView textView;
     private Picasso mPicasso;
     private CustomLayout main_layout;
+    private GifImageView gifImageView;
 
     @Nullable
     @Override
@@ -31,6 +34,7 @@ public class ONLYTITLE extends  Card{
         View view = inflater.inflate(R.layout.only_title, container, false);
         textView = (TextView) view.findViewById(R.id.text);
         mPicasso = Picasso.with(getContext()); //Single instance
+        gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
@@ -39,7 +43,7 @@ public class ONLYTITLE extends  Card{
             if(cms != null){
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageTitle(cms,textView,getContext());
-                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext());
+                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
                 }
         }
         return  view;
