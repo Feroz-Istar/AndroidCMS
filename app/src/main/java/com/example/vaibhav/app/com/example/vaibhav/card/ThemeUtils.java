@@ -137,6 +137,15 @@ public class ThemeUtils {
     }
 
     public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context,GifImageView gifImageView) {
+        if (cms.getBackground() != null) {
+            if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none")) {
+                main_layout.setBackgroundColor(Color.parseColor(cms.getBackground()));
+            } else {
+                if (cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
+                    main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
+            }
+        }
+
         if (cms.getImage_BG() != null && !cms.getImage_BG().equalsIgnoreCase("none") && !cms.getImage_BG().equalsIgnoreCase("null")) {
             int index = cms.getImage_BG().lastIndexOf("/");
             String url= "http://api.talentify.in" + cms.getImage_BG();
@@ -150,14 +159,7 @@ public class ThemeUtils {
                     setExternal(externalReadable);
             Boolean file_exist = imageSaver.checkFile();
 
-            if (cms.getBackground() != null) {
-                if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none")) {
-                    main_layout.setBackgroundColor(Color.parseColor(cms.getBackground()));
-                } else {
-                    if (cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
-                        main_layout.setBackgroundColor(Color.parseColor(cms.getTheme().getBackgroundColor()));
-                }
-            }
+
             if (file_exist) {
                 Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
                 BitmapDrawable background = new BitmapDrawable(bitmap);
