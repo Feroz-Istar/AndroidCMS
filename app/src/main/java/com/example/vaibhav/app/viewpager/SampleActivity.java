@@ -94,7 +94,7 @@ public class SampleActivity extends AppCompatActivity {
             public void run() {
                 System.out.println("Calling ... Runnable. ...");
 
-                if (viewPager.getAdapter().getCount() == page-1) {
+                if (viewPager.getAdapter().getCount()-1== page) {
                     page = 0;
                 } else {
                     page++;
@@ -115,21 +115,9 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (clickcount % 2 == 0) {
-                    fab.setColorNormal(Color.parseColor("#00C851"));
-                    fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
-                    viewpagerHandler.removeCallbacks(runnable);
-                    mCountDownTimer.cancel();
-                    progressstatus =0;
-                    viewPager.setSwipeLocked(false);
-                    flag = "stop";
-
+                    startOrStopFab(false);
                 } else {
-                    fab.setImageResource(R.mipmap.ic_pause_white_24dp);
-                    fab.setColorNormal(Color.parseColor("#ff4444"));
-                    viewpagerHandler.postDelayed(runnable, delay);
-                    mCountDownTimer.start();
-                    flag = "play";
-                    viewPager.setSwipeLocked(true);
+                    startOrStopFab(true);
                 }
                 clickcount++;
             }
@@ -142,12 +130,12 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                page=position;
+
                 if(flag.equalsIgnoreCase("play")){
                    // viewpagerHandler.postDelayed(runnable, 0);
                 }else{
+                    page=position;
                     fab.setProgress(0,false);
-
                 }
                 //check for each audio present in the slide
                 checkAudio(cmsSlides.get(position),mediaPlayer,getBaseContext());
@@ -331,6 +319,25 @@ public class SampleActivity extends AppCompatActivity {
         }
     }
 
+    private void startOrStopFab(boolean start_stop){
+        if(start_stop){
+            fab.setImageResource(R.mipmap.ic_pause_white_24dp);
+            fab.setColorNormal(Color.parseColor("#ff4444"));
+            viewpagerHandler.postDelayed(runnable, delay);
+            mCountDownTimer.start();
+            flag = "play";
+            viewPager.setSwipeLocked(true);
+        }else{
+            fab.setColorNormal(Color.parseColor("#00C851"));
+            fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
+            viewpagerHandler.removeCallbacks(runnable);
+            mCountDownTimer.cancel();
+            progressstatus =0;
+            viewPager.setSwipeLocked(false);
+            flag = "stop";
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -351,10 +358,11 @@ public class SampleActivity extends AppCompatActivity {
             mediaPlayer.pause();
         }
 
-        viewpagerHandler.removeCallbacks(runnable);
-        progressstatus =0;
-        mCountDownTimer.cancel();
-
+        //stop autoplay
+        if(flag.equalsIgnoreCase("play")){
+            startOrStopFab(false);
+            clickcount++;
+        }
     }
 
     @Override
