@@ -272,6 +272,7 @@ public class SampleActivity extends AppCompatActivity {
                 databaseHandler.saveContent(ppt_id + "", xml_object);
                 setObject(xml_object);
                 CMSResourceUtility cmsResourceUtility = new CMSResourceUtility(getBaseContext(),xml_object,ppt_id);
+                cmsResourceUtility.fetchResource();
                 progressBar.setVisibility(View.GONE);
             }
 
