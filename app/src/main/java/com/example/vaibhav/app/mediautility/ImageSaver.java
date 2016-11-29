@@ -78,7 +78,7 @@ public class ImageSaver {
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (!file.mkdirs()) {
-            Log.e("ImageSaver", "Directory Already exist" + fileName);
+            Log.e("ImageSaver", "Directory Already exist File Name : " + fileName);
 
         }
         return file;

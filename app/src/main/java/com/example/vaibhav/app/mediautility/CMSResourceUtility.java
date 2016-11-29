@@ -102,7 +102,7 @@ public class CMSResourceUtility {
 
     private void getBackgroundImage(CMSSlide cmsSlide) {
         try {
-            if (cmsSlide != null && cmsSlide.getImage_BG() != null && !cmsSlide.getImage_BG().equalsIgnoreCase("none") && cmsSlide.getImage_BG().equalsIgnoreCase("null")) {
+            if (cmsSlide != null && cmsSlide.getImage_BG() != null && !cmsSlide.getImage_BG().equalsIgnoreCase("none") && !cmsSlide.getImage_BG().equalsIgnoreCase("null")) {
                 String url = "http://api.talentify.in/" + cmsSlide.getImage_BG();
                 int index = url.lastIndexOf("/");
                 String bg_image_name = url.substring(index, url.length()).replace("/", "");
