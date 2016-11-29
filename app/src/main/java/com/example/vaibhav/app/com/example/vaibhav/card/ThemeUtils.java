@@ -138,7 +138,7 @@ public class ThemeUtils {
 
     public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context,GifImageView gifImageView) {
         if (cms.getBackground() != null) {
-            if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none")) {
+            if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none") && !cms.getBackground().equalsIgnoreCase("null")) {
                 main_layout.setBackgroundColor(Color.parseColor(cms.getBackground()));
             } else {
                 if (cms.getTheme() != null && cms.getTheme().getBackgroundColor() != null)
