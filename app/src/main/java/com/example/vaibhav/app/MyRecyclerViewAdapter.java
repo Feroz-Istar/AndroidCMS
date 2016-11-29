@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
+import com.example.vaibhav.app.mediautility.CMSResourceUtility;
 import com.example.vaibhav.app.viewpager.SampleActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -85,6 +86,8 @@ public class MyRecyclerViewAdapter extends RecyclerView
             @Override
             public void onClick(View view) {
                 checkLogin(context,Integer.parseInt(holder.ppt_id.getText().toString()),holder.snackbar);
+
+
             }
         });
     }
@@ -129,6 +132,8 @@ public class MyRecyclerViewAdapter extends RecyclerView
                 xml_object = xml_object.replaceAll("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
                 databaseHandler.updateContent(ppt_id+"",xml_object);;
                 System.out.println("Adapter");
+                CMSResourceUtility cmsResourceUtility = new CMSResourceUtility(context,xml_object,ppt_id);
+                cmsResourceUtility.fetchResource();
                 Snackbar snackbar = Snackbar
                         .make(coordinatorLayout, "Updating Please Wait ..", Snackbar.LENGTH_LONG);
                 snackbar.show();
