@@ -51,7 +51,7 @@ public class ThemeUtils {
     public void massageTitle(CMSSlide cms, TextView title, Context context) {
         Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
-        if(cms.getTitle() != null ) {
+        if (cms.getTitle() != null) {
             if (cms.getTitle().getText() != null) {
                 title.setText(cms.getTitle().getText());
                 title.setTypeface(titletf, Typeface.BOLD);
@@ -114,8 +114,8 @@ public class ThemeUtils {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
-            System.out.println("--------------------->"+ cms.getParagraph().getText());
-            paragraph.setText(Html. fromHtml(cms.getParagraph().getText()));
+            System.out.println("--------------------->" + cms.getParagraph().getText());
+            paragraph.setText(Html.fromHtml(cms.getParagraph().getText()));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
             paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
@@ -127,16 +127,16 @@ public class ThemeUtils {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
 
         if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
-            System.out.println("--------------------->"+ cms.getParagraph().getText());
+            System.out.println("--------------------->" + cms.getParagraph().getText());
             paragraph.loadDataWithBaseURL(null, cms.getParagraph().getText(), "text/html", "utf-8", null);
-          //  paragraph.setTypeface(paragraphtf);
-          //  paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
-          //  paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
+            //  paragraph.setTypeface(paragraphtf);
+            //  paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+            //  paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
 
         }
     }
 
-    public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context,GifImageView gifImageView) {
+    public void massageBackgroundLayout(CMSSlide cms, Picasso mPicasso, CustomLayout main_layout, Boolean externalReadable, Context context, GifImageView gifImageView) {
         if (cms.getBackground() != null) {
             if (!cms.getBackground().equalsIgnoreCase("#ffffff") && !cms.getBackground().equalsIgnoreCase("#000000") && !cms.getBackground().equalsIgnoreCase("none") && !cms.getBackground().equalsIgnoreCase("null")) {
                 main_layout.setBackgroundColor(Color.parseColor(cms.getBackground()));
@@ -148,37 +148,38 @@ public class ThemeUtils {
 
         if (cms.getImage_BG() != null && !cms.getImage_BG().equalsIgnoreCase("none") && !cms.getImage_BG().equalsIgnoreCase("null")) {
             int index = cms.getImage_BG().lastIndexOf("/");
-            String url= "http://api.talentify.in" + cms.getImage_BG();
+            String url = "http://api.talentify.in" + cms.getImage_BG();
             System.out.println("cms.getImage_BG() " + cms.getImage_BG() + " index " + index);
-            if(cms.getImage_BG().contains(".gif")){
-                checkGIFImage(url,context,gifImageView);
-            }else{
-            String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
-            ImageSaver imageSaver = new ImageSaver(context).
-                    setFileName(bg_image_name).
-                    setExternal(externalReadable);
-            Boolean file_exist = imageSaver.checkFile();
-
-
-            if (file_exist) {
-                Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
-                BitmapDrawable background = new BitmapDrawable(bitmap);
-                main_layout.setBackgroundDrawable(background);
+            if (cms.getImage_BG().contains(".gif")) {
+                checkGIFImage(url, context, gifImageView);
             } else {
-                mPicasso.load(url).into(main_layout);
-                new SaveImageAsync(imageSaver).execute(url);
+                String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
+                ImageSaver imageSaver = new ImageSaver(context).
+                        setFileName(bg_image_name).
+                        setExternal(externalReadable);
+                Boolean file_exist = imageSaver.checkFile();
+
+
+                if (file_exist) {
+                    Bitmap bitmap = imageSaver.setExternal(externalReadable).load();
+                    BitmapDrawable background = new BitmapDrawable(bitmap);
+                    main_layout.setBackgroundDrawable(background);
+                } else {
+                    mPicasso.load(url).into(main_layout);
+                    new SaveImageAsync(imageSaver).execute(url);
+                }
             }
-        }}
+        }
     }
 
 
-    public void massageImage(String url, Picasso mPicasso, ImageView imageView, Boolean externalReadable, Context context,GifImageView gifImageView) {
+    public void massageImage(String url, Picasso mPicasso, ImageView imageView, Boolean externalReadable, Context context, GifImageView gifImageView) {
         int index = url.lastIndexOf("/");
         String bg_image_name = url.substring(index, url.length()).replace("/", "");
-        if(url.contains(".gif")){
+        if (url.contains(".gif")) {
             imageView.setVisibility(View.GONE);
-            checkGIFImage(url,context,gifImageView);
-        }else {
+            checkGIFImage(url, context, gifImageView);
+        } else {
 
             ImageSaver imageSaver = new ImageSaver(context).
                     setFileName(bg_image_name).
@@ -249,8 +250,8 @@ public class ThemeUtils {
                 paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
                 paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 3.0));
             }
-        }catch (Exception e){
-e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
@@ -263,13 +264,13 @@ e.printStackTrace();
 
     public void massageNumberList(CMSSlide cms, TextView paragraph, Context context) {
         Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
-        if (cms.getList() != null && cms.getList().getItems()!=null) {
+        if (cms.getList() != null && cms.getList().getItems() != null) {
             SpannableStringBuilder sb = new SpannableStringBuilder();
             List<String> lines = new ArrayList<>();
             for (CMSTextItem item : cms.getList().getItems()) {
                 lines.add(item.getText());
             }
-            paragraph.setText(new BulletListBuilder(context).getNumberList(lines,"",15));
+            paragraph.setText(new BulletListBuilder(context).getNumberList(lines, "", 15));
             paragraph.setTypeface(paragraphtf);
             paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
             paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
@@ -292,24 +293,27 @@ e.printStackTrace();
                 Glide.with(context).load(imageSaver.pathFile()).into(imageViewTarget);
 
                 //gifImageView.setImageDrawable(new GifDrawable(imageSaver.pathFile()));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
 
-            Glide.with(context).load(url).listener(new LoggingListener<String, GlideDrawable>()).diskCacheStrategy(DiskCacheStrategy.NONE ).error(context.getResources().getDrawable(R.mipmap.ic_launcher)).into(gifImageView);
+            Glide.with(context).load(url).listener(new LoggingListener<String, GlideDrawable>()).diskCacheStrategy(DiskCacheStrategy.NONE).error(context.getResources().getDrawable(R.mipmap.ic_launcher)).into(gifImageView);
             new SaveGifAsync(imageSaver).execute(url);
 
         }
     }
 
     public class LoggingListener<T, R> implements RequestListener<T, R> {
-        @Override public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+        @Override
+        public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
             android.util.Log.d("GLIDE", String.format(Locale.ROOT,
                     "onException(%s, %s, %s, %s)", e, model, target, isFirstResource), e);
             return false;
         }
-        @Override public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
+
+        @Override
+        public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
             android.util.Log.d("GLIDE", String.format(Locale.ROOT,
                     "onResourceReady(%s, %s, %s, %s, %s)", resource, model, target, isFromMemoryCache, isFirstResource));
             return false;
