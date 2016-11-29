@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
@@ -20,10 +21,12 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
 
-    private TextView paragraph,title;
+    private TextView paragraph, title;
     private Picasso mPicasso;
     private CustomLayout main_layout;
     private GifImageView gifImageView;
+    private TableLayout table_main1;
+
 
     @Nullable
     @Override
@@ -34,17 +37,19 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
         title = (TextView) view.findViewById(R.id.title);
         mPicasso = Picasso.with(getContext());
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        table_main1 = (TableLayout) view.findViewById(R.id.table_main1);
+
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
         if (getArguments() != null) {
             CMSSlide cms = null;
-            cms= (CMSSlide) getArguments().getSerializable("CMSSLIDE");
-            if(cms != null){
+            cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
+            if (cms != null) {
                 ThemeUtils themeUtils = new ThemeUtils();
-                themeUtils.massageTitle(cms,title,getContext());
-                themeUtils.massageParagraph(cms,paragraph,getContext());
-                themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
+                themeUtils.massageTitle(cms, title, getContext());
+                themeUtils.massageTable(cms, table_main1, paragraph, getContext());
+                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(), gifImageView);
 
             }
 
@@ -52,8 +57,6 @@ public class ONLY_TITLE_PARAGRAPH_cells_fragemented extends Card {
 
         return view;
     }
-
-
 
 
 }

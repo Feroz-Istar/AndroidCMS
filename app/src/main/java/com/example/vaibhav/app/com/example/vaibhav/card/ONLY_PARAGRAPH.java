@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
@@ -20,10 +21,12 @@ import pl.droidsonroids.gif.GifImageView;
  */
 public class ONLY_PARAGRAPH extends Card {
 
-    private TextView paragraph,title;
+    private TextView paragraph, title;
     private Picasso mPicasso;
     private CustomLayout main_layout;
     private GifImageView gifImageView;
+    private TableLayout table_main1;
+
 
     @Nullable
     @Override
@@ -32,6 +35,8 @@ public class ONLY_PARAGRAPH extends Card {
         paragraph = (TextView) view.findViewById(R.id.paragraph);
         mPicasso = Picasso.with(getContext());
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        table_main1 = (TableLayout) view.findViewById(R.id.table_main1);
+
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
@@ -41,8 +46,8 @@ public class ONLY_PARAGRAPH extends Card {
                 cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
                 if (cms != null) {
                     ThemeUtils themeUtils = new ThemeUtils();
-                    themeUtils.massageParagraph(cms,paragraph,getContext());
-                    themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
+                    themeUtils.massageTable(cms, table_main1, paragraph, getContext());
+                    themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(), gifImageView);
                 }
             }
         }
@@ -51,5 +56,4 @@ public class ONLY_PARAGRAPH extends Card {
     }
 
 
-
-    }
+}

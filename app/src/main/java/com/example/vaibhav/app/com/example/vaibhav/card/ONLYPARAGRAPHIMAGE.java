@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
@@ -26,6 +27,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
     private Picasso mPicasso;
     private CustomLayout main_layout;
     private GifImageView gifImageView;
+    private TableLayout table_main1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class ONLYPARAGRAPHIMAGE extends Card {
         mPicasso = Picasso.with(getContext()); //Single instance
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
+        table_main1 = (TableLayout) view.findViewById(R.id.table_main1);
+
         gifImageView = (GifImageView) view.findViewById(R.id.mine);
 
         if (getArguments() != null) {
@@ -45,7 +49,7 @@ public class ONLYPARAGRAPHIMAGE extends Card {
                 cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
             if (cms != null) {
                 ThemeUtils themeUtils = new ThemeUtils();
-                themeUtils.massageParagraph(cms, paragraph, getContext());
+                themeUtils.massageTable(cms,table_main1,paragraph,getContext());
                 themeUtils.massageBackgroundLayout(cms,mPicasso,main_layout,externalReadable,getContext(),gifImageView);
                 if (cms.getImage() != null && cms.getImage().getUrl() != null) {
                     String url = "http://api.talentify.in" + cms.getImage().getUrl();

@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.vaibhav.app.util.CustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:id="@+id/main_layout"
     android:background="#ffffff"
-    >
+    android:orientation="vertical"
+    android:paddingBottom="70dp">
 
     <TextView
         android:id="@+id/title1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_margin="15dp"
         android:fontFamily="sans-serif"
         android:padding="10dp"
-        android:text="What are the action and interaction"
+        android:text=""
         android:textAlignment="gravity"
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/list1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title1"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+
+    <TextView
         android:id="@+id/title2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_above="@+id/list2"
         android:layout_centerVertical="true"
-        android:fontFamily="sans-serif"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text=""
         android:padding="10dp"
-        android:text="What are the action and interaction"
         android:textAlignment="gravity"
         android:textColor="@color/colorPrimary"
         android:textSize="23sp"
         android:textStyle="bold" />
-    <pl.droidsonroids.gif.GifImageView
+
+    <TextView
+        android:id="@+id/list2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mine"
-        android:visibility="gone"
-        android:scaleType="fitXY"
-        android:translationZ="-2dp"
-        />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="" />
 </com.example.vaibhav.app.util.CustomLayout>

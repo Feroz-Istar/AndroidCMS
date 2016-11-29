@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -26,6 +30,7 @@ import com.bumptech.glide.request.target.Target;
 import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.cmspojo.CMSTextItem;
+import com.example.vaibhav.app.cmspojo.cmstablepojo.Table;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveGifAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveImageAsync;
@@ -36,6 +41,12 @@ import com.example.vaibhav.app.util.BulletListBuilder;
 import com.example.vaibhav.app.util.CustomLayout;
 import com.example.vaibhav.app.viewpager.SampleActivity;
 import com.squareup.picasso.Picasso;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +112,7 @@ public class ThemeUtils {
         Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
         if (cms.getTitle2() != null && cms.getTitle2().getText() != null) {
             title.setText(cms.getTitle2().getText());
-            title.setTypeface(titletf);
+            title.setTypeface(titletf,Typeface.BOLD);
         }
         if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
             title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
@@ -156,7 +167,7 @@ public class ThemeUtils {
             } else {
                 String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
                 ImageSaver imageSaver = new ImageSaver(context).
-                        setParentDirectoryName(""+ SampleActivity.ppt_id).
+                        setParentDirectoryName("" + SampleActivity.ppt_id).
                         setFileName(bg_image_name).
                         setExternal(externalReadable);
                 Boolean file_exist = imageSaver.checkFile();
@@ -184,7 +195,7 @@ public class ThemeUtils {
         } else {
 
             ImageSaver imageSaver = new ImageSaver(context).
-                    setParentDirectoryName(""+ SampleActivity.ppt_id).
+                    setParentDirectoryName("" + SampleActivity.ppt_id).
                     setFileName(bg_image_name).
                     setExternal(externalReadable);
             Boolean file_exist = imageSaver.checkFile();
@@ -207,7 +218,7 @@ public class ThemeUtils {
             int index = url.lastIndexOf("/");
             String bg_image_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
-                    setParentDirectoryName(""+ SampleActivity.ppt_id).
+                    setParentDirectoryName("" + SampleActivity.ppt_id).
                     setFileName(bg_image_name + ".mp4").
                     setExternal(externalReadable);
             Boolean file_exist = audioVideoSaver.checkFile();
@@ -247,7 +258,11 @@ public class ThemeUtils {
                 SpannableStringBuilder sb = new SpannableStringBuilder();
                 List<String> lines = new ArrayList<>();
                 for (CMSTextItem item : cms.getList().getItems()) {
-                    lines.add(item.getText());
+                    if (item.getText() != null) {
+                        lines.add(item.getText());
+                    } else {
+                        lines.remove(item);
+                    }
                 }
                 paragraph.setText(new BulletListBuilder(context).getBulletList(lines, "", 15));
                 paragraph.setTypeface(paragraphtf);
@@ -286,7 +301,7 @@ public class ThemeUtils {
         int index = url.lastIndexOf("/");
         String bg_image_name = url.substring(index, url.length()).replace("/", "");
         GifImageSaver imageSaver = new GifImageSaver(context).
-                setParentDirectoryName(""+ SampleActivity.ppt_id).
+                setParentDirectoryName("" + SampleActivity.ppt_id).
                 setFileName(bg_image_name).
                 setExternal(GifImageSaver.isExternalStorageReadable());
         Boolean file_exist = imageSaver.checkFile();
@@ -324,4 +339,208 @@ public class ThemeUtils {
             return false;
         }
     }
+
+    public void massageTable(CMSSlide cms, TableLayout table_main, TextView paragraph, Context context) {
+
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+        Table TableData = null;
+        Elements elements, elements1;
+        if (cms.getParagraph() != null && cms.getParagraph().getText() != null) {
+            Document doc = Jsoup.parse(cms.getParagraph().getText());
+            elements = doc.select("p");
+            elements1 = doc.select("table");
+            System.out.println("--------------------both----->" + elements);
+
+
+            if (elements.size() > 0 && elements1.size() > 0) {
+                paragraph.setVisibility(View.VISIBLE);
+                table_main.setVisibility(View.VISIBLE);
+
+                paragraph.setText(Html.fromHtml(elements.text()));
+                paragraph.setTypeface(paragraphtf);
+                paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+                paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
+
+                Serializer serializer = new Persister();
+                try {
+                    TableData = serializer.read(Table.class, String.valueOf(elements1), false);
+
+                    TableRow tbrow = new TableRow(context);
+
+                    if (TableData.getThead() != null && TableData.getThead().getTr().getTh().size() != 0) {
+                        for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
+                            TextView THeadData = new TextView(context);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            }
+
+                            String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
+                            THeadData.setText(ThData);
+                            THeadData.setTextColor(Color.BLACK);
+                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
+                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
+                            GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                            gd.setColor(Color.parseColor("#DCDCDC"));
+                            THeadData.setBackground(gd);
+                            THeadData.setTextSize(10);
+                            tbrow.addView(THeadData);
+
+                        }
+                        table_main.addView(tbrow);
+
+
+                        for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
+
+                            TableRow tbrow1 = new TableRow(context);
+
+                            for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
+
+                                TextView TBodyData = new TextView(context);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                }
+
+                                String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
+                                TBodyData.setText(TbData);
+                                TBodyData.setTextSize(20);
+                                TBodyData.setTextColor(Color.BLACK);
+                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                gd.setColor(Color.WHITE);
+                                TBodyData.setBackground(gd);
+                                TBodyData.setTextSize(10);
+                                tbrow1.addView(TBodyData);
+
+
+                                tbrow1.setDividerPadding(5);
+                            }
+                            table_main.addView(tbrow1);
+
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            } else if (elements.size() > 0) {
+
+                paragraph.setVisibility(View.VISIBLE);
+                table_main.setVisibility(View.GONE);
+
+                paragraph.setText(Html.fromHtml(elements.text()));
+                paragraph.setTypeface(paragraphtf);
+                paragraph.setTextColor(Color.parseColor(cms.getTheme().getParagraphFontColor()));
+                paragraph.setTextSize(Integer.parseInt(cms.getTheme().getParagraphFontSize()) / 3);
+
+
+            } else if (elements1.size() > 0) {
+
+                table_main.setVisibility(View.VISIBLE);
+                paragraph.setVisibility(View.GONE);
+
+                Serializer serializer = new Persister();
+                try {
+                    TableData = serializer.read(Table.class, String.valueOf(elements1), false);
+
+
+                    TableRow tbrow = new TableRow(context);
+
+                    if (TableData.getThead() != null && TableData.getThead().getTr().getTh().size() != 0) {
+                        int head_count =0;
+                        for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
+                            TextView THeadData = new TextView(context);
+                            String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            }
+
+                            THeadData.setText(ThData);
+                            THeadData.setTextColor(Color.BLACK);
+                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
+                            GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                            gd.setColor(Color.parseColor("#DCDCDC"));
+                            THeadData.setBackground(gd);
+                            THeadData.setTextSize(10);
+
+                            head_count++;
+                            tbrow.addView(THeadData);
+
+                        }
+                        table_main.addView(tbrow);
+
+
+                        for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
+
+                            TableRow tbrow1 = new TableRow(context);
+
+                            for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
+
+                                TextView TBodyData = new TextView(context);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                }
+                                String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
+                                TBodyData.setText(TbData);
+                                if(head_count <4) {
+                                    TBodyData.setTextSize(10);
+                                }else  {
+                                    TBodyData.setTextSize(8);
+
+                                }
+                                TBodyData.setTextColor(Color.BLACK);
+                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                gd.setColor(Color.WHITE);
+                                TBodyData.setBackground(gd);
+
+                                tbrow1.addView(TBodyData);
+
+
+                                tbrow1.setDividerPadding(5);
+                            }
+                            table_main.addView(tbrow1);
+
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+
+    }
+
+    public void message2Box(CMSSlide cms, TextView list1,TextView list2, Context context) {
+
+        Typeface paragraphtf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
+        try {
+            if (cms.getList() != null && cms.getList().getItems() != null ) {
+                SpannableStringBuilder sb = new SpannableStringBuilder();
+                List<String> lines = new ArrayList<>();
+                for (CMSTextItem item : cms.getList().getItems()) {
+                    if(item.getText() != null){
+                        lines.add(item.getText());
+                    }else{  lines.remove(item); }
+                }
+                list1.setText(lines.get(0));
+                list1.setTypeface(paragraphtf);
+                list1.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
+                list1.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+                list2.setText(lines.get(1));
+                list2.setTypeface(paragraphtf);
+                list2.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
+                list2.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+            }
+        }catch (Exception e){
+
+        }
+
+    }
+
 }

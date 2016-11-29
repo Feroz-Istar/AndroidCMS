@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.vaibhav.app.R;
@@ -26,6 +27,8 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
     private Picasso mPicasso;
     private CustomLayout main_layout;
     private GifImageView gifImageView;
+    private TableLayout table_main1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
         main_layout = (CustomLayout) view.findViewById(R.id.main_layout);
         mPicasso = Picasso.with(getContext()); //Single instance
         gifImageView = (GifImageView) view.findViewById(R.id.mine);
+        table_main1 = (TableLayout) view.findViewById(R.id.table_main1);
 
         Boolean externalReadable = ImageSaver.isExternalStorageReadable();
         if (getArguments() != null) {
@@ -46,11 +50,11 @@ public class ONLY_TITLE_PARAGRAPH_IMAGE extends Card {
                 ThemeUtils themeUtils = new ThemeUtils();
                 themeUtils.massageTitle(cms, title, getContext());
 
-                themeUtils.massageParagraph(cms, paragraph, getContext());
-                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(),gifImageView);
+                themeUtils.massageTable(cms, table_main1, paragraph, getContext());
+                themeUtils.massageBackgroundLayout(cms, mPicasso, main_layout, externalReadable, getContext(), gifImageView);
                 if (cms.getImage() != null && cms.getImage().getUrl() != null) {
                     String url = "http://api.talentify.in" + cms.getImage().getUrl();
-                    themeUtils.massageImage(url, mPicasso, image, externalReadable, getContext(),gifImageView);
+                    themeUtils.massageImage(url, mPicasso, image, externalReadable, getContext(), gifImageView);
                 }
             }
         }
