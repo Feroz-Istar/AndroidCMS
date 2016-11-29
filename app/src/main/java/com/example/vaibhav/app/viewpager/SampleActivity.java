@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eftimoff.viewpagertransformers.BackgroundToForegroundTransformer;
 import com.eftimoff.viewpagertransformers.DefaultTransformer;
 import com.eftimoff.viewpagertransformers.DepthPageTransformer;
 import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
@@ -281,6 +282,9 @@ public class SampleActivity extends AppCompatActivity {
                     break;
                 case "zoom":
                     pageTransformer = new ZoomOutSlideTransformer();
+                    break;
+                case "fade":
+                    pageTransformer = new BackgroundToForegroundTransformer();
                     break;
                 default:
                     pageTransformer = new DepthPageTransformer();

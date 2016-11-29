@@ -10,7 +10,9 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:text="Act 1, Scene 1" />
 
     <TextView
@@ -18,9 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_margin="20dp"
-        android:text="Act 1, Scene 1"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:text="Act 1, Scene 1" />
 
     <ImageView
         android:id="@+id/image"
@@ -28,15 +32,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/paragraph"
-        android:scaleType="fitXY" />
+        android:scaleType="fitEnd" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/mine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
         android:layout_below="@id/paragraph"
+        android:scaleType="fitXY"
         android:translationZ="-2dp"
         android:visibility="gone" />
 

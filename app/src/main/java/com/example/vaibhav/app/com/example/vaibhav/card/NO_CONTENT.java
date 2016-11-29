@@ -36,7 +36,7 @@ public class NO_CONTENT extends Card {
             CMSSlide cms = null;
             if (getArguments().getSerializable("CMSSLIDE") != null)
                 cms = (CMSSlide) getArguments().getSerializable("CMSSLIDE");
-            if (cms != null && cms.getImage_BG() != null) {
+            if (cms != null && cms.getImage_BG() != null && !cms.getImage_BG().equalsIgnoreCase("none")) {
                 String url = "http://api.talentify.in/"+cms.getImage_BG();
                 new ThemeUtils().massageImage(url, mPicasso, image, externalReadable, getContext(),gifImageView);
             }
