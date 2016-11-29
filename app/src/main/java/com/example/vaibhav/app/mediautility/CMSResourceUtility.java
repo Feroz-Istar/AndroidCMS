@@ -14,6 +14,7 @@ import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import java.io.File;
 import java.io.StringReader;
 
 /**
@@ -54,19 +55,19 @@ public class CMSResourceUtility {
     }
 
     private void getVideo(CMSSlide cmsSlide) {
-        if(cmsSlide != null && cmsSlide.getVideo() != null && cmsSlide.getVideo().getUrl() != null){
-            saveAudioOrVideo("http://api.talentify.in/video/audio/"+cmsSlide.getVideo().getUrl());
+        if (cmsSlide != null && cmsSlide.getVideo() != null && cmsSlide.getVideo().getUrl() != null) {
+            saveAudioOrVideo("http://api.talentify.in/video/audio/" + cmsSlide.getVideo().getUrl());
         }
 
     }
 
     private void getAudio(CMSSlide cmsSlide) {
 
-            if(cmsSlide != null && cmsSlide.getAudioUrl() != null && !cmsSlide.getAudioUrl().equalsIgnoreCase("none")){
+        if (cmsSlide != null && cmsSlide.getAudioUrl() != null && !cmsSlide.getAudioUrl().equalsIgnoreCase("none")) {
 
-                String url = "http://api.talentify.in/video/audio/" + cmsSlide.getAudioUrl();
-                saveAudioOrVideo(url);
-            }
+            String url = "http://api.talentify.in/video/audio/" + cmsSlide.getAudioUrl();
+            saveAudioOrVideo(url);
+        }
 
 
     }
@@ -75,7 +76,10 @@ public class CMSResourceUtility {
         try {
             int index = url.lastIndexOf("/");
             String file_name = url.substring(index, url.length()).replace("/", "");
-            AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).setFileName(file_name).setExternal(ImageSaver.isExternalStorageReadable());
+            AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context)
+                    .setParentDirectoryName("" + ppt_id)
+                    .setFileName(file_name)
+                    .setExternal(AudioVideoSaver.isExternalStorageReadable());
             new SaveAudioVideoAsync(audioVideoSaver).execute(url);
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,9 +96,9 @@ public class CMSResourceUtility {
                 String url = "http://api.talentify.in/" + cmsSlide.getImage().getUrl();
                 int index = url.lastIndexOf("/");
                 String bg_image_name = url.substring(index, url.length()).replace("/", "");
-                saveGiforImage(url,bg_image_name);
+                saveGiforImage(url, bg_image_name);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -106,21 +110,24 @@ public class CMSResourceUtility {
                 String url = "http://api.talentify.in/" + cmsSlide.getImage_BG();
                 int index = url.lastIndexOf("/");
                 String bg_image_name = url.substring(index, url.length()).replace("/", "");
-                saveGiforImage(url,bg_image_name);
+                saveGiforImage(url, bg_image_name);
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void saveGiforImage(String url,String filename){
+
+    private void saveGiforImage(String url, String filename) {
         if (url.contains(".gif")) {
             GifImageSaver imageSaver = new GifImageSaver(context).
+                    setParentDirectoryName("" + ppt_id).
                     setFileName(filename).
                     setExternal(GifImageSaver.isExternalStorageReadable());
             new SaveGifAsync(imageSaver).execute(url);
         } else {
             ImageSaver imageSaver = new ImageSaver(context).
+                    setParentDirectoryName("" + ppt_id).
                     setFileName(filename).
                     setExternal(ImageSaver.isExternalStorageReadable());
             new SaveImageAsync(imageSaver).execute(url);

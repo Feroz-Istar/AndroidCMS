@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 public class ImageSaver {
 
     private String directoryName = "Talentify";
+    private String parentDirectory="default";
     private String fileName = "image.png";
     private Context context;
     private boolean external;
@@ -41,6 +42,11 @@ public class ImageSaver {
 
     public ImageSaver setDirectoryName(String directoryName) {
         this.directoryName = directoryName;
+        return this;
+    }
+
+    public ImageSaver setParentDirectoryName(String parentDirectory) {
+        this.parentDirectory=parentDirectory;
         return this;
     }
 
@@ -75,12 +81,16 @@ public class ImageSaver {
     }
 
     private File getAlbumStorageDir(String albumName) {
-        File file = new File(Environment.getExternalStoragePublicDirectory(
+        File parent_dir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
-            Log.e("ImageSaver", "Directory Already exist File Name : " + fileName);
+        if (!parent_dir.mkdirs()) {
 
         }
+        File file = new File(parent_dir,directoryName+"_"+parentDirectory);
+        if(!file.mkdirs()){
+            Log.e("ImageSaver", "Directory Already exist File Name : " + fileName);
+        }
+
         return file;
     }
 

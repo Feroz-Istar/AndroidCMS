@@ -11,7 +11,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,8 +26,6 @@ import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.com.example.vaibhav.card.asynctask.SaveAudioVideoAsync;
 import com.example.vaibhav.app.com.example.vaibhav.card.database.DatabaseHandler;
 import com.example.vaibhav.app.mediautility.AudioVideoSaver;
-import com.example.vaibhav.app.mediautility.CMSResourceUtility;
-import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.LockableViewPager;
 import com.github.clans.fab.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
@@ -51,7 +48,7 @@ public class SampleActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView error_text;
     private DatabaseHandler databaseHandler;
-    private int ppt_id;
+    public static int ppt_id;
     private int delay = 10000; //milliseconds
     private int page = 0;
     private FloatingActionButton fab;
@@ -181,8 +178,9 @@ public class SampleActivity extends AppCompatActivity {
             int index = url.lastIndexOf("/");
             String audio_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
+                    setParentDirectoryName("" + ppt_id).
                     setFileName(audio_name.replace(".wav", ".mp3")).
-                    setExternal(ImageSaver.isExternalStorageReadable());
+                    setExternal(AudioVideoSaver.isExternalStorageReadable());
             Boolean file_exist = audioVideoSaver.checkFile();
             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 mediaPlayer.reset();

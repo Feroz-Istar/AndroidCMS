@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.vaibhav.app.util.CustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    >
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:id="@+id/text"
-        android:textColor="@color/colorPrimary"
         android:text="dummy"
-        />
+        android:textColor="@color/colorPrimary" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/only_title_tree_parent_itemListRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text"
-        android:scrollbars="vertical"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:scrollbars="vertical" />
+
     <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/mine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mine"
-        android:visibility="gone"
         android:scaleType="fitXY"
         android:translationZ="-2dp"
-        />
+        android:visibility="gone" />
 </com.example.vaibhav.app.util.CustomLayout>

@@ -16,6 +16,7 @@ import java.io.InputStream;
 
 public class AudioVideoSaver {
     private String directoryName = "Talentify";
+    private String parentDirectory="default";
     private String fileName = "image.mp3";
     private Context context;
     private boolean external;
@@ -38,6 +39,12 @@ public class AudioVideoSaver {
         this.directoryName = directoryName;
         return this;
     }
+
+    public AudioVideoSaver setParentDirectoryName(String parentDirectory) {
+        this.parentDirectory=parentDirectory;
+        return this;
+    }
+
 
     public void save(InputStream bitmapImage) {
         FileOutputStream fileOutputStream = null;
@@ -63,6 +70,7 @@ public class AudioVideoSaver {
         }
     }
 
+
     @NonNull
     private File createFile() {
         File directory;
@@ -77,12 +85,17 @@ public class AudioVideoSaver {
     }
 
     private File getAlbumStorageDir(String albumName) {
-        File file = new File(Environment.getExternalStoragePublicDirectory(
+        File parent_dir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
-            Log.e("ImageSaver", "Directory not created  "+fileName);
+        if (!parent_dir.mkdirs()) {
 
         }
+        File file = new File(parent_dir, directoryName+"_"+parentDirectory);
+
+        if(!file.mkdirs()){
+            Log.e("Audio Saver", "Directory Already exist File Name : " + fileName);
+        }
+
         return file;
     }
 

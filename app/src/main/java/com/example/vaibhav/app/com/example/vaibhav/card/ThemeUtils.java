@@ -34,6 +34,7 @@ import com.example.vaibhav.app.mediautility.GifImageSaver;
 import com.example.vaibhav.app.mediautility.ImageSaver;
 import com.example.vaibhav.app.util.BulletListBuilder;
 import com.example.vaibhav.app.util.CustomLayout;
+import com.example.vaibhav.app.viewpager.SampleActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -155,6 +156,7 @@ public class ThemeUtils {
             } else {
                 String bg_image_name = cms.getImage_BG().substring(index, cms.getImage_BG().length()).replace("/", "");
                 ImageSaver imageSaver = new ImageSaver(context).
+                        setParentDirectoryName(""+ SampleActivity.ppt_id).
                         setFileName(bg_image_name).
                         setExternal(externalReadable);
                 Boolean file_exist = imageSaver.checkFile();
@@ -182,6 +184,7 @@ public class ThemeUtils {
         } else {
 
             ImageSaver imageSaver = new ImageSaver(context).
+                    setParentDirectoryName(""+ SampleActivity.ppt_id).
                     setFileName(bg_image_name).
                     setExternal(externalReadable);
             Boolean file_exist = imageSaver.checkFile();
@@ -204,6 +207,7 @@ public class ThemeUtils {
             int index = url.lastIndexOf("/");
             String bg_image_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
+                    setParentDirectoryName(""+ SampleActivity.ppt_id).
                     setFileName(bg_image_name + ".mp4").
                     setExternal(externalReadable);
             Boolean file_exist = audioVideoSaver.checkFile();
@@ -282,6 +286,7 @@ public class ThemeUtils {
         int index = url.lastIndexOf("/");
         String bg_image_name = url.substring(index, url.length()).replace("/", "");
         GifImageSaver imageSaver = new GifImageSaver(context).
+                setParentDirectoryName(""+ SampleActivity.ppt_id).
                 setFileName(bg_image_name).
                 setExternal(GifImageSaver.isExternalStorageReadable());
         Boolean file_exist = imageSaver.checkFile();

@@ -26,6 +26,7 @@ import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 public class GifImageSaver {
 
     private String directoryName = "Talentify";
+    private String parentDirectory="default";
     private String fileName = "image.png";
     private Context context;
     private boolean external;
@@ -46,6 +47,11 @@ public class GifImageSaver {
 
     public GifImageSaver setDirectoryName(String directoryName) {
         this.directoryName = directoryName;
+        return this;
+    }
+
+    public GifImageSaver setParentDirectoryName(String parentDirectory) {
+        this.parentDirectory=parentDirectory;
         return this;
     }
 
@@ -90,12 +96,16 @@ public class GifImageSaver {
     }
 
     private File getAlbumStorageDir(String albumName) {
-        File file = new File(Environment.getExternalStoragePublicDirectory(
+        File parent_dir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
-            Log.e("ImageSaver", "Directory Already exist" + fileName);
+        if (!parent_dir.mkdirs()) {
 
         }
+        File file = new File(parent_dir, directoryName+"_"+parentDirectory);
+        if(!file.mkdirs()){
+            Log.e("GifImageSaver", "Directory Already exist File Name : " + fileName);
+        }
+
         return file;
     }
 
