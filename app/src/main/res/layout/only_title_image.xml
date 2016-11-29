@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/title"
-        android:scaleType="fitXY" />
+        android:scaleType="fitEnd" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/mine"

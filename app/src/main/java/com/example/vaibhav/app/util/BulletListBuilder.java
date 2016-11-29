@@ -54,7 +54,7 @@ public class BulletListBuilder {
 
         List<Spanned> spanned = new ArrayList<>(items.size());
         for (String line : items) {
-            if (!line.trim().isEmpty()) {
+            if (line != null && !line.trim().isEmpty()) {
                 Spanned spannedLine = Html.fromHtml(BULLET_SYMBOL+line.trim());
                 spanned.add(spannedLine);
             }
@@ -64,7 +64,7 @@ public class BulletListBuilder {
 
         for (int i = 0; i < spanned.size(); i++) {
             CharSequence line = spanned.get(i) + (i < spanned.size() - 1 ? "\n" : "");
-            Spannable spannable = new SpannableString(line);
+            Spannable spannable = new SpannableString(line+" \n");
 
             sb.append(spannable);
         }

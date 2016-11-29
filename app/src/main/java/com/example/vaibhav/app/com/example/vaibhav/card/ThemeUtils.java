@@ -247,10 +247,10 @@ public class ThemeUtils {
                 paragraph.setText(new BulletListBuilder(context).getBulletList(lines, "", 15));
                 paragraph.setTypeface(paragraphtf);
                 paragraph.setTextColor(Color.parseColor(cms.getTheme().getListitemFontColor()));
-                paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 2.5));
+                paragraph.setTextSize((float) (Integer.parseInt(cms.getTheme().getListitemFontSize()) / 3.0));
             }
         }catch (Exception e){
-
+e.printStackTrace();
         }
 
 
