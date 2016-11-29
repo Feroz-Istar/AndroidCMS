@@ -4,11 +4,8 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
-    >
-
-
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
@@ -16,24 +13,24 @@
         android:layout_height="wrap_content"
         android:padding="30dp"
         android:text="What are the action and interaction"
-        android:textSize="23sp"
-         />
+        android:textSize="23sp" />
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/title"
-         />
+        android:layout_below="@id/title"
+        android:scaleType="fitXY" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/mine"
-        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/title"
         android:translationZ="-2dp"
-        />
+        android:visibility="gone" />
+
 </com.example.vaibhav.app.util.CustomLayout>

@@ -4,38 +4,40 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    >
+    android:background="#ffffff">
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/title"
-       android:text="Act 1, Scene 1"
-          android:layout_margin="20dp"
-       />
-   <TextView
-       android:layout_below="@+id/title"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/paragraph"
-       android:layout_margin="20dp"
-       android:text="Act 1, Scene 1"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Act 1, Scene 1" />
 
-       />
-   <ImageView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/image"
-       android:scaleType="fitXY"
-       android:layout_alignParentBottom="true"
-       />
-   <pl.droidsonroids.gif.GifImageView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/mine"
-       android:visibility="gone"
-       android:scaleType="fitXY"
-       android:translationZ="-2dp"
-       />
+    <TextView
+        android:id="@+id/paragraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_margin="20dp"
+        android:text="Act 1, Scene 1"
+        />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/paragraph"
+        android:scaleType="fitXY" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:layout_below="@id/paragraph"
+        android:translationZ="-2dp"
+        android:visibility="gone" />
+
 </com.example.vaibhav.app.util.CustomLayout>
