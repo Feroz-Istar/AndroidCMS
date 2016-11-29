@@ -59,8 +59,9 @@ public class SampleActivity extends AppCompatActivity {
     private Handler viewpagerHandler;
     private Runnable runnable;
     private CountDownTimer mCountDownTimer;
-    private int progressstatus=0;
+    private int progressstatus = 0;
     private String flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,32 +77,33 @@ public class SampleActivity extends AppCompatActivity {
             }
         });
         flag = "play";
-        mCountDownTimer=new CountDownTimer(delay,delay/100) {
+        mCountDownTimer = new CountDownTimer(delay, delay / 100) {
             @Override
             public void onTick(long millisUntilFinished) {
                 //Log.v("Log_tag", "Tick of Progress"+ progressstatus+ millisUntilFinished);
                 progressstatus++;
-                fab.setProgress(progressstatus,false);
+                fab.setProgress(progressstatus, false);
 
             }
+
             @Override
             public void onFinish() {
-                progressstatus =0;
-                fab.setProgress(0,false);
+                progressstatus = 0;
+                fab.setProgress(0, false);
             }
         };
         runnable = new Runnable() {
             public void run() {
                 System.out.println("Calling ... Runnable. ...");
 
-                if (viewPager.getAdapter().getCount()-1== page) {
+                if (viewPager.getAdapter().getCount() - 1 == page) {
                     page = 0;
                 } else {
                     page++;
                 }
                 viewPager.setCurrentItem(page, true);
                 viewpagerHandler.postDelayed(this, delay);
-                progressstatus =0;
+                progressstatus = 0;
                 mCountDownTimer.cancel();
                 mCountDownTimer.start();
 
@@ -131,14 +133,14 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                if(flag.equalsIgnoreCase("play")){
-                   // viewpagerHandler.postDelayed(runnable, 0);
-                }else{
-                    page=position;
-                    fab.setProgress(0,false);
+                if (flag.equalsIgnoreCase("play")) {
+                    // viewpagerHandler.postDelayed(runnable, 0);
+                } else {
+                    page = position;
+                    fab.setProgress(0, false);
                 }
                 //check for each audio present in the slide
-                checkAudio(cmsSlides.get(position),mediaPlayer,getBaseContext());
+                checkAudio(cmsSlides.get(position), mediaPlayer, getBaseContext());
                 //check for slide transition of each slide
                 viewPager.setPageTransformer(true, getPageTransoformer(cmsSlides.get(position)));
                 //progress initialized to 0
@@ -168,43 +170,39 @@ public class SampleActivity extends AppCompatActivity {
         }
 
 
-
     }
-
-
-
 
 
     private void checkAudio(CMSSlide cmsSlide, MediaPlayer mediaPlayer, Context context) {
         //here we will check whether audio exist or not
-        if(cmsSlide.getTitle() != null && cmsSlide.getTitle().getFragmentAudioUrl() != null){
+        if (cmsSlide.getTitle() != null && cmsSlide.getTitle().getFragmentAudioUrl() != null) {
             String url = "http://api.talentify.in/video/audio/" + cmsSlide.getTitle().getFragmentAudioUrl();
             int index = url.lastIndexOf("/");
             String audio_name = url.substring(index, url.length()).replace("/", "");
             AudioVideoSaver audioVideoSaver = new AudioVideoSaver(context).
-                    setFileName(audio_name.replace(".wav",".mp3")).
+                    setFileName(audio_name.replace(".wav", ".mp3")).
                     setExternal(ImageSaver.isExternalStorageReadable());
             Boolean file_exist = audioVideoSaver.checkFile();
-            if(mediaPlayer != null && mediaPlayer.isPlaying()){
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 mediaPlayer.reset();
             }
             Uri videouri = null;
 
-            if(file_exist){
+            if (file_exist) {
                 try {
                     videouri = Uri.fromFile(audioVideoSaver.load());
 
-                    mediaPlayer.setDataSource(context,videouri);
+                    mediaPlayer.setDataSource(context, videouri);
                     mediaPlayer.prepare();
                     mediaPlayer.start();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-            }else {
+            } else {
                 try {
                     videouri = Uri.parse(url);
-                    mediaPlayer.setDataSource(context,videouri);
+                    mediaPlayer.setDataSource(context, videouri);
                     mediaPlayer.prepare();
                     mediaPlayer.start();
                 } catch (Exception e) {
@@ -214,12 +212,11 @@ public class SampleActivity extends AppCompatActivity {
 
 
             }
-        }else {
+        } else {
             mediaPlayer.reset();
         }
 
     }
-
 
 
     public void checkLogin(final ProgressBar progressBar, final int ppt_id) {
@@ -311,7 +308,7 @@ public class SampleActivity extends AppCompatActivity {
             viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cmsSlides);
             viewPager.setAdapter(viewPagerAdapter);
 
-            checkAudio(cmsSlides.get(0),mediaPlayer,getBaseContext());
+            checkAudio(cmsSlides.get(0), mediaPlayer, getBaseContext());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -319,20 +316,20 @@ public class SampleActivity extends AppCompatActivity {
         }
     }
 
-    private void startOrStopFab(boolean start_stop){
-        if(start_stop){
+    private void startOrStopFab(boolean start_stop) {
+        if (start_stop) {
             fab.setImageResource(R.mipmap.ic_pause_white_24dp);
             fab.setColorNormal(Color.parseColor("#ff4444"));
             viewpagerHandler.postDelayed(runnable, delay);
             mCountDownTimer.start();
             flag = "play";
             viewPager.setSwipeLocked(true);
-        }else{
+        } else {
             fab.setColorNormal(Color.parseColor("#00C851"));
             fab.setImageResource(R.mipmap.ic_play_arrow_white_24dp);
             viewpagerHandler.removeCallbacks(runnable);
             mCountDownTimer.cancel();
-            progressstatus =0;
+            progressstatus = 0;
             viewPager.setSwipeLocked(false);
             flag = "stop";
         }
@@ -343,7 +340,7 @@ public class SampleActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(mediaPlayer != null){
+        if (mediaPlayer != null) {
             mediaPlayer.start();
         }
 
@@ -354,24 +351,28 @@ public class SampleActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        if(mediaPlayer != null && mediaPlayer.isPlaying()){
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
         }
 
         //stop autoplay
-        if(flag.equalsIgnoreCase("play")){
+        if (flag.equalsIgnoreCase("play")) {
             startOrStopFab(false);
             clickcount++;
         }
     }
 
     @Override
-    public void onDestroy(){
-        if(mediaPlayer != null ){
+    public void onDestroy() {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+        if (viewpagerHandler != null && mCountDownTimer != null) {
+            viewpagerHandler.removeCallbacks(runnable);
+            mCountDownTimer.cancel();
         }
         super.onDestroy();
     }
