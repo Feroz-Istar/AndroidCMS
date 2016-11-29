@@ -79,7 +79,7 @@ public class SampleActivity extends AppCompatActivity {
         mCountDownTimer=new CountDownTimer(delay,delay/100) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Log.v("Log_tag", "Tick of Progress"+ progressstatus+ millisUntilFinished);
+                //Log.v("Log_tag", "Tick of Progress"+ progressstatus+ millisUntilFinished);
                 progressstatus++;
                 fab.setProgress(progressstatus,false);
 

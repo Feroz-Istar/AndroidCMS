@@ -62,7 +62,7 @@ public class CMSResourceUtility {
 
     private void getAudio(CMSSlide cmsSlide) {
 
-            if(cmsSlide != null && cmsSlide.getAudioUrl() != null){
+            if(cmsSlide != null && cmsSlide.getAudioUrl() != null && !cmsSlide.getAudioUrl().equalsIgnoreCase("none")){
 
                 String url = "http://api.talentify.in/video/audio/" + cmsSlide.getAudioUrl();
                 saveAudioOrVideo(url);
