@@ -366,44 +366,67 @@ public class ThemeUtils {
 
                     TableRow tbrow = new TableRow(context);
                     int head_count =0;
-                    if (TableData.getThead() != null && TableData.getThead().getTr().getTh().size() != 0) {
-                        for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
-                            TextView THeadData = new TextView(context);
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    if(TableData != null) {
+                        if (TableData.getThead() != null && TableData.getThead().getTr() != null && TableData.getThead().getTr().getTh() != null && TableData.getThead().getTr().getTh().size() > 0) {
+
+                            for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
+                                TextView THeadData = new TextView(context);
+                                String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                    THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                }
+
+                                THeadData.setText(ThData);
+                                THeadData.setTextColor(Color.BLACK);
+                                THeadData.setTypeface(Typeface.DEFAULT_BOLD);
+                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                gd.setColor(Color.parseColor("#DCDCDC"));
+                                THeadData.setBackground(gd);
+                                THeadData.setTextSize(10);
+
+                                head_count++;
+                                tbrow.addView(THeadData);
+
                             }
-
-                            String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
-                            THeadData.setText(ThData);
-                            THeadData.setTextColor(Color.BLACK);
-                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
-                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
-                            GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                            gd.setColor(Color.parseColor("#DCDCDC"));
-                            THeadData.setBackground(gd);
-                            THeadData.setTextSize(10);
-
-                            head_count++;
-                            tbrow.addView(THeadData);
-
+                            table_main.addView(tbrow);
                         }
-                        table_main.addView(tbrow);
+                        if (TableData.getTbody() != null && TableData.getTbody().getTr() != null && TableData.getTbody().getTr().size() > 0) {
+                            for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
 
+                                TableRow tbrow1 = new TableRow(context);
+                                if (TableData.getTbody().getTr().get(j).getTh() != null) {
 
-                        for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
+                                    for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
 
-                            TableRow tbrow1 = new TableRow(context);
+                                        TextView TBodyData = new TextView(context);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                            TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                        }
+                                        String ThData = TableData.getTbody().getTr().get(j).getTd().get(l).getContent();
+                                        TBodyData.setText(ThData);
+                                        if (head_count < 4) {
+                                            TBodyData.setTextSize(10);
+                                        } else {
+                                            TBodyData.setTextSize(8);
 
-                            if (TableData.getTbody().getTr().get(j).getTh().size() > 0) {
+                                        }
+                                        TBodyData.setTextColor(Color.BLACK);
+                                        TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
+                                        GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                        gd.setColor(Color.parseColor("#DCDCDC"));
+                                        TBodyData.setBackground(gd);
+                                        tbrow1.addView(TBodyData);
 
-                                for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
+                                    }
+                                }
+                                for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
 
                                     TextView TBodyData = new TextView(context);
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                                         TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                     }
-                                    String ThData = TableData.getTbody().getTr().get(j).getTd().get(l).getContent();
-                                    TBodyData.setText(ThData);
+                                    String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
+                                    TBodyData.setText(TbData);
                                     if (head_count < 4) {
                                         TBodyData.setTextSize(10);
                                     } else {
@@ -411,37 +434,15 @@ public class ThemeUtils {
 
                                     }
                                     TBodyData.setTextColor(Color.BLACK);
-                                    TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
                                     GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                                    gd.setColor(Color.parseColor("#DCDCDC"));
+                                    gd.setColor(Color.WHITE);
                                     TBodyData.setBackground(gd);
                                     tbrow1.addView(TBodyData);
 
                                 }
+                                table_main.addView(tbrow1);
+
                             }
-
-                            for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
-
-                                TextView TBodyData = new TextView(context);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                                }
-
-                                String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
-                                TBodyData.setText(TbData);
-                                TBodyData.setTextSize(20);
-                                TBodyData.setTextColor(Color.BLACK);
-                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                                gd.setColor(Color.WHITE);
-                                TBodyData.setBackground(gd);
-                                TBodyData.setTextSize(10);
-                                tbrow1.addView(TBodyData);
-
-
-                                tbrow1.setDividerPadding(5);
-                            }
-                            table_main.addView(tbrow1);
-
                         }
                     }
 
@@ -474,84 +475,93 @@ public class ThemeUtils {
 
                     TableRow tbrow = new TableRow(context);
 
-                    if (TableData.getThead() != null && TableData.getThead().getTr().getTh().size() != 0) {
-                        int head_count =0;
-                        for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
-                            TextView THeadData = new TextView(context);
-                            String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        if(TableData != null) {
+                            int head_count = 0;
+                            if (TableData.getThead() != null && TableData.getThead().getTr() != null) {
+                                if (TableData.getThead().getTr().getTh() != null && TableData.getThead().getTr().getTh().size() > 0) {
+
+
+
+                                for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
+                                    TextView THeadData = new TextView(context);
+                                    String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                        THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                    }
+
+                                    THeadData.setText(ThData);
+                                    THeadData.setTextColor(Color.BLACK);
+                                    THeadData.setTypeface(Typeface.DEFAULT_BOLD);
+                                    GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                    gd.setColor(Color.parseColor("#DCDCDC"));
+                                    THeadData.setBackground(gd);
+                                    THeadData.setTextSize(10);
+
+                                    head_count++;
+                                    tbrow.addView(THeadData);
+
+                                }
+                                table_main.addView(tbrow);
                             }
+                            }
+                            if (TableData.getTbody() != null && TableData.getTbody().getTr() != null && TableData.getTbody().getTr().size() > 0) {
+                                for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
 
-                            THeadData.setText(ThData);
-                            THeadData.setTextColor(Color.BLACK);
-                            THeadData.setTypeface(Typeface.DEFAULT_BOLD);
-                            GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                            gd.setColor(Color.parseColor("#DCDCDC"));
-                            THeadData.setBackground(gd);
-                            THeadData.setTextSize(10);
+                                    TableRow tbrow1 = new TableRow(context);
+                                    if (TableData.getTbody().getTr().get(j).getTh() != null) {
 
-                            head_count++;
-                            tbrow.addView(THeadData);
+                                        for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
+                                            TextView TBodyData = new TextView(context);
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                                TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                            }
+                                            String ThData = TableData.getTbody().getTr().get(j).getTh().get(l).getContent();
+                                            TBodyData.setText(ThData);
+                                            if (head_count < 4) {
+                                                TBodyData.setTextSize(10);
+                                            } else {
+                                                TBodyData.setTextSize(8);
 
-                        }
-                        table_main.addView(tbrow);
+                                            }
+                                            TBodyData.setTextColor(Color.BLACK);
+                                            TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
+                                            GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                            gd.setColor(Color.parseColor("#DCDCDC"));
+                                            TBodyData.setBackground(gd);
+                                            tbrow1.addView(TBodyData);
 
 
-                        for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
+                                        }
 
-                            TableRow tbrow1 = new TableRow(context);
-                            if (TableData.getTbody().getTr().get(j).getTh().size() > 0) {
+                                    }
+                                    if (TableData.getTbody().getTr().get(j).getTd() != null){
+                                    for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
 
-                            for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
+                                        TextView TBodyData = new TextView(context);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                            TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                        }
 
-                                TextView TBodyData = new TextView(context);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                            String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
+                                        TBodyData.setText(TbData);
+                                        if (head_count < 4) {
+                                            TBodyData.setTextSize(10);
+                                        } else {
+                                            TBodyData.setTextSize(8);
+
+                                        }
+                                        TBodyData.setTextColor(Color.BLACK);
+                                        GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                        gd.setColor(Color.WHITE);
+                                        TBodyData.setBackground(gd);
+                                        tbrow1.addView(TBodyData);
+                                    }
+                                    }
+                                    table_main.addView(tbrow1);
+
                                 }
-                                String ThData = TableData.getTbody().getTr().get(j).getTd().get(l).getContent();
-                                TBodyData.setText(ThData);
-                                if (head_count < 4) {
-                                    TBodyData.setTextSize(10);
-                                } else {
-                                    TBodyData.setTextSize(8);
-
-                                }
-                                TBodyData.setTextColor(Color.BLACK);
-                                TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
-                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                                gd.setColor(Color.parseColor("#DCDCDC"));
-                                TBodyData.setBackground(gd);
-                                tbrow1.addView(TBodyData);
-
                             }
                         }
-                            for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
-
-                                TextView TBodyData = new TextView(context);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                                }
-                                String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
-                                TBodyData.setText(TbData);
-                                if(head_count <4) {
-                                    TBodyData.setTextSize(10);
-                                }else  {
-                                    TBodyData.setTextSize(8);
-
-                                }
-                                TBodyData.setTextColor(Color.BLACK);
-                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
-                                gd.setColor(Color.WHITE);
-                                TBodyData.setBackground(gd);
-                                tbrow1.addView(TBodyData);
-
-                            }
-                            table_main.addView(tbrow1);
-
-                        }
-                    }
-
 
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
