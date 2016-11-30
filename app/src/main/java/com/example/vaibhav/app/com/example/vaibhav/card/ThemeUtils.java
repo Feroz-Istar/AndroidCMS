@@ -349,7 +349,6 @@ public class ThemeUtils {
             Document doc = Jsoup.parse(cms.getParagraph().getText());
             elements = doc.select("p");
             elements1 = doc.select("table");
-            System.out.println("--------------------both----->" + elements);
 
 
             if (elements.size() > 0 && elements1.size() > 0) {
@@ -366,7 +365,7 @@ public class ThemeUtils {
                     TableData = serializer.read(Table.class, String.valueOf(elements1), false);
 
                     TableRow tbrow = new TableRow(context);
-
+                    int head_count =0;
                     if (TableData.getThead() != null && TableData.getThead().getTr().getTh().size() != 0) {
                         for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
                             TextView THeadData = new TextView(context);
@@ -383,6 +382,8 @@ public class ThemeUtils {
                             gd.setColor(Color.parseColor("#DCDCDC"));
                             THeadData.setBackground(gd);
                             THeadData.setTextSize(10);
+
+                            head_count++;
                             tbrow.addView(THeadData);
 
                         }
@@ -392,6 +393,32 @@ public class ThemeUtils {
                         for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
 
                             TableRow tbrow1 = new TableRow(context);
+
+                            if (TableData.getTbody().getTr().get(j).getTh().size() > 0) {
+
+                                for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
+
+                                    TextView TBodyData = new TextView(context);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                        TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                    }
+                                    String ThData = TableData.getTbody().getTr().get(j).getTd().get(l).getContent();
+                                    TBodyData.setText(ThData);
+                                    if (head_count < 4) {
+                                        TBodyData.setTextSize(10);
+                                    } else {
+                                        TBodyData.setTextSize(8);
+
+                                    }
+                                    TBodyData.setTextColor(Color.BLACK);
+                                    TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
+                                    GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                    gd.setColor(Color.parseColor("#DCDCDC"));
+                                    TBodyData.setBackground(gd);
+                                    tbrow1.addView(TBodyData);
+
+                                }
+                            }
 
                             for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
 
@@ -474,7 +501,31 @@ public class ThemeUtils {
                         for (int j = 0; j < TableData.getTbody().getTr().size(); j++) {
 
                             TableRow tbrow1 = new TableRow(context);
+                            if (TableData.getTbody().getTr().get(j).getTh().size() > 0) {
 
+                            for (int l = 0; l < TableData.getTbody().getTr().get(j).getTh().size(); l++) {
+
+                                TextView TBodyData = new TextView(context);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                    TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                }
+                                String ThData = TableData.getTbody().getTr().get(j).getTd().get(l).getContent();
+                                TBodyData.setText(ThData);
+                                if (head_count < 4) {
+                                    TBodyData.setTextSize(10);
+                                } else {
+                                    TBodyData.setTextSize(8);
+
+                                }
+                                TBodyData.setTextColor(Color.BLACK);
+                                TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
+                                GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+                                gd.setColor(Color.parseColor("#DCDCDC"));
+                                TBodyData.setBackground(gd);
+                                tbrow1.addView(TBodyData);
+
+                            }
+                        }
                             for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
 
                                 TextView TBodyData = new TextView(context);
@@ -493,11 +544,8 @@ public class ThemeUtils {
                                 GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
                                 gd.setColor(Color.WHITE);
                                 TBodyData.setBackground(gd);
-
                                 tbrow1.addView(TBodyData);
 
-
-                                tbrow1.setDividerPadding(5);
                             }
                             table_main.addView(tbrow1);
 

@@ -11,22 +11,30 @@ public class TbodyTr {
 	@ElementList(name = "td",required = false,inline = true)
 	private ArrayList<Td> td;
 
-	public TbodyTr() {
-		super();
-	}
+	@ElementList(name = "th",required = false,inline=true)
+	private ArrayList<Th> th;
 
-	public TbodyTr(ArrayList<Td> td) {
-		super();
-		this.td = td;
-	}
+    public TbodyTr() {
+    }
 
-	public ArrayList<Td> getTd() {
-		return td;
-	}
+    public TbodyTr(ArrayList<Th> th, ArrayList<Td> td) {
+        this.th = th;
+        this.td = td;
+    }
 
-	public void setTd(ArrayList<Td> td) {
-		this.td = td;
-	}
+    public ArrayList<Td> getTd() {
+        return td;
+    }
 
+    public void setTd(ArrayList<Td> td) {
+        this.td = td;
+    }
 
+    public ArrayList<Th> getTh() {
+        return th;
+    }
+
+    public void setTh(ArrayList<Th> th) {
+        this.th = th;
+    }
 }
