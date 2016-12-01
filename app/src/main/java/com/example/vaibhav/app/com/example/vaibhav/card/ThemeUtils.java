@@ -259,7 +259,7 @@ public class ThemeUtils {
                 List<String> lines = new ArrayList<>();
                 for (CMSTextItem item : cms.getList().getItems()) {
                     if (item.getText() != null) {
-                        lines.add(item.getText());
+                        lines.add(item.getText().replaceAll("<p>",""));
                     } else {
                         lines.remove(item);
                     }
@@ -583,7 +583,7 @@ public class ThemeUtils {
                 List<String> lines = new ArrayList<>();
                 for (CMSTextItem item : cms.getList().getItems()) {
                     if(item.getText() != null){
-                        lines.add(item.getText());
+                        lines.add(item.getText().replaceAll("<p>",""));
                     }else{  lines.remove(item); }
                 }
                 list1.setText(lines.get(0));
