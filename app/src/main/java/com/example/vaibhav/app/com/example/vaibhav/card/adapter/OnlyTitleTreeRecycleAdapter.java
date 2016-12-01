@@ -13,6 +13,7 @@ import com.example.vaibhav.app.R;
 import com.example.vaibhav.app.cmspojo.CMSSlide;
 import com.example.vaibhav.app.cmspojo.CMSTextItem;
 import com.example.vaibhav.app.util.BulletListBuilder;
+import com.example.vaibhav.app.util.CustomLayout;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
     }
 
 
-    public OnlyTitleTreeRecycleAdapter(CMSSlide cmsSlide , Context context) {
+    public OnlyTitleTreeRecycleAdapter(CMSSlide cmsSlide, Context context) {
 
         this.cmsSlide = cmsSlide;
         this.context = context;
@@ -46,6 +47,10 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycle_tree_list_item, parent, false);
+
+        if (cmsSlide.getTheme() != null && cmsSlide.getTheme().getBackgroundColor() != null)
+        { itemView.setBackgroundColor(Color.parseColor(cmsSlide.getTheme().getBackgroundColor()));}
+
 
         return new MyViewHolder(itemView);
     }
@@ -57,8 +62,9 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
         ArrayList<String> bulletList = new ArrayList<>();
 
         for(CMSTextItem list : cmsSlide.getList().getItems().get(position).getList().getItems()){
-            if(list != null && list.getText() != null)
+            if(list != null && list.getText() != null){
                 bulletList.add(list.getText());
+            }
 
         }
 
@@ -66,6 +72,7 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
 
         holder.title1.setTypeface(paragraphtf);
         holder.title1.setTextColor(Color.parseColor(cmsSlide.getTheme().getParagraphFontColor()));
+
         holder.title1.setTextSize(Integer.parseInt(cmsSlide.getTheme().getParagraphFontSize()) / 3);
         holder.title1.setText(new BulletListBuilder(context).getBulletListTitle(listitems,"",15));
         //holder.title1.setText(listitems);
@@ -73,7 +80,7 @@ public class OnlyTitleTreeRecycleAdapter extends RecyclerView.Adapter<OnlyTitleT
         if(bulletList.size() > 0)
 
         holder.title2.setTypeface(paragraphtf);
-        holder.title2.setTextColor(Color.parseColor(cmsSlide.getTheme().getParagraphFontColor()));
+       holder.title2.setTextColor(Color.parseColor(cmsSlide.getTheme().getParagraphFontColor()));
         holder.title2.setTextSize(Integer.parseInt(cmsSlide.getTheme().getParagraphFontSize()) / 3);
 
         holder.title2.setText(new BulletListBuilder(context).getBulletList(bulletList,"",15));

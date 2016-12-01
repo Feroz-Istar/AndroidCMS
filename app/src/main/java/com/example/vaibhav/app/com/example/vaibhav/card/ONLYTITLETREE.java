@@ -58,6 +58,7 @@ public class ONLYTITLETREE extends Card {
                 ParentrecyclerView.setItemAnimator(new DefaultItemAnimator());
                 ParentrecyclerView.setAdapter(onlytitletreeRecycleAdapter);
 
+
             }
             }
         }
