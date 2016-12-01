@@ -13,6 +13,7 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -65,7 +66,7 @@ public class ThemeUtils {
 
         if (cms.getTitle() != null) {
             if (cms.getTitle().getText() != null) {
-                title.setText(cms.getTitle().getText());
+                title.setText(cms.getTitle().getText().replaceAll("&#8203;", ""));
                 title.setTypeface(titletf, Typeface.BOLD);
             }
             if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
@@ -112,7 +113,7 @@ public class ThemeUtils {
         Typeface titletf = Typeface.createFromAsset(context.getAssets(), "Raleway-Regular.ttf");
         if (cms.getTitle2() != null && cms.getTitle2().getText() != null) {
             title.setText(cms.getTitle2().getText());
-            title.setTypeface(titletf,Typeface.BOLD);
+            title.setTypeface(titletf);
         }
         if (cms.getTheme() != null && cms.getTheme().getTitleFontColor() != null) {
             title.setTextColor(Color.parseColor(cms.getTheme().getTitleFontColor()));
@@ -480,8 +481,6 @@ public class ThemeUtils {
                             if (TableData.getThead() != null && TableData.getThead().getTr() != null) {
                                 if (TableData.getThead().getTr().getTh() != null && TableData.getThead().getTr().getTh().size() > 0) {
 
-
-
                                 for (int i = 0; i < TableData.getThead().getTr().getTh().size(); i++) {
                                     TextView THeadData = new TextView(context);
                                     String ThData = TableData.getThead().getTr().getTh().get(i).getContent();
@@ -489,13 +488,17 @@ public class ThemeUtils {
                                         THeadData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                     }
 
-                                    THeadData.setText(ThData);
+                                    THeadData.setText(ThData.replaceAll("(.{21})", "$1\n"));
+
                                     THeadData.setTextColor(Color.BLACK);
                                     THeadData.setTypeface(Typeface.DEFAULT_BOLD);
                                     GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
                                     gd.setColor(Color.parseColor("#DCDCDC"));
                                     THeadData.setBackground(gd);
                                     THeadData.setTextSize(10);
+
+
+
 
                                     head_count++;
                                     tbrow.addView(THeadData);
@@ -516,7 +519,7 @@ public class ThemeUtils {
                                                 TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                             }
                                             String ThData = TableData.getTbody().getTr().get(j).getTh().get(l).getContent();
-                                            TBodyData.setText(ThData);
+                                            TBodyData.setText(ThData.replaceAll("(.{21})", "$1\n"));
                                             if (head_count < 4) {
                                                 TBodyData.setTextSize(10);
                                             } else {
@@ -526,6 +529,10 @@ public class ThemeUtils {
                                             TBodyData.setTextColor(Color.BLACK);
                                             TBodyData.setTypeface(Typeface.DEFAULT_BOLD);
                                             GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
+
+
+
+
                                             gd.setColor(Color.parseColor("#DCDCDC"));
                                             TBodyData.setBackground(gd);
                                             tbrow1.addView(TBodyData);
@@ -538,17 +545,21 @@ public class ThemeUtils {
                                     for (int k = 0; k < TableData.getTbody().getTr().get(j).getTd().size(); k++) {
 
                                         TextView TBodyData = new TextView(context);
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                            TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                                        }
+
 
                                             String TbData = TableData.getTbody().getTr().get(j).getTd().get(k).getContent();
-                                        TBodyData.setText(TbData);
+
+                                        TBodyData.setText(TbData.replaceAll("(.{21})", "$1\n"));
+
+
                                         if (head_count < 4) {
                                             TBodyData.setTextSize(10);
                                         } else {
                                             TBodyData.setTextSize(8);
 
+                                        }
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                            TBodyData.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                         }
                                         TBodyData.setTextColor(Color.BLACK);
                                         GradientDrawable gd = (GradientDrawable) context.getResources().getDrawable(R.drawable.cellborder);
